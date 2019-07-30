@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name VueMoveable 'src/components/Moveable.vue'",
+    "build:demo": "vue-cli-service build --dest dist/demo",
+    "build:lib": "vue-cli-service build --target lib --dest dist/lib --name VueMoveable 'src/components/Moveable.vue'",
     "lint": "vue-cli-service lint"
   },
   "peerDependencies": {

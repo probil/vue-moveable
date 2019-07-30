@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist/demo
+/dist/lib/demo.html
+/dist/lib/*.map
 
 # local env files
 .env.local

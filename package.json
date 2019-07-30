@@ -1,12 +1,24 @@
 {
   "name": "vue-moveable",
   "version": "0.1.0",
-  "private": true,
+  "main": "dist/lib/VueMoveable.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:demo": "vue-cli-service build --dest dist/demo",
     "build:lib": "vue-cli-service build --target lib --dest dist/lib --name VueMoveable 'src/components/Moveable.vue'",
     "lint": "vue-cli-service lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/probil/vue-moveable.git"
+  },
+  "files": [
+    "dist/lib"
+  ],
+  "author": "Max Lyashuk <m_lyashuk@ukr.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/probil/vue-moveable/issues"
   },
   "peerDependencies": {
     "vue": "~2"

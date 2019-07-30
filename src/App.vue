@@ -107,24 +107,16 @@ export default {
       console.log('onWarp', target);
       target.style.transform = transform;
     },
+    clearAllStates() {
+      Object.keys(this.states).forEach((key) => {
+        this.moveable[key] = false;
+      });
+    },
   },
   watch: {
     currentState(newState) {
-      if (newState === 'warpable') {
-        this.moveable.resizable = false;
-        this.moveable.scalable = false;
-        this.moveable.warpable = true;
-      }
-      if (newState === 'scalable') {
-        this.moveable.resizable = false;
-        this.moveable.scalable = true;
-        this.moveable.warpable = false;
-      }
-      if (newState === 'resizable') {
-        this.moveable.resizable = true;
-        this.moveable.scalable = false;
-        this.moveable.warpable = false;
-      }
+      this.clearAllStates();
+      this.moveable[newState] = true;
     },
   },
 };

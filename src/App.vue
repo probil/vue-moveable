@@ -8,15 +8,50 @@
         @resize="handleResize"
         @scale="handleScale"
         @rotate="handleRotate"
+        @warp="handleWarp"
       >
         <span>Moveable</span>
       </Moveable>
+      <div class="buttons able">
+        <a
+          href="#"
+          v-for="(state, key) in states"
+          :key="key"
+          :class="{ selected: currentState === key }"
+          @click="currentState = key"
+        >{{ state }}</a>
+      </div>
+      <p class="badges">
+        <a href="https://www.npmjs.com/package/moveable" target="_blank">
+          <img src="https://img.shields.io/npm/v/vue-moveable.svg?style=flat-square&color=007acc&label=version"
+               alt="npm version" /></a>
+        <a href="https://github.com/probil/vue-moveable" target="_blank">
+          <img
+            src="https://img.shields.io/github/stars/probil/vue-moveable.svg?color=42b883&style=flat-square"
+            alt="github stars"/></a>
+        <a href="https://github.com/probil/vue-moveable/blob/master/LICENSE" target="_blank">
+          <img
+            src="https://img.shields.io/github/license/probil/vue-moveable.svg?style=flat-square&label=license&color=08CE5D"
+            alt="license"
+          />
+        </a>
+        <a href="https://github.com/daybrush/moveable/tree/master/packages/react-moveable" target="_blank"><img
+          alt="React"
+          src="https://img.shields.io/static/v1.svg?label=&message=React&style=flat-square&color=61daeb"></a>
+        <a href="https://github.com/daybrush/moveable/tree/master/packages/preact-moveable" target="_blank"><img
+          alt="React"
+          src="https://img.shields.io/static/v1.svg?label=&message=Preact&style=flat-square&color=673ab8"></a>
+        <a href="https://github.com/probil/vue-moveable" target="_blank"><img
+          alt="React"
+          src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"></a>
+      </p>
       <p class="description">Moveable is Draggable! Resizable! Scalable! Rotatable!</p>
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable no-param-reassign,no-unused-expressions */
 import Moveable from '@/components/Moveable.vue';
 
 export default {
@@ -36,33 +71,56 @@ export default {
       rotatable: true,
       throttleRotate: 0,
     },
+    states: {
+      scalable: 'Scalable',
+      resizable: 'Resizable',
+      warpable: 'Warpable',
+    },
+    currentState: 'scalable',
   }),
   methods: {
     handleDrag({ target, left, top }) {
       console.log('onDrag left, top', left, top);
-      // eslint-disable-next-line no-param-reassign
       target.style.left = `${left}px`;
-      // eslint-disable-next-line no-param-reassign
       target.style.top = `${top}px`;
     },
     handleResize({
       target, width, height, delta,
     }) {
-      console.log('onResize', target);
-      // eslint-disable-next-line no-param-reassign,no-unused-expressions
+      console.log('onResize', width, height);
       delta[0] && (target.style.width = `${width}px`);
-      // eslint-disable-next-line no-param-reassign,no-unused-expressions
       delta[1] && (target.style.height = `${height}px`);
     },
     handleScale({ target, transform, scale }) {
       console.log('onScale scale', scale);
-      // eslint-disable-next-line no-param-reassign
       target.style.transform = transform;
     },
     handleRotate({ target, dist, transform }) {
       console.log('onRotate', dist);
-      // eslint-disable-next-line no-param-reassign
       target.style.transform = transform;
+    },
+    handleWarp({ target, transform }) {
+      console.log('onWarp', target);
+      target.style.transform = transform;
+    },
+  },
+  watch: {
+    currentState(newState) {
+      if (newState === 'warpable') {
+        this.moveable.resizable = false;
+        this.moveable.scalable = false;
+        this.moveable.warpable = true;
+      }
+      if (newState === 'scalable') {
+        this.moveable.resizable = false;
+        this.moveable.scalable = true;
+        this.moveable.warpable = false;
+      }
+      if (newState === 'resizable') {
+        this.moveable.resizable = true;
+        this.moveable.scalable = false;
+        this.moveable.warpable = false;
+      }
     },
   },
 };
@@ -128,5 +186,45 @@ export default {
 
   .description {
     text-align: center;
+  }
+
+  .buttons.able a {
+    min-width: auto;
+    padding: 8px 20px;
+  }
+  .buttons {
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .buttons a {
+    position: relative;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 12px 30px;
+    min-width: 140px;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 5px;
+    transition: all ease 0.5s;
+  }
+
+  .buttons a:hover, .buttons a.selected {
+    background: #333;
+    color: #fff;
+  }
+
+  .badges {
+    text-align: center;
+  }
+  .badges a{
+    margin: 0 3px;
+  }
+
+  .badges img {
+    height: 20px;
   }
 </style>

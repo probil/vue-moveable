@@ -25,7 +25,7 @@ const ALLOWED_EVENTS = [
 ];
 
 export default {
-  name: 'Movable',
+  name: 'Moveable',
   inheritAttrs: false,
   props: {
     draggable: Boolean,

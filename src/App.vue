@@ -46,6 +46,10 @@
           src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"></a>
       </p>
       <p class="description">Moveable is Draggable! Resizable! Scalable! Rotatable!</p>
+      <div class="buttons">
+        <a href="https://github.com/probil/vue-moveable" target="_blank">Download</a>
+        <a href="https://daybrush.com/moveable/release/latest/doc/" target="_blank">API</a>
+      </div>
     </div>
   </div>
 </template>
@@ -188,6 +192,9 @@ export default {
     text-align: center;
   }
 
+  .buttons.able {
+    margin-top: 16px;
+  }
   .buttons.able a {
     min-width: auto;
     padding: 8px 20px;

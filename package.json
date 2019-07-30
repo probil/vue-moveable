@@ -5,14 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:lib": "vue-cli-service build --target lib --name VueMoveable 'src/components/Moveable.vue'",
     "lint": "vue-cli-service lint"
   },
-  "dependencies": {
-    "core-js": "^2.6.5",
-    "moveable": "0.4.1",
-    "vue": "^2.6.10"
+  "peerDependencies": {
+    "vue": "~2"
   },
   "devDependencies": {
+    "core-js": "^2.6.5",
+    "moveable": "0.4.1",
+    "vue": "^2.6.10",
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-plugin-eslint": "^3.9.0",
     "@vue/cli-service": "^3.9.0",

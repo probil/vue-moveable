@@ -18,7 +18,10 @@ const ALLOWED_EVENTS = [
   'scaleEnd',
   'rotateStart',
   'rotate',
-  'rotateEnd'
+  'rotateEnd',
+  'warpStart',
+  'warp',
+  'warpEnd',
 ];
 
 export default {
@@ -29,6 +32,7 @@ export default {
     resizable: Boolean,
     scalable: Boolean,
     rotatable: Boolean,
+    warpable: Boolean,
     origin: Boolean,
     throttleDrag: Number,
     throttleResize: Number,

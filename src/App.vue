@@ -22,7 +22,7 @@
         >{{ state }}</a>
       </div>
       <Badges />
-      <p class="description">Moveable is Draggable! Resizable! Scalable! Rotatable!</p>
+      <p class="description">Vue Moveable is Draggable! Resizable! Scalable! Rotatable!</p>
       <div class="buttons">
         <a href="https://github.com/probil/vue-moveable" target="_blank">Download</a>
         <a href="https://daybrush.com/moveable/release/latest/doc/" target="_blank">API</a>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-/* eslint-disable no-param-reassign,no-unused-expressions */
+/* eslint-disable no-param-reassign,no-unused-expressions,no-console */
 import Moveable from '@/components/Moveable.vue';
 import Badges from '@/components/Badges.vue';
 

@@ -62,5 +62,10 @@ export default {
       deep: true,
     },
   },
+  beforeDestroy() {
+    ALLOWED_EVENTS.forEach(event => (
+      this.moveable.off(event, this.$emit.bind(this, event))
+    ));
+  },
 };
 </script>

@@ -4,6 +4,7 @@
   </div>
 </template>
 <script>
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Moveable from 'moveable';
 
 const ALLOWED_EVENTS = [

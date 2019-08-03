@@ -3,8 +3,31 @@
 <p align="middle" ><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/logo.png"/></p>
 <h2 align="middle">Vue Moveable</h2>
 <p align="middle">
-<a href="https://www.npmjs.com/package/vue-moveable" target="_blank"><img src="https://img.shields.io/npm/v/vue-moveable.svg?style=flat-square&color=007acc&label=version" alt="npm version" /></a>
-<a href="https://github.com/probil/vue-moveable/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/probil/vue-moveable.svg?style=flat-square&label=license&color=08CE5D"/></a>
+    <a href="https://www.npmjs.com/package/moveable" target="_blank">
+      <img src="https://img.shields.io/npm/v/vue-moveable.svg?style=flat-square&color=007acc&label=version"
+           alt="npm version" /></a>
+    <a href="https://github.com/probil/vue-moveable" target="_blank">
+      <img
+        src="https://img.shields.io/github/stars/probil/vue-moveable.svg?color=42b883&style=flat-square"
+        alt="github stars"/></a>
+    <a href="https://github.com/probil/vue-moveable/blob/master/LICENSE" target="_blank">
+      <img
+        src="https://img.shields.io/github/license/probil/vue-moveable.svg?style=flat-square&label=license&color=08CE5D"
+        alt="license"
+      />
+    </a>
+    <a href="https://raw.githubusercontent.com/probil/moveable/master/dist/lib/VueMoveable.umd.min.js" target="_blank">
+      <img src="https://badgen.net/bundlephobia/minzip/vue-moveable" alt="Minified library size">
+    </a>
+    <a href="https://github.com/daybrush/moveable/tree/master/packages/react-moveable" target="_blank"><img
+      alt="React"
+      src="https://img.shields.io/static/v1.svg?label=&message=React&style=flat-square&color=61daeb"></a>
+    <a href="https://github.com/daybrush/moveable/tree/master/packages/preact-moveable" target="_blank"><img
+      alt="Preact"
+      src="https://img.shields.io/static/v1.svg?label=&message=Preact&style=flat-square&color=673ab8"></a>
+    <a href="https://github.com/probil/vue-moveable" target="_blank"><img
+      alt="Vue"
+      src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"></a>
 </p>
 <p align="middle">A Vue Component that create Moveable, Draggable, Resizable, Scalable, Rotatable, Warpable.</p>
 

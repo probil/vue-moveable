@@ -13,14 +13,17 @@
         alt="license"
       />
     </a>
+    <a href="https://raw.githubusercontent.com/probil/moveable/master/dist/lib/VueMoveable.umd.min.js" target="_blank">
+      <img src="https://badgen.net/bundlephobia/minzip/vue-moveable" alt="Minified library size">
+    </a>
     <a href="https://github.com/daybrush/moveable/tree/master/packages/react-moveable" target="_blank"><img
       alt="React"
       src="https://img.shields.io/static/v1.svg?label=&message=React&style=flat-square&color=61daeb"></a>
     <a href="https://github.com/daybrush/moveable/tree/master/packages/preact-moveable" target="_blank"><img
-      alt="React"
+      alt="Preact"
       src="https://img.shields.io/static/v1.svg?label=&message=Preact&style=flat-square&color=673ab8"></a>
     <a href="https://github.com/probil/vue-moveable" target="_blank"><img
-      alt="React"
+      alt="Vue"
       src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"></a>
   </p>
 </template>

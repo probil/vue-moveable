@@ -1692,12 +1692,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b4f6d9b6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=4e90d8bf&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"43022837-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=0c4cc224&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=template&id=4e90d8bf&
+// CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=template&id=0c4cc224&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -3224,7 +3224,7 @@ name: moveable
 license: MIT
 author: Daybrush
 repository: git+https://github.com/daybrush/moveable.git
-version: 0.4.1
+version: 0.5.0
 */
 
 
@@ -6746,7 +6746,7 @@ function (_super) {
      * moveable.keepRatio = true;
      */
     get: function () {
-      return this.getMoveable().keepRatio;
+      return this.getMoveable().props.keepRatio;
     },
     set: function (keepRatio) {
       this.innerMoveable.setState({
@@ -6767,7 +6767,7 @@ function (_super) {
      * moveable.throttleDrag = 1;
      */
     get: function () {
-      return this.getMoveable().throttleDrag;
+      return this.getMoveable().props.throttleDrag;
     },
     set: function (throttleDrag) {
       this.innerMoveable.setState({
@@ -6788,7 +6788,7 @@ function (_super) {
      * moveable.throttleResize = 1;
      */
     get: function () {
-      return this.getMoveable().throttleResize;
+      return this.getMoveable().props.throttleResize;
     },
     set: function (throttleResize) {
       this.innerMoveable.setState({
@@ -6809,7 +6809,7 @@ function (_super) {
      * moveable.throttleScale = 0.1;
      */
     get: function () {
-      return this.getMoveable().throttleScale;
+      return this.getMoveable().props.throttleScale;
     },
     set: function (throttleScale) {
       this.innerMoveable.setState({
@@ -6830,7 +6830,7 @@ function (_super) {
      * moveable.throttleRotate = 1;
      */
     get: function () {
-      return this.getMoveable().throttleRotate;
+      return this.getMoveable().props.throttleRotate;
     },
     set: function (throttleRotate) {
       this.innerMoveable.setState({
@@ -6903,6 +6903,23 @@ function (_super) {
 
   __proto.updateTarget = function () {
     this.getMoveable().updateTarget();
+  };
+  /**
+   * Remove the Moveable object and the events.
+   * @example
+   * import Moveable from "moveable";
+   *
+   * const moveable = new Moveable(document.body);
+   *
+   * moveable.destroy();
+   */
+
+
+  __proto.destroy = function () {
+    var el = this.getMoveable().base;
+    el.remove ? el.remove() : el.parentElement.removeChild(el);
+    this.innerMoveable = null;
+    this.getMoveable().componentWillUnmount();
   };
 
   __proto.getMoveable = function () {
@@ -6986,6 +7003,7 @@ var ALLOWED_EVENTS = ['dragStart', 'drag', 'dragEnd', 'resizeStart', 'resize', '
     ALLOWED_EVENTS.forEach(function (event) {
       return _this3.moveable.off(event, _this3.$emit.bind(_this3, event));
     });
+    this.moveable.destroy();
   }
 });
 // CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=script&lang=js&

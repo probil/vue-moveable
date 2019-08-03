@@ -67,6 +67,7 @@ export default {
     ALLOWED_EVENTS.forEach(event => (
       this.moveable.off(event, this.$emit.bind(this, event))
     ));
+    this.moveable.destroy();
   },
 };
 </script>

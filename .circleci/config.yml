@@ -32,7 +32,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # catch build-time errors (if any)
-      - run: npm run build
+      - run: npm run build:lib
 
       - run:
           name: Run code-style check

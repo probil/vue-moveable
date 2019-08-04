@@ -1683,12 +1683,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"43022837-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=0c4cc224&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5f19d5a4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=602ab416&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=template&id=0c4cc224&
+// CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=template&id=602ab416&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -6963,6 +6963,11 @@ var ALLOWED_EVENTS = ['dragStart', 'drag', 'dragEnd', 'resizeStart', 'resize', '
     throttleRotate: Number,
     keepRatio: Boolean
   },
+  methods: {
+    updateRec: function updateRec() {
+      this.moveable.updateRect();
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -6971,6 +6976,9 @@ var ALLOWED_EVENTS = ['dragStart', 'drag', 'dragEnd', 'resizeStart', 'resize', '
     }));
     ALLOWED_EVENTS.forEach(function (event) {
       return _this.moveable.on(event, _this.$emit.bind(_this, event));
+    });
+    window.addEventListener('resize', this.updateRec, {
+      passive: true
     });
   },
   watch: {
@@ -6994,6 +7002,7 @@ var ALLOWED_EVENTS = ['dragStart', 'drag', 'dragEnd', 'resizeStart', 'resize', '
     ALLOWED_EVENTS.forEach(function (event) {
       return _this3.moveable.off(event, _this3.$emit.bind(_this3, event));
     });
+    window.removeEventListener('resize', this.updateRec);
     this.moveable.destroy();
   }
 });

@@ -34,6 +34,10 @@ jobs:
       # catch build-time errors (if any)
       - run: npm run build:lib
 
+      - store_artifacts:
+           path: ./dist/lib/VueMoveable.umd.min.js
+           destination: VueMoveable.umd.min.js
+
       - run:
           name: Run code-style check
           command: npm run lint

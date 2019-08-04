@@ -40,4 +40,7 @@ jobs:
 
       - run:
           name: Run code-style check
-          command: npm run lint
+          command: npm run lint -- --format junit -o /tmp/test-results/code-style-test-results.xml
+
+      - store_test_results:
+          path: /tmp/test-results

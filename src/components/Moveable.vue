@@ -41,6 +41,11 @@ export default {
     throttleRotate: Number,
     keepRatio: Boolean,
   },
+  methods: {
+    updateRec() {
+      this.moveable.updateRect();
+    },
+  },
   mounted() {
     this.moveable = new Moveable(document.body, {
       ...this.$props,
@@ -49,6 +54,7 @@ export default {
     ALLOWED_EVENTS.forEach(event => (
       this.moveable.on(event, this.$emit.bind(this, event))
     ));
+    window.addEventListener('resize', this.updateRec, { passive: true });
   },
   watch: {
     $props: {
@@ -67,6 +73,7 @@ export default {
     ALLOWED_EVENTS.forEach(event => (
       this.moveable.off(event, this.$emit.bind(this, event))
     ));
+    window.removeEventListener('resize', this.updateRec);
     this.moveable.destroy();
   },
 };

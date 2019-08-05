@@ -132,6 +132,10 @@ export default {
   .page:nth-child(2n) {
     background: #f0f0f0;
   }
+  .page.main {
+    z-index: 1;
+    min-height: 700px;
+  }
 
   .container {
     position: relative;

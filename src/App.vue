@@ -48,7 +48,7 @@ export default {
       throttleDrag: 1,
       resizable: false,
       throttleResize: 1,
-      keepRatio: true,
+      keepRatio: false,
       scalable: true,
       throttleScale: 0.01,
       rotatable: true,

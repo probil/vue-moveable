@@ -45,14 +45,15 @@ export default {
   data: () => ({
     moveable: {
       draggable: true,
-      throttleDrag: 0,
+      throttleDrag: 1,
       resizable: false,
       throttleResize: 1,
       keepRatio: true,
       scalable: true,
-      throttleScale: 0,
+      throttleScale: 0.01,
       rotatable: true,
-      throttleRotate: 0,
+      throttleRotate: 0.2,
+      pinchable: true,
     },
     states: {
       scalable: 'Scalable',

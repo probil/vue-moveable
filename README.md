@@ -76,7 +76,7 @@
 * **Scalable** indicates whether the target's x and y can be scale of transform.
 * **Rotatable** indicates whether the target can be rotated.
 * **Warpable** indicates whether the target can be warped(distorted, bented).
-* **Pinchable** indicates whether the target can be pinched with draggable, resizable, scal
+* **Pinchable** indicates whether the target can be pinched with draggable, resizable, scalable, rotatable.
 
 ## ⚙️ Installation
 ```sh

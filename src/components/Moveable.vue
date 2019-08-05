@@ -23,6 +23,9 @@ const ALLOWED_EVENTS = [
   'warpStart',
   'warp',
   'warpEnd',
+  'pinchStart',
+  'pinch',
+  'pinchEnd',
 ];
 
 export default {
@@ -34,6 +37,7 @@ export default {
     scalable: Boolean,
     rotatable: Boolean,
     warpable: Boolean,
+    pinchable: [Boolean, Array],
     origin: Boolean,
     throttleDrag: Number,
     throttleResize: Number,

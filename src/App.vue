@@ -33,6 +33,8 @@
 
 <script>
 /* eslint-disable no-param-reassign,no-unused-expressions,no-console */
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Frame } from 'scenejs';
 import Moveable from '@/components/Moveable.vue';
 import Badges from '@/components/Badges.vue';
 
@@ -45,14 +47,15 @@ export default {
   data: () => ({
     moveable: {
       draggable: true,
-      throttleDrag: 0,
+      throttleDrag: 1,
       resizable: false,
       throttleResize: 1,
-      keepRatio: true,
+      keepRatio: false,
       scalable: true,
-      throttleScale: 0,
+      throttleScale: 0.01,
       rotatable: true,
-      throttleRotate: 0,
+      throttleRotate: 0.2,
+      pinchable: true,
     },
     states: {
       scalable: 'Scalable',
@@ -64,32 +67,42 @@ export default {
   methods: {
     handleDrag({ target, left, top }) {
       console.log('onDrag left, top', left, top);
-      target.style.left = `${left}px`;
-      target.style.top = `${top}px`;
+      this.$frame.set('left', `${left}px`);
+      this.$frame.set('top', `${top}px`);
+      this.setTransform(target);
     },
-    handleResize({
-      target, width, height, delta,
-    }) {
+    handleResize({ target, width, height }) {
       console.log('onResize', width, height);
-      delta[0] && (target.style.width = `${width}px`);
-      delta[1] && (target.style.height = `${height}px`);
+      this.$frame.set('width', `${width}px`);
+      this.$frame.set('height', `${height}px`);
+      this.setTransform(target);
     },
-    handleScale({ target, transform, scale }) {
+    handleScale({ target, scale, dist }) {
       console.log('onScale scale', scale);
-      target.style.transform = transform;
+      const scaleX = this.$frame.get('transform', 'scaleX') * dist[0];
+      const scaleY = this.$frame.get('transform', 'scaleY') * dist[1];
+      this.$frame.set('transform', 'scaleX', scaleX);
+      this.$frame.set('transform', 'scaleY', scaleY);
+      this.setTransform(target);
     },
-    handleRotate({ target, dist, transform }) {
+    handleRotate({ target, dist, beforeDelta }) {
       console.log('onRotate', dist);
-      target.style.transform = transform;
+      const deg = parseFloat(this.$frame.get('transform', 'rotate')) + beforeDelta;
+      this.$frame.set('transform', 'rotate', `${deg}deg`);
+      this.setTransform(target);
     },
-    handleWarp({ target, transform }) {
+    handleWarp({ target, delta, multiply }) {
       console.log('onWarp', target);
-      target.style.transform = transform;
+      this.$frame.set('transform', 'matrix3d', multiply(this.$frame.get('transform', 'matrix3d'), delta));
+      this.setTransform(target);
     },
     clearAllStates() {
       Object.keys(this.states).forEach((key) => {
         this.moveable[key] = false;
       });
+    },
+    setTransform(target) {
+      target.style.cssText = this.$frame.toCSS();
     },
   },
   watch: {
@@ -97,6 +110,25 @@ export default {
       this.clearAllStates();
       this.moveable[newState] = true;
     },
+  },
+  mounted() {
+    this.$frame = new Frame({
+      width: '300px',
+      height: '200px',
+      left: '0px',
+      top: '0px',
+      transform: {
+        rotate: '0deg',
+        scaleX: 1,
+        scaleY: 1,
+        matrix3d: [
+          1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 1, 0,
+          0, 0, 0, 1,
+        ],
+      },
+    });
   },
 };
 </script>
@@ -130,6 +162,10 @@ export default {
 
   .page:nth-child(2n) {
     background: #f0f0f0;
+  }
+  .page.main {
+    z-index: 1;
+    min-height: 700px;
   }
 
   .container {

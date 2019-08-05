@@ -29,7 +29,7 @@
       alt="Vue"
       src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"></a>
 </p>
-<p align="middle">A Vue Component that create Moveable, Draggable, Resizable, Scalable, Rotatable, Warpable.</p>
+<p align="middle">A Vue Component that create Moveable, Draggable, Resizable, Scalable, Rotatable, Warpable, Pinchable.</p>
 <p align="middle"><a href="https://codesandbox.io/s/vue-template-zthzj?fontsize=14"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Vue Moveable Demo"></a></p>
 <table width="100%" align="center">
 <tr>
@@ -57,18 +57,26 @@
 </tr>
 <tr>
 <td align="center"><strong>Warpable</strong></td>
-<td align="center"><strong></strong></td>
+<td align="center"><strong>Pinchable</strong></td>
 <td align="center"><strong></strong></td>
 <td align="center"><strong></strong></td>
 </tr>
 <tr>
 <td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/warpable.gif"></td>
-<td align="center"><strong></strong></td>
+<td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/pinchable.gif"></td>
 <td align="center"><strong></strong></td>
 <td align="center"><strong></strong></td>
 </tr>
 </table>
 
+
+## 🔥 Able!
+* **Draggable** refers to the ability to drag and move targets.
+* **Resizable** indicates whether the target's width and height can be increased or decreased.
+* **Scalable** indicates whether the target's x and y can be scale of transform.
+* **Rotatable** indicates whether the target can be rotated.
+* **Warpable** indicates whether the target can be warped(distorted, bented).
+* **Pinchable** indicates whether the target can be pinched with draggable, resizable, scal
 
 ## ⚙️ Installation
 ```sh

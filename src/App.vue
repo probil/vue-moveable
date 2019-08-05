@@ -113,7 +113,7 @@ export default {
   },
   mounted() {
     this.$frame = new Frame({
-      width: '250px',
+      width: '300px',
       height: '200px',
       left: '0px',
       top: '0px',

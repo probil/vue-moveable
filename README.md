@@ -98,6 +98,7 @@ $ npm i vue-moveable
     @scale="handleScale"
     @rotate="handleRotate"
     @warp="handleWarp"
+    @pinch="handlePinch"
   >
     <span>Vue Moveable</span>
   </Moveable>
@@ -121,7 +122,8 @@ export default {
       throttleScale: 0,
       rotatable: true,
       throttleRotate: 0,
-    },
+      pinchable: true, // ["draggable", "resizable", "scalable", "rotatable"]
+    }
   }),
   methods: {
     handleDrag({ target, left, top }) {
@@ -148,7 +150,10 @@ export default {
       console.log('onWarp', target);
       target.style.transform = transform;
     },
-  },
+    handlePinch({ target }) {
+      console.log('onPinch', target);
+    },
+  }
 }
 </script>
 ```

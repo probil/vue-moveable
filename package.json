@@ -1,6 +1,6 @@
 {
   "name": "vue-moveable",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A Vue Component that creates Moveable, Draggable, Resizable, Scalable, Rotatable and Warpable",
   "main": "dist/lib/VueMoveable.common.js",
   "scripts": {

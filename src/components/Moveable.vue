@@ -44,7 +44,10 @@ export default {
     throttleScale: Number,
     throttleRotate: Number,
     keepRatio: Boolean,
-    parent: Object
+    container: {
+      type: [HTMLElement, SVGElement],
+      default: document.body,
+    },
   },
   methods: {
     updateRec() {
@@ -52,7 +55,7 @@ export default {
     },
   },
   mounted() {
-    this.moveable = new Moveable(this.$props.parent ? this.$props.parent : document.body, {
+    this.moveable = new Moveable(this.$props.container, {
       ...this.$props,
       target: this.$el,
     });

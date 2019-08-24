@@ -77,6 +77,8 @@
 * **Rotatable** indicates whether the target can be rotated.
 * **Warpable** indicates whether the target can be warped(distorted, bented).
 * **Pinchable** indicates whether the target can be pinched with draggable, resizable, scalable, rotatable.
+* Support SVG Elements (svg, path, line, ellipse, g, rect, ...etc)
+* Support 3d Transform
 
 ## ⚙️ Installation
 ```sh
@@ -85,6 +87,7 @@ $ npm i vue-moveable
 
 ## 📄 Documents
 * [API Documentation](https://daybrush.com/moveable/release/latest/doc/)
+* ✨ [**How to use custom CSS**](https://github.com/daybrush/moveable/blob/master/custom_css.md)
 
 ## 🚀 How to use
 

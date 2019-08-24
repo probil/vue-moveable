@@ -1,8 +1,9 @@
 <template>
   <p class="badges">
     <a href="https://www.npmjs.com/package/moveable" target="_blank">
-      <img src="https://img.shields.io/npm/v/vue-moveable.svg?style=flat-square&color=007acc&label=version"
-           alt="npm version" /></a>
+      <img
+        src="https://img.shields.io/npm/v/vue-moveable.svg?style=flat-square&color=007acc&label=version"
+        alt="npm version"/></a>
     <a href="https://github.com/probil/vue-moveable" target="_blank">
       <img
         src="https://img.shields.io/github/stars/probil/vue-moveable.svg?color=42b883&style=flat-square"
@@ -13,27 +14,50 @@
         alt="license"
       />
     </a>
-    <a href="https://raw.githubusercontent.com/probil/moveable/master/dist/lib/VueMoveable.umd.min.js" target="_blank">
-      <img src="https://flat.badgen.net/bundlephobia/minzip/vue-moveable" alt="Minified library size">
+    <a
+      href="https://raw.githubusercontent.com/probil/moveable/master/dist/lib/VueMoveable.umd.min.js"
+      target="_blank">
+      <img src="https://flat.badgen.net/bundlephobia/minzip/vue-moveable"
+           alt="Minified library size">
     </a>
-    <a href="https://github.com/daybrush/moveable/tree/master/packages/react-moveable" target="_blank"><img
-      alt="React"
-      src="https://img.shields.io/static/v1.svg?label=&message=React&style=flat-square&color=61daeb"></a>
-    <a href="https://github.com/daybrush/moveable/tree/master/packages/preact-moveable" target="_blank"><img
-      alt="Preact"
-      src="https://img.shields.io/static/v1.svg?label=&message=Preact&style=flat-square&color=673ab8"></a>
-    <a href="https://github.com/probil/vue-moveable" target="_blank"><img
-      alt="Vue"
-      src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"></a>
+    <a href="https://github.com/daybrush/moveable/tree/master/packages/react-moveable"
+       target="_blank">
+      <img
+        alt="React"
+        src="https://img.shields.io/static/v1.svg?label=&message=React&style=flat-square&color=61daeb"
+      >
+    </a>
+    <a href="https://github.com/daybrush/moveable/tree/master/packages/preact-moveable"
+       target="_blank">
+      <img
+        alt="Preact"
+        src="https://img.shields.io/static/v1.svg?label=&message=Preact&style=flat-square&color=673ab8"
+      />
+    </a>
+    <a href="https://github.com/daybrush/moveable/tree/master/packages/ngx-moveable"
+       target="_blank">
+      <img
+        alt="Angular"
+        src="https://img.shields.io/static/v1.svg?label=&message=Angular&style=flat-square&color=C82B38"
+      />
+    </a>
+    <a href="https://github.com/probil/vue-moveable" target="_blank">
+      <img
+        alt="Vue"
+        src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"
+      />
+    </a>
   </p>
 </template>
 <style>
   .badges {
     text-align: center;
   }
+
   .badges a {
     margin: 0 3px;
   }
+
   .badges img {
     height: 20px;
   }

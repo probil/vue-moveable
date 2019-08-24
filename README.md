@@ -25,6 +25,9 @@
     <a href="https://github.com/daybrush/moveable/tree/master/packages/preact-moveable" target="_blank"><img
       alt="Preact"
       src="https://img.shields.io/static/v1.svg?label=&message=Preact&style=flat-square&color=673ab8"></a>
+    <a href="https://github.com/daybrush/moveable/tree/master/packages/ngx-moveable" target="_blank">
+    <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular&style=flat-square&color=C82B38">
+    </a>
     <a href="https://github.com/probil/vue-moveable" target="_blank"><img
       alt="Vue"
       src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"></a>

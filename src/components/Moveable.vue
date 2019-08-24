@@ -46,7 +46,7 @@ export default {
     keepRatio: Boolean,
     container: {
       type: [HTMLElement, SVGElement],
-      default: document.body,
+      default: () => document.body,
     },
   },
   methods: {

@@ -74,7 +74,6 @@ export default {
           this.moveable[key] = newOptions[key];
         });
       },
-      deep: true,
     },
   },
   beforeDestroy() {

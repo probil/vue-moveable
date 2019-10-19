@@ -164,6 +164,25 @@ export default {
 </script>
 ```
 
+## Polyfills
+
+Library use few browser built-ins and *doesn't* include polyfills for them. This ensures you don't include unnecessary polyfills in your code, as it should be the responsibility of the consuming app to include them.
+
+[Vue CLI includes them in babel config by default](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/babel-preset-app#polyfills) but here is a list (in case you what to add them manually):
+```
+# for core-js@2
+es6.array.filter
+es6.object.keys
+es6.symbol        # optional
+
+# for core-js@3
+es.array.filter
+es.object.keys
+es.symbol         # optional
+```
+
+For direct usage in browser consider using https://polyfill.io/v3/
+
 
 ## ⚙️ Developments
 ### `npm run serve`

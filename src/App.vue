@@ -33,8 +33,6 @@
 
 <script>
 /* eslint-disable no-param-reassign,no-unused-expressions,no-console */
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Frame } from 'scenejs';
 import Moveable from '@/components/Moveable.vue';
 import Badges from '@/components/Badges.vue';
 
@@ -56,6 +54,7 @@ export default {
       rotatable: true,
       throttleRotate: 0.2,
       pinchable: true,
+      origin: false,
     },
     states: {
       scalable: 'Scalable',
@@ -65,44 +64,31 @@ export default {
     currentState: 'scalable',
   }),
   methods: {
-    handleDrag({ target, left, top }) {
-      console.log('onDrag left, top', left, top);
-      this.$frame.set('left', `${left}px`);
-      this.$frame.set('top', `${top}px`);
-      this.setTransform(target);
+    handleDrag({ target, transform }) {
+      console.log('onDrag', transform);
+      target.style.transform = transform;
     },
     handleResize({ target, width, height }) {
       console.log('onResize', width, height);
-      this.$frame.set('width', `${width}px`);
-      this.$frame.set('height', `${height}px`);
-      this.setTransform(target);
+      target.style.width = `${width}px`;
+      target.style.height = `${height}px`;
     },
-    handleScale({ target, scale, dist }) {
-      console.log('onScale scale', scale);
-      const scaleX = this.$frame.get('transform', 'scaleX') * dist[0];
-      const scaleY = this.$frame.get('transform', 'scaleY') * dist[1];
-      this.$frame.set('transform', 'scaleX', scaleX);
-      this.$frame.set('transform', 'scaleY', scaleY);
-      this.setTransform(target);
+    handleScale({ target, transform }) {
+      console.log('onScale', transform);
+      target.style.transform = transform;
     },
-    handleRotate({ target, dist, beforeDelta }) {
-      console.log('onRotate', dist);
-      const deg = parseFloat(this.$frame.get('transform', 'rotate')) + beforeDelta;
-      this.$frame.set('transform', 'rotate', `${deg}deg`);
-      this.setTransform(target);
+    handleRotate({ target, transform }) {
+      console.log('onRotate', transform);
+      target.style.transform = transform;
     },
-    handleWarp({ target, delta, multiply }) {
+    handleWarp({ target, transform }) {
       console.log('onWarp', target);
-      this.$frame.set('transform', 'matrix3d', multiply(this.$frame.get('transform', 'matrix3d'), delta));
-      this.setTransform(target);
+      target.style.transform = transform;
     },
     clearAllStates() {
       Object.keys(this.states).forEach((key) => {
         this.moveable[key] = false;
       });
-    },
-    setTransform(target) {
-      target.style.cssText = this.$frame.toCSS();
     },
   },
   watch: {
@@ -110,25 +96,6 @@ export default {
       this.clearAllStates();
       this.moveable[newState] = true;
     },
-  },
-  mounted() {
-    this.$frame = new Frame({
-      width: '300px',
-      height: '200px',
-      left: '0px',
-      top: '0px',
-      transform: {
-        rotate: '0deg',
-        scaleX: 1,
-        scaleY: 1,
-        matrix3d: [
-          1, 0, 0, 0,
-          0, 1, 0, 0,
-          0, 0, 1, 0,
-          0, 0, 0, 1,
-        ],
-      },
-    });
   },
 };
 </script>

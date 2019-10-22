@@ -28,6 +28,35 @@ const ALLOWED_EVENTS = [
   'pinchEnd',
 ];
 
+const MOVEABLE_PROPS = [
+  'draggable',
+  'keepRatio',
+  'origin',
+  'pinchable',
+  'resizable',
+  'rotatable',
+  'scalable',
+  'throttleDrag',
+  'throttleResize',
+  'throttleScale',
+  'throttleRotate',
+  'warpable',
+];
+
+const watchReactiveProp = (key, deep) => ({
+  handler(newValue) {
+    const existingValue = this.moveable[key];
+    if (existingValue === newValue) return;
+    this.moveable[key] = newValue;
+  },
+  deep,
+});
+
+const watchMoveableProps = () => MOVEABLE_PROPS.reduce((acc, prop) => {
+  acc[prop] = watchReactiveProp(prop, true);
+  return acc;
+}, {});
+
 export default {
   name: 'Moveable',
   inheritAttrs: false,
@@ -65,17 +94,7 @@ export default {
     window.addEventListener('resize', this.updateRec, { passive: true });
   },
   watch: {
-    $props: {
-      handler(newOptions) {
-        Object.keys(newOptions).forEach((key) => {
-          const existingValue = this.moveable[key];
-          const newValue = newOptions[key];
-          if (existingValue === newValue) return;
-          this.moveable[key] = newOptions[key];
-        });
-      },
-      deep: true,
-    },
+    ...watchMoveableProps(),
   },
   beforeDestroy() {
     ALLOWED_EVENTS.forEach(event => (

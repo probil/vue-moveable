@@ -128,19 +128,19 @@ export default {
       throttleDrag: 0,
       resizable: false,
       throttleResize: 1,
-      keepRatio: true,
+      keepRatio: false,
       scalable: true,
       throttleScale: 0,
       rotatable: true,
       throttleRotate: 0,
       pinchable: true, // ["draggable", "resizable", "scalable", "rotatable"]
+      origin: false,
     }
   }),
   methods: {
-    handleDrag({ target, left, top }) {
-      console.log('onDrag left, top', left, top);
-      target.style.left = `${left}px`;
-      target.style.top = `${top}px`;
+    handleDrag({ target, transform }) {
+      console.log('onDrag left, top', transform);
+      target.style.transform = transform;
     },
     handleResize({
       target, width, height, delta,
@@ -158,7 +158,7 @@ export default {
       target.style.transform = transform;
     },
     handleWarp({ target, transform }) {
-      console.log('onWarp', target);
+      console.log('onWarp', transform);
       target.style.transform = transform;
     },
     handlePinch({ target }) {

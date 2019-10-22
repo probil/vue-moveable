@@ -82,7 +82,7 @@ export default {
       target.style.transform = transform;
     },
     handleWarp({ target, transform }) {
-      console.log('onWarp', target);
+      console.log('onWarp', transform);
       target.style.transform = transform;
     },
     clearAllStates() {

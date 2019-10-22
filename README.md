@@ -32,7 +32,7 @@
       alt="Vue"
       src="https://img.shields.io/static/v1.svg?label=&message=Vue&style=flat-square&color=3fb984"></a>
 </p>
-<p align="middle">A Vue Component that create Moveable, Draggable, Resizable, Scalable, Rotatable, Warpable, Pinchable, Groupable.</p>
+<p align="middle">A Vue Component that create Moveable, Draggable, Resizable, Scalable, Rotatable, Warpable, Pinchable, Groupable, Snappable.</p>
 <p align="middle"><a href="https://codesandbox.io/s/vue-template-zthzj?fontsize=14"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Vue Moveable Demo"></a></p>
 <table width="100%" align="center">
 <tr>
@@ -61,14 +61,14 @@
 <tr>
 <td align="center"><strong>Warpable</strong></td>
 <td align="center"><strong>Pinchable</strong></td>
-<td align="center"><a href="https://github.com/daybrush/moveable/blob/master/groupable.md"><strong>Groupable</strong></a></td>
-<td align="center"><strong></strong></td>
+<td align="center"><strong>Groupable</strong></td>
+<td align="center"><strong>Snappable</strong></td>
 </tr>
 <tr>
 <td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/warpable.gif"></td>
 <td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/pinchable.gif"></td>
 <td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/groupable.gif"></td>
-<td align="center"><strong></strong></td>
+<td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/snappable.gif"></td>
 </tr>
 </table>
 
@@ -80,8 +80,10 @@
 * **Rotatable** indicates whether the target can be rotated.
 * **Warpable** indicates whether the target can be warped(distorted, bented).
 * **Pinchable** indicates whether the target can be pinched with draggable, resizable, scalable, rotatable.
-* **[Groupable](https://github.com/daybrush/moveable/blob/master/groupable.md)** indicates Whether the targets can be moved in group with draggable, resizable, scalable, rotatable.
+* **Groupable** indicates Whether the targets can be moved in group with draggable, resizable, scalable, rotatable.
+* **Snappable** indicates whether to snap to the guideline.
 * Support SVG Elements (svg, path, line, ellipse, g, rect, ...etc)
+* Support Webkit Safari (Mac, iOS)
 * Support 3d Transform
 
 ## ⚙️ Installation
@@ -90,9 +92,10 @@ $ npm i vue-moveable
 ```
 
 ## 📄 Documents
+* [**Moveable Handbook**](https://github.com/daybrush/moveable/blob/master/handbook/handbook.md)
+* [**How to use Group**](https://github.com/daybrush/moveable/blob/master/handbook/handbook.md#toc-group)
+* [**How to use custom CSS**](https://github.com/daybrush/moveable/blob/master/handbook/handbook.md#toc-custom-css)
 * [API Documentation](https://daybrush.com/moveable/release/latest/doc/)
-* 🚀 [**How to use Groupable**](https://github.com/daybrush/moveable/blob/master/groupable.md)
-* ✨ [**How to use custom CSS**](https://github.com/daybrush/moveable/blob/master/custom_css.md)
 
 ## 🚀 How to use
 

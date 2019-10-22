@@ -26,9 +26,9 @@
     "vue": "~2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.0.4",
-    "@vue/cli-plugin-eslint": "4.0.4",
-    "@vue/cli-service": "4.0.4",
+    "@vue/cli-plugin-babel": "4.0.5",
+    "@vue/cli-plugin-eslint": "4.0.5",
+    "@vue/cli-service": "4.0.5",
     "@vue/eslint-config-airbnb": "4.0.1",
     "babel-eslint": "10.0.3",
     "core-js": "3.3.3",

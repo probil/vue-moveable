@@ -7,40 +7,73 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Moveable from 'moveable';
 
-const ALLOWED_EVENTS = [
-  'dragStart',
+const MOVEABLE_EVENTS = [
+  'clickGroup',
+
   'drag',
   'dragEnd',
-  'resizeStart',
-  'resize',
-  'resizeEnd',
-  'scaleStart',
-  'scale',
-  'scaleEnd',
-  'rotateStart',
-  'rotate',
-  'rotateEnd',
-  'warpStart',
-  'warp',
-  'warpEnd',
-  'pinchStart',
+  'dragStart',
+  'dragGroup',
+  'dragGroupEnd',
+  'dragGroupStart',
+
   'pinch',
   'pinchEnd',
+  'pinchGroup',
+  'pinchGroupEnd',
+  'pinchGroupStart',
+  'pinchStart',
+
+  'resize',
+  'resizeEnd',
+  'resizeGroup',
+  'resizeGroupEnd',
+  'resizeGroupStart',
+  'resizeStart',
+
+  'rotate',
+  'rotateEnd',
+  'rotateGroup',
+  'rotateGroupEnd',
+  'rotateGroupStart',
+  'rotateStart',
+
+  'scale',
+  'scaleEnd',
+  'scaleGroup',
+  'scaleGroupEnd',
+  'scaleGroupStart',
+  'scaleStart',
+
+  'warp',
+  'warpEnd',
+  'warpStart',
 ];
 
 const MOVEABLE_PROPS = [
   'draggable',
-  'keepRatio',
-  'origin',
-  'pinchable',
   'resizable',
-  'rotatable',
   'scalable',
+  'rotatable',
+  'warpable',
+  'pinchable',
+  'snappable',
+  'origin',
   'throttleDrag',
   'throttleResize',
   'throttleScale',
   'throttleRotate',
-  'warpable',
+  'keepRatio',
+  'edge',
+  'pinchThreshold',
+  'snapCenter',
+  'snapThreshold',
+  'horizontalGuidelines',
+  'verticalGuidelines',
+  'elementGuidelines',
+  'bounds',
+  'dragArea',
+  'rotationPosition',
 ];
 
 const watchReactiveProp = (key, deep) => ({
@@ -67,16 +100,26 @@ export default {
     rotatable: Boolean,
     warpable: Boolean,
     pinchable: [Boolean, Array],
+    snappable: [Boolean, Array],
     origin: Boolean,
+    container: {
+      type: [HTMLElement, SVGElement],
+      default: () => document.body,
+    },
     throttleDrag: Number,
     throttleResize: Number,
     throttleScale: Number,
     throttleRotate: Number,
     keepRatio: Boolean,
-    container: {
-      type: [HTMLElement, SVGElement],
-      default: () => document.body,
-    },
+    edge: Boolean,
+    pinchThreshold: Number,
+    snapCenter: Boolean,
+    snapThreshold: Number,
+    horizontalGuidelines: Array,
+    verticalGuidelines: Array,
+    elementGuidelines: Array,
+    bounds: Object,
+    rotationPosition: String,
   },
   methods: {
     updateRec() {
@@ -88,7 +131,7 @@ export default {
       ...this.$props,
       target: this.$el,
     });
-    ALLOWED_EVENTS.forEach(event => (
+    MOVEABLE_EVENTS.forEach(event => (
       this.moveable.on(event, this.$emit.bind(this, event))
     ));
     window.addEventListener('resize', this.updateRec, { passive: true });
@@ -97,7 +140,7 @@ export default {
     ...watchMoveableProps(),
   },
   beforeDestroy() {
-    ALLOWED_EVENTS.forEach(event => (
+    MOVEABLE_EVENTS.forEach(event => (
       this.moveable.off(event, this.$emit.bind(this, event))
     ));
     window.removeEventListener('resize', this.updateRec);

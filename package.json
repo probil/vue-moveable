@@ -33,7 +33,7 @@
     "babel-eslint": "10.0.3",
     "core-js": "3.3.6",
     "eslint": "6.6.0",
-    "eslint-plugin-vue": "5.2.3",
+    "eslint-plugin-vue": "6.0.0",
     "moveable": "0.9.8",
     "node-sass": "4.13.0",
     "sass-loader": "8.0.0",

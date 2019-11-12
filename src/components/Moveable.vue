@@ -8,6 +8,7 @@
 import Moveable from 'moveable';
 
 const MOVEABLE_EVENTS = [
+  'click',
   'clickGroup',
 
   'drag',
@@ -23,6 +24,13 @@ const MOVEABLE_EVENTS = [
   'pinchGroupEnd',
   'pinchGroupStart',
   'pinchStart',
+
+  'render',
+  'renderEnd',
+  'renderGroup',
+  'renderGroupEnd',
+  'renderGroupStart',
+  'renderStart',
 
   'resize',
   'resizeEnd',
@@ -45,6 +53,9 @@ const MOVEABLE_EVENTS = [
   'scaleGroupStart',
   'scaleStart',
 
+  'scroll',
+  'scrollGroup',
+
   'warp',
   'warpEnd',
   'warpStart',
@@ -58,7 +69,9 @@ const MOVEABLE_PROPS = [
   'warpable',
   'pinchable',
   'snappable',
+  'ables',
   'origin',
+  'className',
   'throttleDrag',
   'throttleResize',
   'throttleScale',
@@ -74,6 +87,10 @@ const MOVEABLE_PROPS = [
   'bounds',
   'dragArea',
   'rotationPosition',
+  'renderDirections',
+  'scrollable',
+  'scrollThreshold',
+  'getScrollPosition',
 ];
 
 const watchReactiveProp = (key, deep) => ({
@@ -101,6 +118,7 @@ export default {
     warpable: Boolean,
     pinchable: [Boolean, Array],
     snappable: [Boolean, Array],
+    ables: Array,
     origin: Boolean,
     container: {
       type: [HTMLElement, SVGElement],
@@ -119,7 +137,13 @@ export default {
     verticalGuidelines: Array,
     elementGuidelines: Array,
     bounds: Object,
+    dragArea: Boolean,
     rotationPosition: String,
+    renderDirections: Array,
+    scrollable: Boolean,
+    scrollContainer: [HTMLElement, SVGElement],
+    scrollThreshold: Number,
+    getScrollPosition: Function,
   },
   methods: {
     updateRec() {

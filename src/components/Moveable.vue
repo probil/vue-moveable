@@ -157,7 +157,7 @@ export default {
       ...this.$props,
       target: this.$el,
     });
-    MOVEABLE_EVENTS.forEach(event => (
+    MOVEABLE_EVENTS.forEach((event) => (
       this.moveable.on(event, this.$emit.bind(this, event))
     ));
     window.addEventListener('resize', this.updateRec, { passive: true });
@@ -166,7 +166,7 @@ export default {
     ...watchMoveableProps(),
   },
   beforeDestroy() {
-    MOVEABLE_EVENTS.forEach(event => (
+    MOVEABLE_EVENTS.forEach((event) => (
       this.moveable.off(event, this.$emit.bind(this, event))
     ));
     window.removeEventListener('resize', this.updateRec);

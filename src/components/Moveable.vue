@@ -121,6 +121,7 @@ export default {
     snappable: [Boolean, Array],
     ables: Array,
     origin: Boolean,
+    className: String,
     container: {
       type: [HTMLElement, SVGElement],
       default: () => document.body,

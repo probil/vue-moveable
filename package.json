@@ -2,7 +2,8 @@
   "name": "vue-moveable",
   "version": "1.3.0",
   "description": "A Vue Component that creates Moveable, Draggable, Resizable, Scalable, Rotatable, Warpable, Pinchable, Groupable, Snappable",
-  "main": "dist/lib/VueMoveable.common.js",
+  "main": "./dist/lib/VueMoveable.common.js",
+  "types": "./index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:demo": "vue-cli-service build --dest dist/demo",

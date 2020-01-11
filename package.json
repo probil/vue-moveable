@@ -32,7 +32,7 @@
     "@vue/cli-service": "4.1.2",
     "@vue/eslint-config-airbnb": "5.0.0",
     "babel-eslint": "10.0.3",
-    "core-js": "3.6.2",
+    "core-js": "3.6.3",
     "eslint": "6.8.0",
     "eslint-plugin-vue": "6.1.2",
     "moveable": "0.12.0",

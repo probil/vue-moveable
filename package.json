@@ -35,7 +35,7 @@
     "core-js": "3.6.4",
     "eslint": "6.8.0",
     "eslint-plugin-vue": "6.1.2",
-    "moveable": "0.13.4",
+    "moveable": "0.14.1",
     "node-sass": "4.13.1",
     "sass-loader": "8.0.2",
     "vue": "2.6.11",

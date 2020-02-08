@@ -144,40 +144,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var compat_module_namespaceObject = {};
-__webpack_require__.r(compat_module_namespaceObject);
-__webpack_require__.d(compat_module_namespaceObject, "createContext", function() { return L; });
-__webpack_require__.d(compat_module_namespaceObject, "createRef", function() { return p; });
-__webpack_require__.d(compat_module_namespaceObject, "Fragment", function() { return d; });
-__webpack_require__.d(compat_module_namespaceObject, "Component", function() { return y; });
-__webpack_require__.d(compat_module_namespaceObject, "default", function() { return compat_module; });
-__webpack_require__.d(compat_module_namespaceObject, "version", function() { return S; });
-__webpack_require__.d(compat_module_namespaceObject, "Children", function() { return W; });
-__webpack_require__.d(compat_module_namespaceObject, "render", function() { return M; });
-__webpack_require__.d(compat_module_namespaceObject, "hydrate", function() { return M; });
-__webpack_require__.d(compat_module_namespaceObject, "unmountComponentAtNode", function() { return compat_module_H; });
-__webpack_require__.d(compat_module_namespaceObject, "createPortal", function() { return compat_module_z; });
-__webpack_require__.d(compat_module_namespaceObject, "createElement", function() { return compat_module_D; });
-__webpack_require__.d(compat_module_namespaceObject, "createFactory", function() { return U; });
-__webpack_require__.d(compat_module_namespaceObject, "cloneElement", function() { return V; });
-__webpack_require__.d(compat_module_namespaceObject, "isValidElement", function() { return Z; });
-__webpack_require__.d(compat_module_namespaceObject, "findDOMNode", function() { return compat_module_$; });
-__webpack_require__.d(compat_module_namespaceObject, "PureComponent", function() { return compat_module_q; });
-__webpack_require__.d(compat_module_namespaceObject, "memo", function() { return B; });
-__webpack_require__.d(compat_module_namespaceObject, "forwardRef", function() { return G; });
-__webpack_require__.d(compat_module_namespaceObject, "unstable_batchedUpdates", function() { return Q; });
-__webpack_require__.d(compat_module_namespaceObject, "Suspense", function() { return compat_module_w; });
-__webpack_require__.d(compat_module_namespaceObject, "lazy", function() { return compat_module_A; });
-__webpack_require__.d(compat_module_namespaceObject, "useState", function() { return hooks_module_v; });
-__webpack_require__.d(compat_module_namespaceObject, "useReducer", function() { return hooks_module_m; });
-__webpack_require__.d(compat_module_namespaceObject, "useEffect", function() { return hooks_module_p; });
-__webpack_require__.d(compat_module_namespaceObject, "useLayoutEffect", function() { return hooks_module_l; });
-__webpack_require__.d(compat_module_namespaceObject, "useRef", function() { return hooks_module_d; });
-__webpack_require__.d(compat_module_namespaceObject, "useImperativeHandle", function() { return hooks_module_s; });
-__webpack_require__.d(compat_module_namespaceObject, "useMemo", function() { return hooks_module_y; });
-__webpack_require__.d(compat_module_namespaceObject, "useCallback", function() { return hooks_module_T; });
-__webpack_require__.d(compat_module_namespaceObject, "useContext", function() { return hooks_module_w; });
-__webpack_require__.d(compat_module_namespaceObject, "useDebugValue", function() { return hooks_module_A; });
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 // This file is imported into lib/wc client bundles.
@@ -196,12 +162,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6c6c7d35-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=fdc8396e&
-var Moveablevue_type_template_id_fdc8396e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9b6c8cce-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=4388e22c&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=template&id=fdc8396e&
+// CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=template&id=4388e22c&
 
 // CONCATENATED MODULE: ./node_modules/@egjs/component/dist/component.esm.js
 /*
@@ -504,7 +470,7 @@ name: framework-utils
 license: MIT
 author: Daybrush
 repository: git+https://github.com/daybrush/framework-utils.git
-version: 0.2.1
+version: 0.3.4
 */
 function prefixNames(prefix) {
   var classNames = [];
@@ -520,7 +486,9 @@ function prefixNames(prefix) {
   }).join(" ");
 }
 function prefixCSS(prefix, css) {
-  return css.replace(/\.([^{,\s\d.]+)/g, "." + prefix + "$1");
+  return css.replace(/([^}{]*){/mg, function (_, selector) {
+    return selector.replace(/\.([^{,\s\d.]+)/g, "." + prefix + "$1") + "{";
+  });
 }
 /* react */
 
@@ -544,364 +512,448 @@ function Properties(properties, action) {
     });
   };
 }
+/* Property Decorator */
+
+function withMethods(methods, duplicate) {
+  if (duplicate === void 0) {
+    duplicate = {};
+  }
+
+  return function (prototype, propertyName) {
+    methods.forEach(function (name) {
+      var methodName = duplicate[name] || name;
+
+      if (prototype[methodName]) {
+        return;
+      }
+
+      prototype[methodName] = function () {
+        var _a;
+
+        var args = [];
+
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+
+        var result = (_a = this[propertyName])[name].apply(_a, args);
+
+        if (result === this[propertyName]) {
+          return this;
+        } else {
+          return result;
+        }
+      };
+    });
+  };
+}
 
 
 //# sourceMappingURL=utils.esm.js.map
 
-// CONCATENATED MODULE: ./node_modules/preact/dist/preact.module.js
-var preact_module_n,l,preact_module_u,preact_module_t,preact_module_i,preact_module_o,preact_module_r,f={},preact_module_e=[],c=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord/i;function s(n,l){for(var u in l)n[u]=l[u];return n}function a(n){var l=n.parentNode;l&&l.removeChild(n)}function preact_module_h(n,l,u){var t,i,o,r,f=arguments;if(l=s({},l),arguments.length>3)for(u=[u],t=3;t<arguments.length;t++)u.push(f[t]);if(null!=u&&(l.children=u),null!=n&&null!=n.defaultProps)for(i in n.defaultProps)void 0===l[i]&&(l[i]=n.defaultProps[i]);return r=l.key,null!=(o=l.ref)&&delete l.ref,null!=r&&delete l.key,v(n,l,r,o)}function v(l,u,t,i){var o={type:l,props:u,key:t,ref:i,__k:null,__:null,__b:0,__e:null,__d:null,__c:null,constructor:void 0};return preact_module_n.vnode&&preact_module_n.vnode(o),o}function p(){return{}}function d(n){return n.children}function y(n,l){this.props=n,this.context=l}function m(n,l){if(null==l)return n.__?m(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return"function"==typeof n.type?m(n):null}function w(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return w(n)}}function g(l){(!l.__d&&(l.__d=!0)&&1===preact_module_u.push(l)||preact_module_i!==preact_module_n.debounceRendering)&&((preact_module_i=preact_module_n.debounceRendering)||preact_module_t)(k)}function k(){var n,l,t,i,o,r,f;for(preact_module_u.sort(function(n,l){return l.__v.__b-n.__v.__b});n=preact_module_u.pop();)n.__d&&(t=void 0,i=void 0,r=(o=(l=n).__v).__e,(f=l.__P)&&(t=[],i=T(f,o,s({},o),l.__n,void 0!==f.ownerSVGElement,null,t,null==r?m(o):r),$(t,o),i!=r&&w(o)))}function _(n,l,u,t,i,o,r,c,s){var h,v,p,d,y,w,g,k=u&&u.__k||preact_module_e,_=k.length;if(c==f&&(c=null!=o?o[0]:_?m(u,0):null),h=0,l.__k=b(l.__k,function(u){if(null!=u){if(u.__=l,u.__b=l.__b+1,null===(p=k[h])||p&&u.key==p.key&&u.type===p.type)k[h]=void 0;else for(v=0;v<_;v++){if((p=k[v])&&u.key==p.key&&u.type===p.type){k[v]=void 0;break}p=null}if(d=T(n,u,p=p||f,t,i,o,r,c,s),(v=u.ref)&&p.ref!=v&&(g||(g=[]),p.ref&&g.push(p.ref,null,u),g.push(v,u.__c||d,u)),null!=d){if(null==w&&(w=d),null!=u.__d)d=u.__d,u.__d=null;else if(o==p||d!=c||null==d.parentNode){n:if(null==c||c.parentNode!==n)n.appendChild(d);else{for(y=c,v=0;(y=y.nextSibling)&&v<_;v+=2)if(y==d)break n;n.insertBefore(d,c)}"option"==l.type&&(n.value="")}c=d.nextSibling,"function"==typeof l.type&&(l.__d=d)}}return h++,u}),l.__e=w,null!=o&&"function"!=typeof l.type)for(h=o.length;h--;)null!=o[h]&&a(o[h]);for(h=_;h--;)null!=k[h]&&A(k[h],k[h]);if(g)for(h=0;h<g.length;h++)z(g[h],g[++h],g[++h])}function b(n,l,u){if(null==u&&(u=[]),null==n||"boolean"==typeof n)l&&u.push(l(null));else if(Array.isArray(n))for(var t=0;t<n.length;t++)b(n[t],l,u);else u.push(l?l("string"==typeof n||"number"==typeof n?v(null,n,null,null):null!=n.__e||null!=n.__c?v(n.type,n.props,n.key,null):n):n);return u}function x(n,l,u,t,i){var o;for(o in u)o in l||P(n,o,null,u[o],t);for(o in l)i&&"function"!=typeof l[o]||"value"===o||"checked"===o||u[o]===l[o]||P(n,o,l[o],u[o],t)}function C(n,l,u){"-"===l[0]?n.setProperty(l,u):n[l]="number"==typeof u&&!1===c.test(l)?u+"px":null==u?"":u}function P(n,l,u,t,i){var o,r,f,e,c;if(i?"className"===l&&(l="class"):"class"===l&&(l="className"),"key"===l||"children"===l);else if("style"===l)if(o=n.style,"string"==typeof u)o.cssText=u;else{if("string"==typeof t&&(o.cssText="",t=null),t)for(r in t)u&&r in u||C(o,r,"");if(u)for(f in u)t&&u[f]===t[f]||C(o,f,u[f])}else"o"===l[0]&&"n"===l[1]?(e=l!==(l=l.replace(/Capture$/,"")),c=l.toLowerCase(),l=(c in n?c:l).slice(2),u?(t||n.addEventListener(l,N,e),(n.l||(n.l={}))[l]=u):n.removeEventListener(l,N,e)):"list"!==l&&"tagName"!==l&&"form"!==l&&!i&&l in n?n[l]=null==u?"":u:"function"!=typeof u&&"dangerouslySetInnerHTML"!==l&&(l!==(l=l.replace(/^xlink:?/,""))?null==u||!1===u?n.removeAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase()):n.setAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase(),u):null==u||!1===u?n.removeAttribute(l):n.setAttribute(l,u))}function N(l){this.l[l.type](preact_module_n.event?preact_module_n.event(l):l)}function T(l,u,t,i,o,r,f,e,c){var a,h,v,p,m,w,g,k,x,C,P=u.type;if(void 0!==u.constructor)return null;(a=preact_module_n.__b)&&a(u);try{n:if("function"==typeof P){if(k=u.props,x=(a=P.contextType)&&i[a.__c],C=a?x?x.props.value:a.__:i,t.__c?g=(h=u.__c=t.__c).__=h.__E:("prototype"in P&&P.prototype.render?u.__c=h=new P(k,C):(u.__c=h=new y(k,C),h.constructor=P,h.render=D),x&&x.sub(h),h.props=k,h.state||(h.state={}),h.context=C,h.__n=i,v=h.__d=!0,h.__h=[]),null==h.__s&&(h.__s=h.state),null!=P.getDerivedStateFromProps&&(h.__s==h.state&&(h.__s=s({},h.__s)),s(h.__s,P.getDerivedStateFromProps(k,h.__s))),p=h.props,m=h.state,v)null==P.getDerivedStateFromProps&&null!=h.componentWillMount&&h.componentWillMount(),null!=h.componentDidMount&&h.__h.push(h.componentDidMount);else{if(null==P.getDerivedStateFromProps&&null==h.__e&&null!=h.componentWillReceiveProps&&h.componentWillReceiveProps(k,C),!h.__e&&null!=h.shouldComponentUpdate&&!1===h.shouldComponentUpdate(k,h.__s,C)){for(h.props=k,h.state=h.__s,h.__d=!1,h.__v=u,u.__e=t.__e,u.__k=t.__k,h.__h.length&&f.push(h),a=0;a<u.__k.length;a++)u.__k[a]&&(u.__k[a].__=u);break n}null!=h.componentWillUpdate&&h.componentWillUpdate(k,h.__s,C),null!=h.componentDidUpdate&&h.__h.push(function(){h.componentDidUpdate(p,m,w)})}h.context=C,h.props=k,h.state=h.__s,(a=preact_module_n.__r)&&a(u),h.__d=!1,h.__v=u,h.__P=l,a=h.render(h.props,h.state,h.context),u.__k=b(null!=a&&a.type==d&&null==a.key?a.props.children:a),null!=h.getChildContext&&(i=s(s({},i),h.getChildContext())),v||null==h.getSnapshotBeforeUpdate||(w=h.getSnapshotBeforeUpdate(p,m)),_(l,u,t,i,o,r,f,e,c),h.base=u.__e,h.__h.length&&f.push(h),g&&(h.__E=h.__=null),h.__e=null}else u.__e=j(t.__e,u,t,i,o,r,f,c);(a=preact_module_n.diffed)&&a(u)}catch(l){preact_module_n.__e(l,u,t)}return u.__e}function $(l,u){preact_module_n.__c&&preact_module_n.__c(u,l),l.some(function(u){try{l=u.__h,u.__h=[],l.some(function(n){n.call(u)})}catch(l){preact_module_n.__e(l,u.__v)}})}function j(n,l,u,t,i,o,r,c){var s,a,h,v,p,d=u.props,y=l.props;if(i="svg"===l.type||i,null==n&&null!=o)for(s=0;s<o.length;s++)if(null!=(a=o[s])&&(null===l.type?3===a.nodeType:a.localName===l.type)){n=a,o[s]=null;break}if(null==n){if(null===l.type)return document.createTextNode(y);n=i?document.createElementNS("http://www.w3.org/2000/svg",l.type):document.createElement(l.type),o=null}if(null===l.type)null!=o&&(o[o.indexOf(n)]=null),d!==y&&(n.data=y);else if(l!==u){if(null!=o&&(o=preact_module_e.slice.call(n.childNodes)),h=(d=u.props||f).dangerouslySetInnerHTML,v=y.dangerouslySetInnerHTML,!c){if(d===f)for(d={},p=0;p<n.attributes.length;p++)d[n.attributes[p].name]=n.attributes[p].value;(v||h)&&(v&&h&&v.__html==h.__html||(n.innerHTML=v&&v.__html||""))}x(n,y,d,i,c),l.__k=l.props.children,v||_(n,l,u,t,"foreignObject"!==l.type&&i,o,r,f,c),c||("value"in y&&void 0!==y.value&&y.value!==n.value&&(n.value=null==y.value?"":y.value),"checked"in y&&void 0!==y.checked&&y.checked!==n.checked&&(n.checked=y.checked))}return n}function z(l,u,t){try{"function"==typeof l?l(u):l.current=u}catch(l){preact_module_n.__e(l,t)}}function A(l,u,t){var i,o,r;if(preact_module_n.unmount&&preact_module_n.unmount(l),(i=l.ref)&&z(i,null,u),t||"function"==typeof l.type||(t=null!=(o=l.__e)),l.__e=l.__d=null,null!=(i=l.__c)){if(i.componentWillUnmount)try{i.componentWillUnmount()}catch(l){preact_module_n.__e(l,u)}i.base=i.__P=null}if(i=l.__k)for(r=0;r<i.length;r++)i[r]&&A(i[r],u,t);null!=o&&a(o)}function D(n,l,u){return this.constructor(n,u)}function E(l,u,t){var i,r,c;preact_module_n.__&&preact_module_n.__(l,u),r=(i=t===preact_module_o)?null:t&&t.__k||u.__k,l=preact_module_h(d,null,[l]),c=[],T(u,(i?u:t||u).__k=l,r||f,f,void 0!==u.ownerSVGElement,t&&!i?[t]:r?null:preact_module_e.slice.call(u.childNodes),c,t||f,i),$(c,l)}function H(n,l){E(n,l,preact_module_o)}function I(n,l){return l=s(s({},n.props),l),arguments.length>2&&(l.children=preact_module_e.slice.call(arguments,2)),v(n.type,l,l.key||n.key,l.ref||n.ref)}function L(n){var l={},u={__c:"__cC"+preact_module_r++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var t,i=this;return this.getChildContext||(t=[],this.getChildContext=function(){return l[u.__c]=i,l},this.shouldComponentUpdate=function(l){n.value!==l.value&&t.some(function(n){n.context=l.value,g(n)})},this.sub=function(n){t.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){t.splice(t.indexOf(n),1),l&&l.call(n)}}),n.children}};return u.Consumer.contextType=u,u}preact_module_n={__e:function(n,l){for(var u;l=l.__;)if((u=l.__c)&&!u.__)try{if(u.constructor&&null!=u.constructor.getDerivedStateFromError)u.setState(u.constructor.getDerivedStateFromError(n));else{if(null==u.componentDidCatch)continue;u.componentDidCatch(n)}return g(u.__E=u)}catch(l){n=l}throw n}},l=function(n){return null!=n&&void 0===n.constructor},y.prototype.setState=function(n,l){var u;u=this.__s!==this.state?this.__s:this.__s=s({},this.state),"function"==typeof n&&(n=n(u,this.props)),n&&s(u,n),null!=n&&this.__v&&(this.__e=!1,l&&this.__h.push(l),g(this))},y.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),g(this))},y.prototype.render=d,preact_module_u=[],preact_module_t="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,preact_module_o=f,preact_module_r=0;
-//# sourceMappingURL=preact.module.js.map
-
-// CONCATENATED MODULE: ./node_modules/preact/hooks/dist/hooks.module.js
-var hooks_module_t,hooks_module_u,hooks_module_r,hooks_module_i=[],hooks_module_o=preact_module_n.__r,hooks_module_f=preact_module_n.diffed,hooks_module_c=preact_module_n.__c,hooks_module_e=preact_module_n.unmount;function hooks_module_a(t){preact_module_n.__h&&preact_module_n.__h(hooks_module_u);var r=hooks_module_u.__H||(hooks_module_u.__H={t:[],u:[]});return t>=r.t.length&&r.t.push({}),r.t[t]}function hooks_module_v(n){return hooks_module_m(hooks_module_x,n)}function hooks_module_m(n,r,i){var o=hooks_module_a(hooks_module_t++);return o.__c||(o.__c=hooks_module_u,o.i=[i?i(r):hooks_module_x(void 0,r),function(t){var u=n(o.i[0],t);o.i[0]!==u&&(o.i[0]=u,o.__c.setState({}))}]),o.i}function hooks_module_p(n,r){var i=hooks_module_a(hooks_module_t++);q(i.o,r)&&(i.i=n,i.o=r,hooks_module_u.__H.u.push(i))}function hooks_module_l(n,r){var i=hooks_module_a(hooks_module_t++);q(i.o,r)&&(i.i=n,i.o=r,hooks_module_u.__h.push(i))}function hooks_module_d(n){return hooks_module_y(function(){return{current:n}},[])}function hooks_module_s(n,t,u){hooks_module_l(function(){"function"==typeof n?n(t()):n&&(n.current=t())},null==u?u:u.concat(n))}function hooks_module_y(n,u){var r=hooks_module_a(hooks_module_t++);return q(r.o,u)?(r.o=u,r.v=n,r.i=n()):r.i}function hooks_module_T(n,t){return hooks_module_y(function(){return n},t)}function hooks_module_w(n){var r=hooks_module_u.context[n.__c];if(!r)return n.__;var i=hooks_module_a(hooks_module_t++);return null==i.i&&(i.i=!0,r.sub(hooks_module_u)),r.props.value}function hooks_module_A(t,u){preact_module_n.useDebugValue&&preact_module_n.useDebugValue(u?u(t):t)}function F(){hooks_module_i.some(function(n){n.__P&&(n.__H.u.forEach(hooks_module_),n.__H.u.forEach(hooks_module_g),n.__H.u=[])}),hooks_module_i=[]}function hooks_module_(n){n.m&&n.m()}function hooks_module_g(n){var t=n.i();"function"==typeof t&&(n.m=t)}function q(n,t){return!n||t.some(function(t,u){return t!==n[u]})}function hooks_module_x(n,t){return"function"==typeof t?t(n):t}preact_module_n.__r=function(n){hooks_module_o&&hooks_module_o(n),hooks_module_t=0,(hooks_module_u=n.__c).__H&&(hooks_module_u.__H.u.forEach(hooks_module_),hooks_module_u.__H.u.forEach(hooks_module_g),hooks_module_u.__H.u=[])},preact_module_n.diffed=function(t){hooks_module_f&&hooks_module_f(t);var u=t.__c;if(u){var o=u.__H;o&&o.u.length&&(1!==hooks_module_i.push(u)&&hooks_module_r===preact_module_n.requestAnimationFrame||((hooks_module_r=preact_module_n.requestAnimationFrame)||function(n){var t,u=function(){clearTimeout(r),cancelAnimationFrame(t),setTimeout(n)},r=setTimeout(u,100);"undefined"!=typeof window&&(t=requestAnimationFrame(u))})(F))}},preact_module_n.__c=function(n,t){t.some(function(n){n.__h.forEach(hooks_module_),n.__h=n.__h.filter(function(n){return!n.i||hooks_module_g(n)})}),hooks_module_c&&hooks_module_c(n,t)},preact_module_n.unmount=function(n){hooks_module_e&&hooks_module_e(n);var t=n.__c;if(t){var u=t.__H;u&&u.t.forEach(function(n){return n.m&&n.m()})}};
-//# sourceMappingURL=hooks.module.js.map
-
-// CONCATENATED MODULE: ./node_modules/preact/compat/dist/compat.module.js
-function compat_module_E(n,t){for(var e in t)n[e]=t[e];return n}function compat_module_(n){var t=n.parentNode;t&&t.removeChild(n)}var compat_module_k=preact_module_n.__e;function compat_module_w(n){this.__u=[],this.__f=n.fallback}function compat_module_A(n){var t,e,r;function o(o){if(t||(t=n()).then(function(n){e=n.default},function(n){r=n}),r)throw r;if(!e)throw t;return preact_module_h(e,o)}return o.displayName="Lazy",o.t=!0,o}preact_module_n.__e=function(n,t,e){if(n.then&&e)for(var r,o=t;o=o.__;)if((r=o.__c)&&r.o)return e&&(t.__e=e.__e,t.__k=e.__k),void r.o(n);compat_module_k(n,t,e)},(compat_module_w.prototype=new y).o=function(n){var t=this;t.__u.push(n);var e=function(){t.__u[t.__u.indexOf(n)]=t.__u[t.__u.length-1],t.__u.pop(),0==t.__u.length&&(t.__f&&A(t.__f),t.__v.__e=null,t.__v.__k=t.state.u,t.setState({u:null}))};null==t.state.u&&(t.__f=t.__f&&I(t.__f),t.setState({u:t.__v.__k}),function n(t){for(var e=0;e<t.length;e++){var r=t[e];null!=r&&("function"!=typeof r.type&&r.__e?compat_module_(r.__e):r.__k&&n(r.__k))}}(t.__v.__k),t.__v.__k=[]),n.then(e,e)},compat_module_w.prototype.render=function(n,t){return t.u?this.__f:n.children};var S="16.8.0",compat_module_F="undefined"!=typeof Symbol&&Symbol.for&&Symbol.for("react.element")||60103,compat_module_N=/^(?:accent|alignment|arabic|baseline|cap|clip|color|fill|flood|font|glyph|horiz|marker|overline|paint|stop|strikethrough|stroke|text|underline|unicode|units|v|vector|vert|word|writing|x)[A-Z]/,R=preact_module_n.event;function U(n){return compat_module_D.bind(null,n)}function M(n,t,e){if(null==t.__k)for(;t.firstChild;)compat_module_(t.firstChild);return E(n,t),"function"==typeof e&&e(),n?n.__c:null}preact_module_n.event=function(n){return R&&(n=R(n)),n.persist=function(){},n.nativeEvent=n};var O=function(){function n(){}var t=n.prototype;return t.getChildContext=function(){return this.props.context},t.render=function(n){return n.children},n}();function compat_module_j(n){var t=this,e=n.container,r=preact_module_h(O,{context:t.context},n.vnode);return t.i&&t.i!==e&&(t.l.parentNode&&t.i.removeChild(t.l),A(t.s),t.v=!1),n.vnode?t.v?(e.__k=t.__k,E(r,e),t.__k=e.__k):(t.l=document.createTextNode(""),H("",e),e.appendChild(t.l),t.v=!0,t.i=e,E(r,e,t.l),t.__k=this.l.__k):t.v&&(t.l.parentNode&&t.i.removeChild(t.l),A(t.s)),t.s=r,t.componentWillUnmount=function(){t.l.parentNode&&t.i.removeChild(t.l),A(t.s)},null}function compat_module_z(n,t){return preact_module_h(compat_module_j,{vnode:n,container:t})}var compat_module_P=function(n,t){return n?b(n).map(t):null},W={map:compat_module_P,forEach:compat_module_P,count:function(n){return n?b(n).length:0},only:function(n){if(1!==(n=b(n)).length)throw new Error("Children.only() expects only one child.");return n[0]},toArray:b};function compat_module_D(){var n=preact_module_h.apply(void 0,arguments),t=n.type,e=n.props;return"function"!=typeof t&&(e.defaultValue&&(e.value||0===e.value||(e.value=e.defaultValue),delete e.defaultValue),Array.isArray(e.value)&&e.multiple&&"select"===t&&(b(e.children).forEach(function(n){-1!=e.value.indexOf(n.props.value)&&(n.props.selected=!0)}),delete e.value),function(n,t){var e,r,o;for(o in t)if(e=compat_module_N.test(o))break;if(e)for(o in r=n.props={},t)r[compat_module_N.test(o)?o.replace(/([A-Z0-9])/,"-$1").toLowerCase():o]=t[o]}(n,e)),n.preactCompatNormalized=!1,compat_module_L(n)}function compat_module_L(n){return n.preactCompatNormalized=!0,function(n){var t=n.props;(t.class||t.className)&&(compat_module_I.enumerable="className"in t,t.className&&(t.class=t.className),Object.defineProperty(t,"className",compat_module_I))}(n),n}function V(n){return Z(n)?compat_module_L(I.apply(null,arguments)):n}function Z(n){return!!n&&n.$$typeof===compat_module_F}function compat_module_H(n){return!!n.__k&&(E(null,n),!0)}var compat_module_I={configurable:!0,get:function(){return this.class}};function compat_module_T(n,t){for(var e in n)if("__source"!==e&&!(e in t))return!0;for(var r in t)if("__source"!==r&&n[r]!==t[r])return!0;return!1}function compat_module_$(n){return n&&(n.base||1===n.nodeType&&n)||null}var compat_module_q=function(n){var t,e;function r(t){var e;return(e=n.call(this,t)||this).isPureReactComponent=!0,e}return e=n,(t=r).prototype=Object.create(e.prototype),t.prototype.constructor=t,t.__proto__=e,r.prototype.shouldComponentUpdate=function(n,t){return compat_module_T(this.props,n)||compat_module_T(this.state,t)},r}(y);function B(n,t){function e(n){var e=this.props.ref,r=e==n.ref;return!r&&e&&(e.call?e(null):e.current=null),t?!t(this.props,n)||!r:compat_module_T(this.props,n)}function r(t){return this.shouldComponentUpdate=e,preact_module_h(n,compat_module_E({},t))}return r.prototype.isReactComponent=!0,r.displayName="Memo("+(n.displayName||n.name)+")",r.t=!0,r}function G(n){function t(t){var e=compat_module_E({},t);return delete e.ref,n(e,t.ref)}return t.prototype.isReactComponent=!0,t.t=!0,t.displayName="ForwardRef("+(n.displayName||n.name)+")",t}function J(n,t){n["UNSAFE_"+t]&&!n[t]&&Object.defineProperty(n,t,{configurable:!1,get:function(){return this["UNSAFE_"+t]},set:function(n){this["UNSAFE_"+t]=n}})}y.prototype.isReactComponent={};var K=preact_module_n.vnode;preact_module_n.vnode=function(n){n.$$typeof=compat_module_F,function(t){var e=n.type,r=n.props;if(r&&"string"==typeof e){var o={};for(var u in r)/^on(Ani|Tra)/.test(u)&&(r[u.toLowerCase()]=r[u],delete r[u]),o[u.toLowerCase()]=u;if(o.ondoubleclick&&(r.ondblclick=r[o.ondoubleclick],delete r[o.ondoubleclick]),o.onbeforeinput&&(r.onbeforeinput=r[o.onbeforeinput],delete r[o.onbeforeinput]),o.onchange&&("textarea"===e||"input"===e.toLowerCase()&&!/^fil|che|ra/i.test(r.type))){var i=o.oninput||"oninput";r[i]||(r[i]=r[o.onchange],delete r[o.onchange])}}}();var t=n.type;t&&t.t&&n.ref&&(n.props.ref=n.ref,n.ref=null),"function"==typeof t&&!t.p&&t.prototype&&(J(t.prototype,"componentWillMount"),J(t.prototype,"componentWillReceiveProps"),J(t.prototype,"componentWillUpdate"),t.p=!0),K&&K(n)};var Q=function(n,t){return n(t)};/* harmony default export */ var compat_module = ({useState:hooks_module_v,useReducer:hooks_module_m,useEffect:hooks_module_p,useLayoutEffect:hooks_module_l,useRef:hooks_module_d,useImperativeHandle:hooks_module_s,useMemo:hooks_module_y,useCallback:hooks_module_T,useContext:hooks_module_w,useDebugValue:hooks_module_A,version:"16.8.0",Children:W,render:M,hydrate:M,unmountComponentAtNode:compat_module_H,createPortal:compat_module_z,createElement:compat_module_D,createContext:L,createFactory:U,cloneElement:V,createRef:p,Fragment:d,isValidElement:Z,findDOMNode:compat_module_$,Component:y,PureComponent:compat_module_q,memo:B,forwardRef:G,unstable_batchedUpdates:Q,Suspense:compat_module_w,lazy:compat_module_A});
-//# sourceMappingURL=compat.module.js.map
-
-// CONCATENATED MODULE: ./node_modules/@egjs/agent/dist/agent.esm.js
+// CONCATENATED MODULE: ./node_modules/@egjs/list-differ/dist/list-differ.esm.js
 /*
-Copyright (c) 2017 NAVER Corp.
-@egjs/agent project is licensed under the MIT license
-
-@egjs/agent JavaScript library
-
-
-@version 2.1.5
+Copyright (c) 2019-present NAVER Corp.
+name: @egjs/list-differ
+license: MIT
+author: NAVER Corp.
+repository: https://github.com/naver/egjs-list-differ
+version: 1.0.0
 */
-var win = typeof window !== "undefined" && window || {};
-var RegExp$1 = win.RegExp;
-var agent_esm_navigator = win.navigator;
-
-var parseRules = {
-	browser: [{
-		criteria: "PhantomJS",
-		identity: "PhantomJS"
-	}, {
-		criteria: /Whale/,
-		identity: "Whale",
-		versionSearch: "Whale"
-	}, {
-		criteria: /Edge/,
-		identity: "Edge",
-		versionSearch: "Edge"
-	}, {
-		criteria: /MSIE|Trident|Windows Phone/,
-		identity: "IE",
-		versionSearch: "IEMobile|MSIE|rv"
-	}, {
-		criteria: /MiuiBrowser/,
-		identity: "MIUI Browser",
-		versionSearch: "MiuiBrowser"
-	}, {
-		criteria: /SamsungBrowser/,
-		identity: "Samsung Internet",
-		versionSearch: "SamsungBrowser"
-	}, {
-		criteria: /SAMSUNG /,
-		identity: "Samsung Internet",
-		versionSearch: "Version"
-	}, {
-		criteria: /Chrome|CriOS/,
-		identity: "Chrome"
-	}, {
-		criteria: /Android/,
-		identity: "Android Browser",
-		versionSearch: "Version"
-	}, {
-		criteria: /iPhone|iPad/,
-		identity: "Safari",
-		versionSearch: "Version"
-	}, {
-		criteria: "Apple",
-		identity: "Safari",
-		versionSearch: "Version"
-	}, {
-		criteria: "Firefox",
-		identity: "Firefox"
-	}],
-	os: [{
-		criteria: /Windows Phone/,
-		identity: "Windows Phone",
-		versionSearch: "Windows Phone"
-	}, {
-		criteria: "Windows 2000",
-		identity: "Window",
-		versionAlias: "5.0"
-	}, {
-		criteria: /Windows NT/,
-		identity: "Window",
-		versionSearch: "Windows NT"
-	}, {
-		criteria: /iPhone|iPad/,
-		identity: "iOS",
-		versionSearch: "iPhone OS|CPU OS"
-	}, {
-		criteria: "Mac",
-		versionSearch: "OS X",
-		identity: "MAC"
-	}, {
-		criteria: /Android/,
-		identity: "Android"
-	}, {
-		criteria: /Tizen/,
-		identity: "Tizen"
-	}, {
-		criteria: /Web0S/,
-		identity: "WebOS"
-	}],
-
-	// Webview check condition
-	// ios: If has no version information
-	// Android 5.0 && chrome 40+: Presence of "; wv" in userAgent
-	// Under android 5.0: Presence of "NAVER" or "Daum" in userAgent
-	webview: [{
-		criteria: /iPhone|iPad/,
-		browserVersionSearch: "Version",
-		webviewBrowserVersion: /-1/
-	}, {
-		criteria: /iPhone|iPad|Android/,
-		webviewToken: /NAVER|DAUM|; wv/
-
-	}],
-	defaultString: {
-		browser: {
-			version: "-1",
-			name: "unknown"
-		},
-		os: {
-			version: "-1",
-			name: "unknown"
-		}
-	}
-};
-
-function filter(arr, compare) {
-	var result = [];
-
-	for (var i = 0; i < arr.length; i++) {
-		compare(arr[i]) && result.push(arr[i]);
-	}
-	return result;
-}
-
-function some(arr, compare) {
-	for (var i = 0; i < arr.length; i++) {
-		if (compare(arr[i])) {
-			return true;
-		}
-	}
-	return false;
-}
-
-var UA = void 0;
-
-function setUa(ua) {
-	UA = ua;
-}
-
-function isMatched(base, target) {
-	return target && target.test ? !!target.test(base) : base.indexOf(target) > -1;
-}
-
-function getIdentityStringFromArray(rules, defaultStrings) {
-	var matchedRule = filter(rules, function (rule) {
-		return isMatched(UA, rule.criteria);
-	})[0];
-
-	return matchedRule && matchedRule.identity || defaultStrings.name;
-}
-
-function getRule(rules, targetIdentity) {
-	return filter(rules, function (rule) {
-		var criteria = rule.criteria;
-		var identityMatched = new RegExp(rule.identity, "i").test(targetIdentity);
-
-		if (criteria ? identityMatched && isMatched(UA, criteria) : identityMatched) {
-			return true;
-		} else {
-			return false;
-		}
-	})[0];
-}
-
-function getBrowserName() {
-	return getIdentityStringFromArray(parseRules.browser, parseRules.defaultString.browser);
-}
-
-function getBrowserRule(browserName) {
-	var rule = getRule(parseRules.browser, browserName);
-
-	if (!rule) {
-		rule = {
-			criteria: browserName,
-			versionSearch: browserName,
-			identity: browserName
-		};
-	}
-
-	return rule;
-}
-
-function extractBrowserVersion(versionToken, ua) {
-	var browserVersion = parseRules.defaultString.browser.version;
-	var versionRegexResult = new RegExp("(" + versionToken + ")", "i").exec(ua);
-
-	if (!versionRegexResult) {
-		return browserVersion;
-	}
-
-	var versionTokenIndex = versionRegexResult.index;
-	var verTkn = versionRegexResult[0];
-
-	if (versionTokenIndex > -1) {
-		var versionIndex = versionTokenIndex + verTkn.length + 1;
-
-		browserVersion = ua.substring(versionIndex).split(" ")[0].replace(/_/g, ".").replace(/;|\)/g, "");
-	}
-	return browserVersion;
-}
-
-function getBrowserVersion(browserName) {
-	if (!browserName) {
-		return undefined;
-	}
-
-	// console.log(browserRule);
-	// const versionToken = browserRule ? browserRule.versionSearch : browserName;
-	var browserRule = getBrowserRule(browserName);
-	var versionToken = browserRule.versionSearch || browserName;
-	var browserVersion = extractBrowserVersion(versionToken, UA);
-
-	return browserVersion;
-}
-
-function isWebview() {
-	var webviewRules = parseRules.webview;
-	var browserVersion = void 0;
-
-	return some(filter(webviewRules, function (rule) {
-		return isMatched(UA, rule.criteria);
-	}), function (rule) {
-		browserVersion = extractBrowserVersion(rule.browserVersionSearch, UA);
-		if (isMatched(UA, rule.webviewToken) || isMatched(browserVersion, rule.webviewBrowserVersion)) {
-			return true;
-		} else {
-			return false;
-		}
-	});
-}
-
-function getOSRule(osName) {
-	return getRule(parseRules.os, osName);
-}
-
-function getOsName() {
-	return getIdentityStringFromArray(parseRules.os, parseRules.defaultString.os);
-}
-
-function getOsVersion(osName) {
-	var osRule = getOSRule(osName) || {};
-	var defaultOSVersion = parseRules.defaultString.os.version;
-	var osVersion = void 0;
-
-	if (!osName) {
-		return undefined;
-	}
-	if (osRule.versionAlias) {
-		return osRule.versionAlias;
-	}
-	var osVersionToken = osRule.versionSearch || osName;
-	var osVersionRegex = new RegExp("(" + osVersionToken + ")\\s([\\d_\\.]+|\\d_0)", "i");
-	var osVersionRegexResult = osVersionRegex.exec(UA);
-
-	if (osVersionRegexResult) {
-		osVersion = osVersionRegex.exec(UA)[2].replace(/_/g, ".").replace(/;|\)/g, "");
-	}
-	return osVersion || defaultOSVersion;
-}
-
-function getOs() {
-	var name = getOsName();
-	var version = getOsVersion(name);
-
-	return { name: name, version: version };
-}
-
-function getBrowser() {
-	var name = getBrowserName();
-	var version = getBrowserVersion(name);
-
-	return { name: name, version: version, webview: isWebview() };
-}
-
-function getIsMobile() {
-	return UA.indexOf("Mobi") !== -1;
-}
-
-/**
- * Copyright (c) NAVER Corp.
- * egjs-agent projects are licensed under the MIT license
- */
-
-/**
- * @namespace eg.agent
- */
-/**
- * Extracts browser and operating system information from the user agent string.
- * @ko 유저 에이전트 문자열에서 브라우저와 운영체제 정보를 추출한다.
- * @function eg.agent#agent
- * @param {String} [userAgent=navigator.userAgent] user agent string to parse <ko>파싱할 유저에이전트 문자열</ko>
- * @return {Object} agentInfo
- * @return {Object} agentInfo.os os Operating system information <ko>운영체제 정보</ko>
- * @return {String} agentInfo.os.name Operating system name (android, ios, window, mac, unknown) <ko>운영체제 이름 (android, ios, window, mac, unknown)</ko>
- * @return {String} agentInfo.os.version Operating system version <ko>운영체제 버전</ko>
- * @return {String} agentInfo.browser Browser information <ko>브라우저 정보</ko>
- * @return {String} agentInfo.browser.name Browser name (safari, chrome, sbrowser, ie, firefox, unknown) <ko>브라우저 이름 (safari, chrome, sbrowser, ie, firefox, unknown)</ko>
- * @return {String} agentInfo.browser.version Browser version <ko>브라우저 버전 </ko>
- * @return {Boolean} agentInfo.browser.webview Indicates whether the browser is inapp<ko>웹뷰 브라우저 여부</ko>
- * @return {Boolean} agentInfo.isMobile Indicates whether the browser is for mobile<ko>모바일 브라우저 여부</ko>
- * @example
-import agent from "@egjs/agent";
-
-const {os, browser, isMobile} = agent();
- */
-function agent() {
-  var ua = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : agent_esm_navigator.userAgent;
-
-  setUa(ua);
-
-  var agentInfo = {
-    os: getOs(),
-    browser: getBrowser(),
-    isMobile: getIsMobile()
-  };
-
-  agentInfo.browser.name = agentInfo.browser.name.toLowerCase();
-  agentInfo.os.name = agentInfo.os.name.toLowerCase();
-  agentInfo.os.version = agentInfo.os.version.toLowerCase();
-
-  if (agentInfo.os.name === "ios" && agentInfo.browser.webview) {
-    agentInfo.browser.version = "-1";
+/*
+egjs-list-differ
+Copyright (c) 2019-present NAVER Corp.
+MIT license
+*/
+var PolyMap =
+/*#__PURE__*/
+function () {
+  function PolyMap() {
+    this.keys = [];
+    this.values = [];
   }
 
-  return agentInfo;
-}
-/**
- * Version info string
- * @ko 버전정보 문자열
- * @name VERSION
- * @static
- * @type {String}
- * @example
- * eg.agent.VERSION;  // ex) 2.2.0
- * @memberof eg.agent
- */
-agent.VERSION = "2.1.5";
+  var __proto = PolyMap.prototype;
 
-/* harmony default export */ var agent_esm = (agent);
-//# sourceMappingURL=agent.esm.js.map
+  __proto.get = function (key) {
+    return this.values[this.keys.indexOf(key)];
+  };
+
+  __proto.set = function (key, value) {
+    var keys = this.keys;
+    var values = this.values;
+    var prevIndex = keys.indexOf(key);
+    var index = prevIndex === -1 ? keys.length : prevIndex;
+    keys[index] = key;
+    values[index] = value;
+  };
+
+  return PolyMap;
+}();
+
+/*
+egjs-list-differ
+Copyright (c) 2019-present NAVER Corp.
+MIT license
+*/
+var HashMap =
+/*#__PURE__*/
+function () {
+  function HashMap() {
+    this.object = {};
+  }
+
+  var __proto = HashMap.prototype;
+
+  __proto.get = function (key) {
+    return this.object[key];
+  };
+
+  __proto.set = function (key, value) {
+    this.object[key] = value;
+  };
+
+  return HashMap;
+}();
+
+/*
+egjs-list-differ
+Copyright (c) 2019-present NAVER Corp.
+MIT license
+*/
+var SUPPORT_MAP = typeof Map === "function";
+
+/*
+egjs-list-differ
+Copyright (c) 2019-present NAVER Corp.
+MIT license
+*/
+var Link =
+/*#__PURE__*/
+function () {
+  function Link() {}
+
+  var __proto = Link.prototype;
+
+  __proto.connect = function (prevLink, nextLink) {
+    this.prev = prevLink;
+    this.next = nextLink;
+    prevLink && (prevLink.next = this);
+    nextLink && (nextLink.prev = this);
+  };
+
+  __proto.disconnect = function () {
+    // In double linked list, diconnect the interconnected relationship.
+    var prevLink = this.prev;
+    var nextLink = this.next;
+    prevLink && (prevLink.next = nextLink);
+    nextLink && (nextLink.prev = prevLink);
+  };
+
+  __proto.getIndex = function () {
+    var link = this;
+    var index = -1;
+
+    while (link) {
+      link = link.prev;
+      ++index;
+    }
+
+    return index;
+  };
+
+  return Link;
+}();
+
+/*
+egjs-list-differ
+Copyright (c) 2019-present NAVER Corp.
+MIT license
+*/
+
+function orderChanged(changed, fixed) {
+  // It is roughly in the order of these examples.
+  // 4, 6, 0, 2, 1, 3, 5, 7
+  var fromLinks = []; // 0, 1, 2, 3, 4, 5, 6, 7
+
+  var toLinks = [];
+  changed.forEach(function (_a) {
+    var from = _a[0],
+        to = _a[1];
+    var link = new Link();
+    fromLinks[from] = link;
+    toLinks[to] = link;
+  }); // `fromLinks` are connected to each other by double linked list.
+
+  fromLinks.forEach(function (link, i) {
+    link.connect(fromLinks[i - 1]);
+  });
+  return changed.filter(function (_, i) {
+    return !fixed[i];
+  }).map(function (_a, i) {
+    var from = _a[0],
+        to = _a[1];
+
+    if (from === to) {
+      return [0, 0];
+    }
+
+    var fromLink = fromLinks[from];
+    var toLink = toLinks[to - 1];
+    var fromIndex = fromLink.getIndex(); // Disconnect the link connected to `fromLink`.
+
+    fromLink.disconnect(); // Connect `fromLink` to the right of `toLink`.
+
+    if (!toLink) {
+      fromLink.connect(undefined, fromLinks[0]);
+    } else {
+      fromLink.connect(toLink, toLink.next);
+    }
+
+    var toIndex = fromLink.getIndex();
+    return [fromIndex, toIndex];
+  });
+}
+
+var Result =
+/*#__PURE__*/
+function () {
+  function Result(prevList, list, added, removed, changed, maintained, changedBeforeAdded, fixed) {
+    this.prevList = prevList;
+    this.list = list;
+    this.added = added;
+    this.removed = removed;
+    this.changed = changed;
+    this.maintained = maintained;
+    this.changedBeforeAdded = changedBeforeAdded;
+    this.fixed = fixed;
+  }
+
+  var __proto = Result.prototype;
+  Object.defineProperty(__proto, "ordered", {
+    get: function () {
+      if (!this.cacheOrdered) {
+        this.caculateOrdered();
+      }
+
+      return this.cacheOrdered;
+    },
+    enumerable: true,
+    configurable: true
+  });
+  Object.defineProperty(__proto, "pureChanged", {
+    get: function () {
+      if (!this.cachePureChanged) {
+        this.caculateOrdered();
+      }
+
+      return this.cachePureChanged;
+    },
+    enumerable: true,
+    configurable: true
+  });
+
+  __proto.caculateOrdered = function () {
+    var ordered = orderChanged(this.changedBeforeAdded, this.fixed);
+    var changed = this.changed;
+    var pureChanged = [];
+    this.cacheOrdered = ordered.filter(function (_a, i) {
+      var from = _a[0],
+          to = _a[1];
+      var _b = changed[i],
+          fromBefore = _b[0],
+          toBefore = _b[1];
+
+      if (from !== to) {
+        pureChanged.push([fromBefore, toBefore]);
+        return true;
+      }
+    });
+    this.cachePureChanged = pureChanged;
+  };
+
+  return Result;
+}();
+
+/**
+ *
+ * @memberof eg.ListDiffer
+ * @static
+ * @function
+ * @param - Previous List <ko> 이전 목록 </ko>
+ * @param - List to Update <ko> 업데이트 할 목록 </ko>
+ * @param - This callback function returns the key of the item. <ko> 아이템의 키를 반환하는 콜백 함수입니다.</ko>
+ * @return - Returns the diff between `prevList` and `list` <ko> `prevList`와 `list`의 다른 점을 반환한다.</ko>
+ * @example
+ * import { diff } from "@egjs/list-differ";
+ * // script => eg.ListDiffer.diff
+ * const result = diff([0, 1, 2, 3, 4, 5], [7, 8, 0, 4, 3, 6, 2, 1], e => e);
+ * // List before update
+ * // [1, 2, 3, 4, 5]
+ * console.log(result.prevList);
+ * // Updated list
+ * // [4, 3, 6, 2, 1]
+ * console.log(result.list);
+ * // Index array of values added to `list`
+ * // [0, 1, 5]
+ * console.log(result.added);
+ * // Index array of values removed in `prevList`
+ * // [5]
+ * console.log(result.removed);
+ * // An array of index pairs of `prevList` and `list` with different indexes from `prevList` and `list`
+ * // [[0, 2], [4, 3], [3, 4], [2, 6], [1, 7]]
+ * console.log(result.changed);
+ * // The subset of `changed` and an array of index pairs that moved data directly. Indicate an array of absolute index pairs of `ordered`.(Formatted by: Array<[index of prevList, index of list]>)
+ * // [[4, 3], [3, 4], [2, 6]]
+ * console.log(result.pureChanged);
+ * // An array of index pairs to be `ordered` that can synchronize `list` before adding data. (Formatted by: Array<[prevIndex, nextIndex]>)
+ * // [[4, 1], [4, 2], [4, 3]]
+ * console.log(result.ordered);
+ * // An array of index pairs of `prevList` and `list` that have not been added/removed so data is preserved
+ * // [[0, 2], [4, 3], [3, 4], [2, 6], [1, 7]]
+ * console.log(result.maintained);
+ */
+
+function diff(prevList, list, findKeyCallback) {
+  var mapClass = SUPPORT_MAP ? Map : findKeyCallback ? HashMap : PolyMap;
+
+  var callback = findKeyCallback || function (e) {
+    return e;
+  };
+
+  var added = [];
+  var removed = [];
+  var maintained = [];
+  var prevKeys = prevList.map(callback);
+  var keys = list.map(callback);
+  var prevKeyMap = new mapClass();
+  var keyMap = new mapClass();
+  var changedBeforeAdded = [];
+  var fixed = [];
+  var removedMap = {};
+  var changed = [];
+  var addedCount = 0;
+  var removedCount = 0; // Add prevKeys and keys to the hashmap.
+
+  prevKeys.forEach(function (key, prevListIndex) {
+    prevKeyMap.set(key, prevListIndex);
+  });
+  keys.forEach(function (key, listIndex) {
+    keyMap.set(key, listIndex);
+  }); // Compare `prevKeys` and `keys` and add them to `removed` if they are not in `keys`.
+
+  prevKeys.forEach(function (key, prevListIndex) {
+    var listIndex = keyMap.get(key); // In prevList, but not in list, it is removed.
+
+    if (typeof listIndex === "undefined") {
+      ++removedCount;
+      removed.push(prevListIndex);
+    } else {
+      removedMap[listIndex] = removedCount;
+    }
+  }); // Compare `prevKeys` and `keys` and add them to `added` if they are not in `prevKeys`.
+
+  keys.forEach(function (key, listIndex) {
+    var prevListIndex = prevKeyMap.get(key); // In list, but not in prevList, it is added.
+
+    if (typeof prevListIndex === "undefined") {
+      added.push(listIndex);
+      ++addedCount;
+    } else {
+      maintained.push([prevListIndex, listIndex]);
+      removedCount = removedMap[listIndex] || 0;
+      changedBeforeAdded.push([prevListIndex - removedCount, listIndex - addedCount]);
+      fixed.push(listIndex === prevListIndex);
+
+      if (prevListIndex !== listIndex) {
+        changed.push([prevListIndex, listIndex]);
+      }
+    }
+  }); // Sort by ascending order of 'to(list's index).
+
+  removed.reverse();
+  return new Result(prevList, list, added, removed, changed, maintained, changedBeforeAdded, fixed);
+}
+
+/**
+ * A module that checks diff when values are added, removed, or changed in an array.
+ * @ko 배열 또는 오브젝트에서 값이 추가되거나 삭제되거나 순서가 변경사항을 체크하는 모듈입니다.
+ * @memberof eg
+ */
+
+var ListDiffer =
+/*#__PURE__*/
+function () {
+  /**
+   * @param - Initializing Data Array. <ko> 초기 설정할 데이터 배열.</ko>
+   * @param - This callback function returns the key of the item. <ko> 아이템의 키를 반환하는 콜백 함수입니다.</ko>
+   * @example
+   * import ListDiffer from "@egjs/list-differ";
+   * // script => eg.ListDiffer
+   * const differ = new ListDiffer([0, 1, 2, 3, 4, 5], e => e);
+   * const result = differ.update([7, 8, 0, 4, 3, 6, 2, 1]);
+   * // List before update
+   * // [1, 2, 3, 4, 5]
+   * console.log(result.prevList);
+   * // Updated list
+   * // [4, 3, 6, 2, 1]
+   * console.log(result.list);
+   * // Index array of values added to `list`.
+   * // [0, 1, 5]
+   * console.log(result.added);
+   * // Index array of values removed in `prevList`.
+   * // [5]
+   * console.log(result.removed);
+   * // An array of index pairs of `prevList` and `list` with different indexes from `prevList` and `list`.
+   * // [[0, 2], [4, 3], [3, 4], [2, 6], [1, 7]]
+   * console.log(result.changed);
+   * // The subset of `changed` and an array of index pairs that moved data directly. Indicate an array of absolute index pairs of `ordered`.(Formatted by: Array<[index of prevList, index of list]>)
+   * // [[4, 3], [3, 4], [2, 6]]
+   * console.log(result.pureChanged);
+   * // An array of index pairs to be `ordered` that can synchronize `list` before adding data. (Formatted by: Array<[prevIndex, nextIndex]>)
+   * // [[4, 1], [4, 2], [4, 3]]
+   * console.log(result.ordered);
+   * // An array of index pairs of `prevList` and `list` that have not been added/removed so data is preserved.
+   * // [[0, 2], [4, 3], [3, 4], [2, 6], [1, 7]]
+   * console.log(result.maintained);
+   */
+  function ListDiffer(list, findKeyCallback) {
+    if (list === void 0) {
+      list = [];
+    }
+
+    this.findKeyCallback = findKeyCallback;
+    this.list = [].slice.call(list);
+  }
+  /**
+   * Update list.
+   * @ko 리스트를 업데이트를 합니다.
+   * @param - List to update <ko> 업데이트할 리스트 </ko>
+   * @return - Returns the results of an update from `prevList` to `list`.<ko> `prevList`에서 `list`로 업데이트한 결과를 반환한다. </ko>
+   */
+
+
+  var __proto = ListDiffer.prototype;
+
+  __proto.update = function (list) {
+    var newData = [].slice.call(list);
+    var result = diff(this.list, newData, this.findKeyCallback);
+    this.list = newData;
+    return result;
+  };
+
+  return ListDiffer;
+}();
+
+/*
+egjs-list-differ
+Copyright (c) 2019-present NAVER Corp.
+MIT license
+*/
+
+/* harmony default export */ var list_differ_esm = (ListDiffer);
+
+//# sourceMappingURL=list-differ.esm.js.map
 
 // CONCATENATED MODULE: ./node_modules/@daybrush/utils/dist/utils.esm.js
 /*
@@ -1490,7 +1542,7 @@ requestAnimationFrame((timestamp) => {
 });
 */
 
-var utils_esm_requestAnimationFrame =
+var requestAnimationFrame =
 /*#__PURE__*/
 function () {
   var firstTime = now();
@@ -1519,7 +1571,7 @@ const id = requestAnimationFrame((timestamp) => {
 cancelAnimationFrame(id);
 */
 
-var utils_esm_cancelAnimationFrame =
+var cancelAnimationFrame =
 /*#__PURE__*/
 function () {
   var caf = IS_WINDOW && (window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame);
@@ -1716,7 +1768,7 @@ console.log($("div")); // div element
 console.log($("div", true)); // [div, div] elements
 */
 
-function utils_esm_$(selectors, multi) {
+function $(selectors, multi) {
   return multi ? doc.querySelectorAll(selectors) : doc.querySelector(selectors);
 }
 /**
@@ -1852,58 +1904,17 @@ function removeEvent(el, type, listener) {
 
 //# sourceMappingURL=utils.esm.js.map
 
-// CONCATENATED MODULE: ./node_modules/preact-css-styler/dist/styler.esm.js
+// CONCATENATED MODULE: ./node_modules/react-simple-compat/dist/compat.esm.js
 /*
-Copyright (c) 2019 Daybrush
-name: preact-css-styler
+Copyright (c) Daybrush
+name: react-simple-compat
 license: MIT
 author: Daybrush
-repository: https://github.com/daybrush/css-styler/tree/master/preact-css-styler
-version: 1.0.1
-*/
-var process = { env: {NODE_ENV: "production"} };
-
-
-
-/*
-Copyright (c) 2018 Daybrush
-@name: @daybrush/utils
-license: MIT
-author: Daybrush
-repository: https://github.com/daybrush/utils
-@version 0.10.1
-*/
-/**
-* divide text by comma.
-* @memberof Utils
-* @param {string} text - text to divide
-* @return {Array} divided texts
-* @example
-import {splitComma} from "@daybrush/utils";
-
-console.log(splitComma("a,b,c,d,e,f,g"));
-// ["a", "b", "c", "d", "e", "f", "g"]
-console.log(splitComma("'a,b',c,'d,e',f,g"));
-// ["'a,b'", "c", "'d,e'", "f", "g"]
+repository: git+https://github.com/daybrush/react-simple-compat.git
+version: 0.1.2
 */
 
-function styler_esm_splitComma(text) {
-  // divide comma(,)
-  // "[^"]*"|'[^']*'
-  var matches = text.match(/("[^"]*"|'[^']*'|[^,\s()]*\((?:[^()]*|\([^()]*\))*\)[^,\s()]*|[^,])+/g);
-  return matches ? matches.map(function (str) {
-    return str.trim();
-  }) : [];
-}
 
-/*
-Copyright (c) 2019 Daybrush
-name: react-css-styler
-license: MIT
-author: Daybrush
-repository: https://github.com/daybrush/css-styler/tree/master/react-css-styler
-version: 0.4.0
-*/
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1965,6 +1976,1543 @@ function __rest(s, e) {
   }
   return t;
 }
+function __spreadArrays() {
+  for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+
+  for (var r = Array(s), k = 0, i = 0; i < il; i++) for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++) r[k] = a[j];
+
+  return r;
+}
+
+function isDiff(a, b) {
+  if (a === b) {
+    return false;
+  }
+
+  for (var i in a) {
+    if (!(i in b)) {
+      return true;
+    }
+  }
+
+  for (var i in b) {
+    if (a[i] !== b[i]) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function diffObject(a, b) {
+  var keys1 = Object.keys(a);
+  var keys2 = Object.keys(b);
+  var result = diff(keys1, keys2, function (key) {
+    return key;
+  });
+  var added = {};
+  var removed = {};
+  var changed = {};
+  result.added.forEach(function (index) {
+    var name = keys2[index];
+    added[name] = b[name];
+  });
+  result.removed.forEach(function (index) {
+    var name = keys1[index];
+    removed[name] = a[name];
+  });
+  result.maintained.forEach(function (_a) {
+    var index = _a[0];
+    var name = keys1[index];
+    var values = [a[name], b[name]];
+
+    if (a[name] !== b[name]) {
+      changed[name] = values;
+    }
+  });
+  return {
+    added: added,
+    removed: removed,
+    changed: changed
+  };
+}
+
+function executeHooks(hooks) {
+  hooks.forEach(function (hook) {
+    hook();
+  });
+}
+
+function fillKeys(keys) {
+  var index = 0;
+  return keys.map(function (key) {
+    return key == null ? "$compat" + ++index : "" + key;
+  });
+}
+
+function createProvider(el, key, index, container) {
+  if (isString(el)) {
+    return new TextProvider("text_" + el, key, index, container, null, {});
+  }
+
+  var providerClass = typeof el.type === "string" ? ElementProvider : el.type.prototype.render ? ComponentProvider : FunctionProvider;
+  return new providerClass(el.type, key, index, container, el.ref, el.props);
+}
+
+function flat(arr) {
+  var arr2 = [];
+  arr.forEach(function (el) {
+    arr2 = arr2.concat(isArray(el) ? flat(el) : el);
+  });
+  return arr2;
+}
+
+function getAttributes(props) {
+  var className = props.className,
+      otherProps = __rest(props, ["className"]);
+
+  if (className != null) {
+    otherProps.class = className;
+  }
+
+  delete otherProps.style;
+  delete otherProps.children;
+  return otherProps;
+}
+
+function fillProps(props, defaultProps) {
+  if (!defaultProps) {
+    return props;
+  }
+
+  for (var name in defaultProps) {
+    if (utils_esm_isUndefined(props[name])) {
+      props[name] = defaultProps[name];
+    }
+  }
+
+  return props;
+}
+
+function createElement(type, props) {
+  var children = [];
+
+  for (var _i = 2; _i < arguments.length; _i++) {
+    children[_i - 2] = arguments[_i];
+  }
+
+  var _a = props || {},
+      key = _a.key,
+      ref = _a.ref,
+      otherProps = __rest(_a, ["key", "ref"]);
+
+  return {
+    type: type,
+    key: key,
+    ref: ref,
+    props: __assign(__assign({}, otherProps), {
+      children: flat(children).filter(function (child) {
+        return child != null;
+      })
+    })
+  };
+}
+
+var compat_esm_Provider =
+/*#__PURE__*/
+function () {
+  function Provider(type, key, index, container, ref, props) {
+    if (props === void 0) {
+      props = {};
+    }
+
+    this.type = type;
+    this.key = key;
+    this.index = index;
+    this.container = container;
+    this.ref = ref;
+    this.props = props;
+    this._providers = [];
+  }
+
+  var __proto = Provider.prototype;
+
+  __proto._should = function (nextProps, nextState) {
+    return true;
+  };
+
+  __proto._update = function (hooks, nextElement, nextState, isForceUpdate) {
+    if (this.base && !isString(nextElement) && !isForceUpdate && !this._should(nextElement.props, nextState)) {
+      return false;
+    }
+
+    this.original = nextElement;
+
+    this._setState(nextState); // render
+
+
+    var prevProps = this.props;
+
+    if (!isString(nextElement)) {
+      this.props = nextElement.props;
+      this.ref = nextElement.ref;
+    }
+
+    this._render(hooks, this.base ? prevProps : {}, nextState);
+
+    return true;
+  };
+
+  __proto._mounted = function () {
+    var ref = this.ref;
+    ref && ref(this.base);
+  };
+
+  __proto._setState = function (nextstate) {
+    return;
+  };
+
+  __proto._updated = function () {
+    var ref = this.ref;
+    ref && ref(this.base);
+  };
+
+  __proto._destroy = function () {
+    var ref = this.ref;
+    ref && ref(null);
+  };
+
+  return Provider;
+}();
+
+function diffAttributes(attrs1, attrs2, el) {
+  var _a = diffObject(attrs1, attrs2),
+      added = _a.added,
+      removed = _a.removed,
+      changed = _a.changed;
+
+  for (var name in added) {
+    el.setAttribute(name, added[name]);
+  }
+
+  for (var name in changed) {
+    el.setAttribute(name, changed[name][1]);
+  }
+
+  for (var name in removed) {
+    el.removeAttribute(name);
+  }
+}
+
+function diffEvents(events1, events2, provier) {
+  var _a = diffObject(events1, events2),
+      added = _a.added,
+      removed = _a.removed,
+      changed = _a.changed;
+
+  for (var name in removed) {
+    provier.removeEventListener(name);
+  }
+
+  for (var name in added) {
+    provier.addEventListener(name, added[name]);
+  }
+
+  for (var name in changed) {
+    provier.removeEventListener(name);
+    provier.addEventListener(name, changed[name][1]);
+  }
+
+  for (var name in removed) {
+    provier.removeEventListener(name);
+  }
+}
+
+function diffStyle(style1, style2, el) {
+  var style = el.style;
+
+  var _a = diffObject(style1, style2),
+      added = _a.added,
+      removed = _a.removed,
+      changed = _a.changed;
+
+  for (var name in added) {
+    style[name] = added[name];
+  }
+
+  for (var name in changed) {
+    style[name] = changed[name][1];
+  }
+
+  for (var name in removed) {
+    style[name] = "";
+  }
+}
+
+function splitProps(props) {
+  var attributes = {};
+  var events = {};
+
+  for (var name in props) {
+    if (name.indexOf("on") === 0) {
+      events[name.replace("on", "").toLowerCase()] = props[name];
+    } else {
+      attributes[name] = props[name];
+    }
+  }
+
+  return {
+    attributes: attributes,
+    events: events
+  };
+}
+
+var TextProvider =
+/*#__PURE__*/
+function (_super) {
+  __extends(TextProvider, _super);
+
+  function TextProvider() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  var __proto = TextProvider.prototype;
+
+  __proto._render = function (hooks) {
+    var _this = this;
+
+    var isMount = !this.base;
+
+    if (isMount) {
+      this.base = document.createTextNode(this.type.replace("text_", ""));
+    }
+
+    hooks.push(function () {
+      if (isMount) {
+        _this._mounted();
+      } else {
+        _this._updated();
+      }
+    });
+    return true;
+  };
+
+  __proto._unmount = function () {
+    this.base.parentNode.removeChild(this.base);
+  };
+
+  return TextProvider;
+}(compat_esm_Provider);
+
+var ElementProvider =
+/*#__PURE__*/
+function (_super) {
+  __extends(ElementProvider, _super);
+
+  function ElementProvider() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.events = {};
+    return _this;
+  }
+
+  var __proto = ElementProvider.prototype;
+
+  __proto.addEventListener = function (name, callback) {
+    var events = this.events;
+
+    events[name] = function (e) {
+      e.nativeEvent = e;
+      callback(e);
+    };
+
+    this.base.addEventListener(name, events[name]);
+  };
+
+  __proto.removeEventListener = function (name) {
+    var events = this.events;
+    this.base.removeEventListener(name, events[name]);
+    delete events[name];
+  };
+
+  __proto._should = function (nextProps) {
+    return isDiff(this.props, nextProps);
+  };
+
+  __proto._render = function (hooks, prevProps) {
+    var _this = this;
+
+    var isMount = !this.base;
+
+    if (isMount) {
+      this.base = document.createElement(this.type);
+    }
+
+    renderProviders(this, this._providers, this.props.children, hooks, null);
+    var base = this.base;
+
+    var _a = splitProps(prevProps),
+        prevAttributes = _a.attributes,
+        prevEvents = _a.events;
+
+    var _b = splitProps(this.props),
+        nextAttributes = _b.attributes,
+        nextEvents = _b.events;
+
+    diffAttributes(getAttributes(prevAttributes), getAttributes(nextAttributes), base);
+    diffEvents(prevEvents, nextEvents, this);
+    diffStyle(prevProps.style || {}, this.props.style || {}, base);
+    hooks.push(function () {
+      if (isMount) {
+        _this._mounted();
+      } else {
+        _this._updated();
+      }
+    });
+    return true;
+  };
+
+  __proto._unmount = function () {
+    var events = this.events;
+    var base = this.base;
+
+    for (var name in events) {
+      base.removeEventListener(name, events[name]);
+    }
+
+    this._providers.forEach(function (provider) {
+      provider._unmount();
+    });
+
+    this.events = {};
+    base.parentNode.removeChild(base);
+  };
+
+  return ElementProvider;
+}(compat_esm_Provider);
+
+function findContainerNode(provider) {
+  if (!provider) {
+    return null;
+  }
+
+  var base = provider.base;
+
+  if (base instanceof Node) {
+    return base;
+  }
+
+  return findContainerNode(provider.container);
+}
+
+function findDOMNode(comp) {
+  if (!comp) {
+    return null;
+  }
+
+  if (comp instanceof Node) {
+    return comp;
+  }
+
+  var providers = comp._provider._providers;
+
+  if (!providers.length) {
+    return null;
+  }
+
+  return findDOMNode(providers[0].base);
+}
+
+var FunctionProvider =
+/*#__PURE__*/
+function (_super) {
+  __extends(FunctionProvider, _super);
+
+  function FunctionProvider() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  var __proto = FunctionProvider.prototype;
+
+  __proto._render = function (hooks) {
+    var template = this.type(this.props);
+    renderProviders(this, this._providers, template ? [template] : [], hooks);
+    return true;
+  };
+
+  __proto._unmount = function () {
+    this._providers.forEach(function (provider) {
+      provider._unmount();
+    });
+  };
+
+  return FunctionProvider;
+}(compat_esm_Provider);
+
+var ContainerProvider =
+/*#__PURE__*/
+function (_super) {
+  __extends(ContainerProvider, _super);
+
+  function ContainerProvider(base) {
+    var _this = _super.call(this, "container", "container", 0, null) || this;
+
+    _this.base = base;
+    return _this;
+  }
+
+  var __proto = ContainerProvider.prototype;
+
+  __proto._render = function () {
+    return true;
+  };
+
+  __proto._unmount = function () {
+    return;
+  };
+
+  return ContainerProvider;
+}(compat_esm_Provider);
+
+var ComponentProvider =
+/*#__PURE__*/
+function (_super) {
+  __extends(ComponentProvider, _super);
+
+  function ComponentProvider(type, key, index, container, ref, props) {
+    if (props === void 0) {
+      props = {};
+    }
+
+    return _super.call(this, type, key, index, container, ref, fillProps(props, type.defaultProps)) || this;
+  }
+
+  var __proto = ComponentProvider.prototype;
+
+  __proto._should = function (nextProps, nextState) {
+    return this.base.shouldComponentUpdate(fillProps(nextProps, this.type.defaultProps), nextState || this.base.state);
+  };
+
+  __proto._render = function (hooks, prevProps, nextState) {
+    var _this = this;
+
+    this.props = fillProps(this.props, this.type.defaultProps);
+    var isMount = !this.base;
+
+    if (isMount) {
+      this.base = new this.type(this.props);
+      this.base._provider = this;
+    } else {
+      this.base.props = this.props;
+    }
+
+    var base = this.base;
+    var prevState = base.state;
+    var template = base.render();
+
+    if (template && template.props && !template.props.children.length) {
+      template.props.children = this.props.children;
+    }
+
+    renderProviders(this, this._providers, template ? [template] : [], hooks, nextState, null);
+    hooks.push(function () {
+      if (isMount) {
+        _this._mounted();
+
+        base.componentDidMount();
+      } else {
+        _this._updated();
+
+        base.componentDidUpdate(prevProps, prevState);
+      }
+    });
+  };
+
+  __proto._setState = function (nextState) {
+    if (!nextState) {
+      return;
+    }
+
+    var base = this.base;
+    base.state = nextState;
+  };
+
+  __proto._unmount = function () {
+    this._providers.forEach(function (provider) {
+      provider._unmount();
+    });
+
+    this.base.componentWillUnmount();
+  };
+
+  return ComponentProvider;
+}(compat_esm_Provider);
+
+var compat_esm_Component =
+/*#__PURE__*/
+function () {
+  function Component(props) {
+    if (props === void 0) {
+      props = {};
+    }
+
+    this.props = props;
+    this.state = {};
+  }
+
+  var __proto = Component.prototype;
+
+  __proto.shouldComponentUpdate = function (props, state) {
+    return true;
+  };
+
+  __proto.render = function () {
+    return null;
+  };
+
+  __proto.setState = function (state, callback, isForceUpdate) {
+    var hooks = [];
+    var provider = this._provider;
+    var isUpdate = renderProviders(provider.container, [provider], [provider.original], hooks, __assign(__assign({}, this.state), state), isForceUpdate);
+
+    if (isUpdate) {
+      if (callback) {
+        hooks.push(callback);
+      }
+
+      executeHooks(hooks);
+    }
+  };
+
+  __proto.forceUpdate = function (callback) {
+    this.setState(this.state, callback, true);
+  };
+
+  __proto.componentDidMount = function () {};
+
+  __proto.componentDidUpdate = function (prevProps, prevState) {};
+
+  __proto.componentWillUnmount = function () {};
+
+  return Component;
+}();
+
+var PureComponent =
+/*#__PURE__*/
+function (_super) {
+  __extends(PureComponent, _super);
+
+  function PureComponent() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  var __proto = PureComponent.prototype;
+
+  __proto.shouldComponentUpdate = function (props, state) {
+    return isDiff(this.props, props) || isDiff(this.state, state);
+  };
+
+  return PureComponent;
+}(compat_esm_Component);
+
+var _Portal =
+/*#__PURE__*/
+function (_super) {
+  __extends(_Portal, _super);
+
+  function _Portal() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  var __proto = _Portal.prototype;
+
+  __proto.componentDidMount = function () {
+    var _a = this.props,
+        element = _a.element,
+        container = _a.container;
+    this._portalProvider = renderProvider(element, container);
+  };
+
+  __proto.componentDidUpdate = function () {
+    var _a = this.props,
+        element = _a.element,
+        container = _a.container;
+    this._portalProvider = renderProvider(element, container);
+  };
+
+  __proto.componentWillUnmount = function () {
+    var container = this.props.container;
+    this._portalProvider = null;
+    renderProvider(null, container);
+  };
+
+  return _Portal;
+}(PureComponent);
+
+function updateProvider(provider, children, nextState) {
+  var hooks = [];
+  renderProviders(provider, provider._providers, children, hooks, nextState);
+  executeHooks(hooks);
+}
+
+function getNextSibiling(provider, childProvider) {
+  var childProviders = provider._providers;
+  var length = childProviders.length;
+
+  for (var i = childProvider.index + 1; i < length; ++i) {
+    var el = findDOMNode(childProviders[i].base);
+
+    if (el) {
+      return el;
+    }
+  }
+
+  return null;
+}
+
+function diffProviders(containerProvider, providers, children) {
+  var childrenKeys = children.map(function (p) {
+    return isString(p) ? null : p.key;
+  });
+  var keys1 = fillKeys(providers.map(function (p) {
+    return p.key;
+  }));
+  var keys2 = fillKeys(childrenKeys);
+  var result = diff(keys1, keys2, function (key) {
+    return key;
+  });
+  result.removed.forEach(function (index) {
+    providers.splice(index, 1)[0]._unmount();
+  });
+  result.ordered.forEach(function (_a) {
+    var from = _a[0],
+        to = _a[1];
+    var childrenProvider = providers.splice(from, 1)[0];
+    providers.splice(to, 0, childrenProvider);
+    var el = findDOMNode(childrenProvider.base);
+    var next = findDOMNode(providers[to + 1] && providers[to + 1].base);
+
+    if (el) {
+      el.parentNode.insertBefore(el, next);
+    }
+  });
+  result.added.forEach(function (index) {
+    providers.splice(index, 0, createProvider(children[index], childrenKeys[index], index, containerProvider));
+  });
+  var changed = result.maintained.filter(function (_a) {
+    var _ = _a[0],
+        to = _a[1];
+    var el = children[to];
+    var childProvider = providers[to];
+    var type = isString(el) ? "text_" + el : el.type;
+
+    if (type !== childProvider.type) {
+      childProvider._unmount();
+
+      providers.splice(to, 1, createProvider(el, childrenKeys[to], to, containerProvider));
+      return true;
+    }
+
+    childProvider.index = to;
+    return false;
+  });
+  return __spreadArrays(result.added, changed.map(function (_a) {
+    var _ = _a[0],
+        to = _a[1];
+    return to;
+  }));
+}
+
+function renderProviders(containerProvider, providers, children, updatedHooks, nextState, isForceUpdate) {
+  var result = diffProviders(containerProvider, providers, children);
+  var updated = providers.filter(function (childProvider, i) {
+    return childProvider._update(updatedHooks, children[i], nextState, isForceUpdate);
+  });
+  var containerNode = findContainerNode(containerProvider);
+
+  if (containerNode) {
+    result.reverse().forEach(function (index) {
+      var childProvider = providers[index];
+      var el = findDOMNode(childProvider.base);
+
+      if (!el) {
+        return;
+      }
+
+      if (containerNode !== el && !el.parentNode) {
+        var nextElement = getNextSibiling(containerProvider, childProvider);
+        containerNode.insertBefore(el, nextElement);
+      }
+    });
+  }
+
+  return updated.length > 0;
+}
+
+function renderProvider(element, container, provider) {
+  if (provider === void 0) {
+    provider = container.__REACT_COMPAT__;
+  }
+
+  if (!provider) {
+    provider = new ContainerProvider(container);
+  }
+
+  updateProvider(provider, element ? [element] : []);
+  container.__REACT_COMPAT__ = provider;
+  return provider;
+}
+
+function compat_esm_render(element, container, callback) {
+  var provider = container.__REACT_COMPAT__;
+
+  if (element && !provider) {
+    container.innerHTML = "";
+  }
+
+  renderProvider(element, container, provider);
+  callback && callback();
+}
+function createPortal(el, container) {
+  return createElement(_Portal, {
+    element: el,
+    container: container
+  });
+}
+
+
+//# sourceMappingURL=compat.esm.js.map
+
+// CONCATENATED MODULE: ./node_modules/@egjs/agent/dist/agent.esm.js
+/*
+Copyright (c) 2017 NAVER Corp.
+@egjs/agent project is licensed under the MIT license
+
+@egjs/agent JavaScript library
+
+
+@version 2.1.5
+*/
+var win = typeof window !== "undefined" && window || {};
+var RegExp$1 = win.RegExp;
+var agent_esm_navigator = win.navigator;
+
+var parseRules = {
+	browser: [{
+		criteria: "PhantomJS",
+		identity: "PhantomJS"
+	}, {
+		criteria: /Whale/,
+		identity: "Whale",
+		versionSearch: "Whale"
+	}, {
+		criteria: /Edge/,
+		identity: "Edge",
+		versionSearch: "Edge"
+	}, {
+		criteria: /MSIE|Trident|Windows Phone/,
+		identity: "IE",
+		versionSearch: "IEMobile|MSIE|rv"
+	}, {
+		criteria: /MiuiBrowser/,
+		identity: "MIUI Browser",
+		versionSearch: "MiuiBrowser"
+	}, {
+		criteria: /SamsungBrowser/,
+		identity: "Samsung Internet",
+		versionSearch: "SamsungBrowser"
+	}, {
+		criteria: /SAMSUNG /,
+		identity: "Samsung Internet",
+		versionSearch: "Version"
+	}, {
+		criteria: /Chrome|CriOS/,
+		identity: "Chrome"
+	}, {
+		criteria: /Android/,
+		identity: "Android Browser",
+		versionSearch: "Version"
+	}, {
+		criteria: /iPhone|iPad/,
+		identity: "Safari",
+		versionSearch: "Version"
+	}, {
+		criteria: "Apple",
+		identity: "Safari",
+		versionSearch: "Version"
+	}, {
+		criteria: "Firefox",
+		identity: "Firefox"
+	}],
+	os: [{
+		criteria: /Windows Phone/,
+		identity: "Windows Phone",
+		versionSearch: "Windows Phone"
+	}, {
+		criteria: "Windows 2000",
+		identity: "Window",
+		versionAlias: "5.0"
+	}, {
+		criteria: /Windows NT/,
+		identity: "Window",
+		versionSearch: "Windows NT"
+	}, {
+		criteria: /iPhone|iPad/,
+		identity: "iOS",
+		versionSearch: "iPhone OS|CPU OS"
+	}, {
+		criteria: "Mac",
+		versionSearch: "OS X",
+		identity: "MAC"
+	}, {
+		criteria: /Android/,
+		identity: "Android"
+	}, {
+		criteria: /Tizen/,
+		identity: "Tizen"
+	}, {
+		criteria: /Web0S/,
+		identity: "WebOS"
+	}],
+
+	// Webview check condition
+	// ios: If has no version information
+	// Android 5.0 && chrome 40+: Presence of "; wv" in userAgent
+	// Under android 5.0: Presence of "NAVER" or "Daum" in userAgent
+	webview: [{
+		criteria: /iPhone|iPad/,
+		browserVersionSearch: "Version",
+		webviewBrowserVersion: /-1/
+	}, {
+		criteria: /iPhone|iPad|Android/,
+		webviewToken: /NAVER|DAUM|; wv/
+
+	}],
+	defaultString: {
+		browser: {
+			version: "-1",
+			name: "unknown"
+		},
+		os: {
+			version: "-1",
+			name: "unknown"
+		}
+	}
+};
+
+function filter(arr, compare) {
+	var result = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		compare(arr[i]) && result.push(arr[i]);
+	}
+	return result;
+}
+
+function some(arr, compare) {
+	for (var i = 0; i < arr.length; i++) {
+		if (compare(arr[i])) {
+			return true;
+		}
+	}
+	return false;
+}
+
+var UA = void 0;
+
+function setUa(ua) {
+	UA = ua;
+}
+
+function isMatched(base, target) {
+	return target && target.test ? !!target.test(base) : base.indexOf(target) > -1;
+}
+
+function getIdentityStringFromArray(rules, defaultStrings) {
+	var matchedRule = filter(rules, function (rule) {
+		return isMatched(UA, rule.criteria);
+	})[0];
+
+	return matchedRule && matchedRule.identity || defaultStrings.name;
+}
+
+function getRule(rules, targetIdentity) {
+	return filter(rules, function (rule) {
+		var criteria = rule.criteria;
+		var identityMatched = new RegExp(rule.identity, "i").test(targetIdentity);
+
+		if (criteria ? identityMatched && isMatched(UA, criteria) : identityMatched) {
+			return true;
+		} else {
+			return false;
+		}
+	})[0];
+}
+
+function getBrowserName() {
+	return getIdentityStringFromArray(parseRules.browser, parseRules.defaultString.browser);
+}
+
+function getBrowserRule(browserName) {
+	var rule = getRule(parseRules.browser, browserName);
+
+	if (!rule) {
+		rule = {
+			criteria: browserName,
+			versionSearch: browserName,
+			identity: browserName
+		};
+	}
+
+	return rule;
+}
+
+function extractBrowserVersion(versionToken, ua) {
+	var browserVersion = parseRules.defaultString.browser.version;
+	var versionRegexResult = new RegExp("(" + versionToken + ")", "i").exec(ua);
+
+	if (!versionRegexResult) {
+		return browserVersion;
+	}
+
+	var versionTokenIndex = versionRegexResult.index;
+	var verTkn = versionRegexResult[0];
+
+	if (versionTokenIndex > -1) {
+		var versionIndex = versionTokenIndex + verTkn.length + 1;
+
+		browserVersion = ua.substring(versionIndex).split(" ")[0].replace(/_/g, ".").replace(/;|\)/g, "");
+	}
+	return browserVersion;
+}
+
+function getBrowserVersion(browserName) {
+	if (!browserName) {
+		return undefined;
+	}
+
+	// console.log(browserRule);
+	// const versionToken = browserRule ? browserRule.versionSearch : browserName;
+	var browserRule = getBrowserRule(browserName);
+	var versionToken = browserRule.versionSearch || browserName;
+	var browserVersion = extractBrowserVersion(versionToken, UA);
+
+	return browserVersion;
+}
+
+function isWebview() {
+	var webviewRules = parseRules.webview;
+	var browserVersion = void 0;
+
+	return some(filter(webviewRules, function (rule) {
+		return isMatched(UA, rule.criteria);
+	}), function (rule) {
+		browserVersion = extractBrowserVersion(rule.browserVersionSearch, UA);
+		if (isMatched(UA, rule.webviewToken) || isMatched(browserVersion, rule.webviewBrowserVersion)) {
+			return true;
+		} else {
+			return false;
+		}
+	});
+}
+
+function getOSRule(osName) {
+	return getRule(parseRules.os, osName);
+}
+
+function getOsName() {
+	return getIdentityStringFromArray(parseRules.os, parseRules.defaultString.os);
+}
+
+function getOsVersion(osName) {
+	var osRule = getOSRule(osName) || {};
+	var defaultOSVersion = parseRules.defaultString.os.version;
+	var osVersion = void 0;
+
+	if (!osName) {
+		return undefined;
+	}
+	if (osRule.versionAlias) {
+		return osRule.versionAlias;
+	}
+	var osVersionToken = osRule.versionSearch || osName;
+	var osVersionRegex = new RegExp("(" + osVersionToken + ")\\s([\\d_\\.]+|\\d_0)", "i");
+	var osVersionRegexResult = osVersionRegex.exec(UA);
+
+	if (osVersionRegexResult) {
+		osVersion = osVersionRegex.exec(UA)[2].replace(/_/g, ".").replace(/;|\)/g, "");
+	}
+	return osVersion || defaultOSVersion;
+}
+
+function getOs() {
+	var name = getOsName();
+	var version = getOsVersion(name);
+
+	return { name: name, version: version };
+}
+
+function getBrowser() {
+	var name = getBrowserName();
+	var version = getBrowserVersion(name);
+
+	return { name: name, version: version, webview: isWebview() };
+}
+
+function getIsMobile() {
+	return UA.indexOf("Mobi") !== -1;
+}
+
+/**
+ * Copyright (c) NAVER Corp.
+ * egjs-agent projects are licensed under the MIT license
+ */
+
+/**
+ * @namespace eg.agent
+ */
+/**
+ * Extracts browser and operating system information from the user agent string.
+ * @ko 유저 에이전트 문자열에서 브라우저와 운영체제 정보를 추출한다.
+ * @function eg.agent#agent
+ * @param {String} [userAgent=navigator.userAgent] user agent string to parse <ko>파싱할 유저에이전트 문자열</ko>
+ * @return {Object} agentInfo
+ * @return {Object} agentInfo.os os Operating system information <ko>운영체제 정보</ko>
+ * @return {String} agentInfo.os.name Operating system name (android, ios, window, mac, unknown) <ko>운영체제 이름 (android, ios, window, mac, unknown)</ko>
+ * @return {String} agentInfo.os.version Operating system version <ko>운영체제 버전</ko>
+ * @return {String} agentInfo.browser Browser information <ko>브라우저 정보</ko>
+ * @return {String} agentInfo.browser.name Browser name (safari, chrome, sbrowser, ie, firefox, unknown) <ko>브라우저 이름 (safari, chrome, sbrowser, ie, firefox, unknown)</ko>
+ * @return {String} agentInfo.browser.version Browser version <ko>브라우저 버전 </ko>
+ * @return {Boolean} agentInfo.browser.webview Indicates whether the browser is inapp<ko>웹뷰 브라우저 여부</ko>
+ * @return {Boolean} agentInfo.isMobile Indicates whether the browser is for mobile<ko>모바일 브라우저 여부</ko>
+ * @example
+import agent from "@egjs/agent";
+
+const {os, browser, isMobile} = agent();
+ */
+function agent() {
+  var ua = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : agent_esm_navigator.userAgent;
+
+  setUa(ua);
+
+  var agentInfo = {
+    os: getOs(),
+    browser: getBrowser(),
+    isMobile: getIsMobile()
+  };
+
+  agentInfo.browser.name = agentInfo.browser.name.toLowerCase();
+  agentInfo.os.name = agentInfo.os.name.toLowerCase();
+  agentInfo.os.version = agentInfo.os.version.toLowerCase();
+
+  if (agentInfo.os.name === "ios" && agentInfo.browser.webview) {
+    agentInfo.browser.version = "-1";
+  }
+
+  return agentInfo;
+}
+/**
+ * Version info string
+ * @ko 버전정보 문자열
+ * @name VERSION
+ * @static
+ * @type {String}
+ * @example
+ * eg.agent.VERSION;  // ex) 2.2.0
+ * @memberof eg.agent
+ */
+agent.VERSION = "2.1.5";
+
+/* harmony default export */ var agent_esm = (agent);
+//# sourceMappingURL=agent.esm.js.map
+
+// CONCATENATED MODULE: ./node_modules/@moveable/matrix/dist/matrix.esm.js
+/*
+Copyright (c) 2019 Daybrush
+name: @moveable/matrix
+license: MIT
+author: Daybrush
+repository: git+https://github.com/daybrush/moveable.git
+version: 0.3.1
+*/
+function add(matrix, inverseMatrix, startIndex, endIndex, fromStart, k) {
+  for (var i = startIndex; i < endIndex; ++i) {
+    matrix[i] += matrix[fromStart + i - startIndex] * k;
+    inverseMatrix[i] += inverseMatrix[fromStart + i - startIndex] * k;
+  }
+}
+
+function swap(matrix, inverseMatrix, startIndex, endIndex, fromStart) {
+  for (var i = startIndex; i < endIndex; ++i) {
+    var v = matrix[i];
+    var iv = inverseMatrix[i];
+    matrix[i] = matrix[fromStart + i - startIndex];
+    matrix[fromStart + i - startIndex] = v;
+    inverseMatrix[i] = inverseMatrix[fromStart + i - startIndex];
+    inverseMatrix[fromStart + i - startIndex] = iv;
+  }
+}
+
+function divide(matrix, inverseMatrix, startIndex, endIndex, k) {
+  for (var i = startIndex; i < endIndex; ++i) {
+    matrix[i] /= k;
+    inverseMatrix[i] /= k;
+  }
+}
+
+function ignoreDimension(matrix, m, n) {
+  if (n === void 0) {
+    n = Math.sqrt(matrix.length);
+  }
+
+  var newMatrix = matrix.slice();
+
+  for (var i = 0; i < n; ++i) {
+    newMatrix[i * n + m - 1] = 0;
+    newMatrix[(m - 1) * n + i] = 0;
+  }
+
+  newMatrix[(m - 1) * (n + 1)] = 1;
+  return newMatrix;
+}
+function invert(matrix, n) {
+  if (n === void 0) {
+    n = Math.sqrt(matrix.length);
+  }
+
+  var newMatrix = matrix.slice();
+  var inverseMatrix = createIdentityMatrix(n);
+
+  for (var i = 0; i < n; ++i) {
+    var startIndex = n * i;
+    var endIndex = n * (i + 1);
+    var identityIndex = startIndex + i;
+
+    if (newMatrix[identityIndex] === 0) {
+      for (var j = i + 1; j < n; ++j) {
+        if (newMatrix[n * j + i]) {
+          swap(newMatrix, inverseMatrix, startIndex, endIndex, n * j);
+          break;
+        }
+      }
+    }
+
+    if (newMatrix[identityIndex]) {
+      divide(newMatrix, inverseMatrix, startIndex, endIndex, newMatrix[identityIndex]);
+    } else {
+      // no inverse matrix
+      return [];
+    }
+
+    for (var j = 0; j < n; ++j) {
+      var targetStartIndex = n * j;
+      var targetEndIndex = targetStartIndex + n;
+      var targetIndex = targetStartIndex + i;
+      var target = newMatrix[targetIndex];
+
+      if (target === 0 || i === j) {
+        continue;
+      }
+
+      add(newMatrix, inverseMatrix, targetStartIndex, targetEndIndex, startIndex, -target);
+    }
+  }
+
+  return inverseMatrix;
+}
+function transpose(matrix, n) {
+  if (n === void 0) {
+    n = Math.sqrt(matrix.length);
+  }
+
+  var newMatrix = [];
+
+  for (var i = 0; i < n; ++i) {
+    for (var j = 0; j < n; ++j) {
+      newMatrix[j * n + i] = matrix[n * i + j];
+    }
+  }
+
+  return newMatrix;
+}
+function getRad(pos1, pos2) {
+  var distX = pos2[0] - pos1[0];
+  var distY = pos2[1] - pos1[1];
+  var rad = Math.atan2(distY, distX);
+  return rad >= 0 ? rad : rad + Math.PI * 2;
+}
+function getOrigin(matrix, n) {
+  if (n === void 0) {
+    n = Math.sqrt(matrix.length);
+  }
+
+  var originMatrix = [];
+
+  for (var i = 0; i < n - 1; ++i) {
+    originMatrix[i] = matrix[(i + 1) * n - 1];
+  }
+
+  originMatrix[n - 1] = 0;
+  return originMatrix;
+}
+function convertPositionMatrix(matrix, n) {
+  var newMatrix = matrix.slice();
+
+  for (var i = matrix.length; i < n - 1; ++i) {
+    newMatrix[i] = 0;
+  }
+
+  newMatrix[n - 1] = 1;
+  return newMatrix;
+}
+function convertDimension(matrix, n, m) {
+  if (n === void 0) {
+    n = Math.sqrt(matrix.length);
+  } // n < m
+
+
+  if (n === m) {
+    return matrix;
+  }
+
+  var newMatrix = createIdentityMatrix(m);
+  var length = Math.min(n, m);
+
+  for (var i = 0; i < length - 1; ++i) {
+    for (var j = 0; j < length - 1; ++j) {
+      newMatrix[i * m + j] = matrix[i * n + j];
+    }
+
+    newMatrix[(i + 1) * m - 1] = matrix[(i + 1) * n - 1];
+    newMatrix[(m - 1) * m + i] = matrix[(n - 1) * n + i];
+  }
+
+  newMatrix[m * m - 1] = matrix[n * n - 1];
+  return newMatrix;
+}
+function multiplies(n) {
+  var matrixes = [];
+
+  for (var _i = 1; _i < arguments.length; _i++) {
+    matrixes[_i - 1] = arguments[_i];
+  }
+
+  var m = createIdentityMatrix(n);
+  matrixes.forEach(function (matrix) {
+    m = multiply(m, matrix, n);
+  });
+  return m;
+}
+function multiply(matrix, matrix2, n) {
+  var newMatrix = []; // n * m X m * k
+
+  var m = matrix.length / n;
+  var k = matrix2.length / m;
+
+  if (!m) {
+    return matrix2;
+  } else if (!k) {
+    return matrix;
+  }
+
+  for (var i = 0; i < n; ++i) {
+    for (var j = 0; j < k; ++j) {
+      newMatrix[i * k + j] = 0;
+
+      for (var l = 0; l < m; ++l) {
+        newMatrix[i * k + j] += matrix[i * m + l] * matrix2[l * k + j];
+      }
+    }
+  } // n * k
+
+
+  return newMatrix;
+}
+function multiplyCSS(matrix, matrix2, n) {
+  if (n === void 0) {
+    n = Math.sqrt(matrix.length);
+  }
+
+  var newMatrix = []; // n(y) * m(x) X m(y) * k(x)
+
+  var m = matrix.length / n;
+  var k = matrix2.length / m;
+
+  for (var i = 0; i < n; ++i) {
+    for (var j = 0; j < k; ++j) {
+      newMatrix[i + j * k] = 0;
+
+      for (var l = 0; l < m; ++l) {
+        newMatrix[i + j * k] += matrix[i + l * m] * matrix2[l + j * k];
+      }
+    }
+  } // n * k
+
+
+  return newMatrix;
+}
+function sum() {
+  var nums = [];
+
+  for (var _i = 0; _i < arguments.length; _i++) {
+    nums[_i] = arguments[_i];
+  }
+
+  var length = nums.length;
+  var total = 0;
+
+  for (var i = length - 1; i >= 0; --i) {
+    total += nums[i];
+  }
+
+  return total;
+}
+function average() {
+  var nums = [];
+
+  for (var _i = 0; _i < arguments.length; _i++) {
+    nums[_i] = arguments[_i];
+  }
+
+  var length = nums.length;
+  var total = 0;
+
+  for (var i = length - 1; i >= 0; --i) {
+    total += nums[i];
+  }
+
+  return length ? total / length : 0;
+}
+function plus(pos1, pos2) {
+  var length = Math.min(pos1.length, pos2.length);
+  var nextPos = pos1.slice();
+
+  for (var i = 0; i < length; ++i) {
+    nextPos[i] = nextPos[i] + pos2[i];
+  }
+
+  return nextPos;
+}
+function minus(pos1, pos2) {
+  var length = Math.min(pos1.length, pos2.length);
+  var nextPos = pos1.slice();
+
+  for (var i = 0; i < length; ++i) {
+    nextPos[i] = nextPos[i] - pos2[i];
+  }
+
+  return nextPos;
+}
+function caculate(matrix, matrix2, n) {
+  if (n === void 0) {
+    n = matrix2.length;
+  }
+
+  var result = multiply(matrix, matrix2, n);
+  var k = result[n - 1];
+  return result.map(function (v) {
+    return v / k;
+  });
+}
+function rotate(pos, rad) {
+  return caculate(createRotateMatrix(rad, 3), convertPositionMatrix(pos, 3));
+}
+function convertCSStoMatrix(a) {
+  if (a.length === 6) {
+    return [a[0], a[2], a[4], a[1], a[3], a[5], 0, 0, 1];
+  }
+
+  return transpose(a);
+}
+function convertMatrixtoCSS(a) {
+  if (a.length === 9) {
+    return [a[0], a[3], a[1], a[4], a[2], a[5]];
+  }
+
+  return transpose(a);
+}
+function createRotateMatrix(rad, n) {
+  var cos = Math.cos(rad);
+  var sin = Math.sin(rad);
+  var m = createIdentityMatrix(n);
+  m[0] = cos;
+  m[1] = -sin;
+  m[n] = sin;
+  m[n + 1] = cos;
+  return m;
+}
+function createIdentityMatrix(n) {
+  var length = n * n;
+  var matrix = [];
+
+  for (var i = 0; i < length; ++i) {
+    matrix[i] = i % (n + 1) ? 0 : 1;
+  }
+
+  return matrix;
+}
+function createScaleMatrix(scale, n) {
+  var m = createIdentityMatrix(n);
+  var length = Math.min(scale.length, n - 1);
+
+  for (var i = 0; i < length; ++i) {
+    m[(n + 1) * i] = scale[i];
+  }
+
+  return m;
+}
+function createOriginMatrix(origin, n) {
+  var m = createIdentityMatrix(n);
+  var length = Math.min(origin.length, n - 1);
+
+  for (var i = 0; i < length; ++i) {
+    m[n * (i + 1) - 1] = origin[i];
+  }
+
+  return m;
+}
+function createWarpMatrix(pos0, pos1, pos2, pos3, nextPos0, nextPos1, nextPos2, nextPos3) {
+  var x0 = pos0[0],
+      y0 = pos0[1];
+  var x1 = pos1[0],
+      y1 = pos1[1];
+  var x2 = pos2[0],
+      y2 = pos2[1];
+  var x3 = pos3[0],
+      y3 = pos3[1];
+  var u0 = nextPos0[0],
+      v0 = nextPos0[1];
+  var u1 = nextPos1[0],
+      v1 = nextPos1[1];
+  var u2 = nextPos2[0],
+      v2 = nextPos2[1];
+  var u3 = nextPos3[0],
+      v3 = nextPos3[1];
+  var matrix = [x0, y0, 1, 0, 0, 0, -u0 * x0, -u0 * y0, 0, 0, 0, x0, y0, 1, -v0 * x0, -v0 * y0, x1, y1, 1, 0, 0, 0, -u1 * x1, -u1 * y1, 0, 0, 0, x1, y1, 1, -v1 * x1, -v1 * y1, x2, y2, 1, 0, 0, 0, -u2 * x2, -u2 * y2, 0, 0, 0, x2, y2, 1, -v2 * x2, -v2 * y2, x3, y3, 1, 0, 0, 0, -u3 * x3, -u3 * y3, 0, 0, 0, x3, y3, 1, -v3 * x3, -v3 * y3];
+  var inverseMatrix = invert(matrix, 8);
+
+  if (!inverseMatrix.length) {
+    return [];
+  }
+
+  var h = multiply(inverseMatrix, [u0, v0, u1, v1, u2, v2, u3, v3], 8);
+  h[8] = 1;
+  return convertDimension(h, 3, 4);
+}
+
+
+//# sourceMappingURL=matrix.esm.js.map
+
+// CONCATENATED MODULE: ./node_modules/css-styled/dist/styled.esm.js
+/*
+Copyright (c) 2019 Daybrush
+name: css-styled
+license: MIT
+author: Daybrush
+repository: git+https://github.com/daybrush/css-styled.git
+version: 0.1.7
+*/
+
 
 function hash(str) {
   var hash = 5381,
@@ -1985,11 +3533,22 @@ var stringHash = hash;
 function getHash(str) {
   return stringHash(str).toString(36);
 }
-function injectStyle(className, css) {
+function getShadowRoot(parentElement) {
+  if (parentElement.getRootNode) {
+    var rootNode = parentElement.getRootNode();
+
+    if (rootNode.nodeType === 11) {
+      return rootNode;
+    }
+  }
+
+  return;
+}
+function injectStyle(className, css, shadowRoot) {
   var style = document.createElement("style");
   style.setAttribute("type", "text/css");
   style.innerHTML = css.replace(/([^}{]*){/mg, function (all, selector) {
-    return styler_esm_splitComma(selector).map(function (subSelector) {
+    return splitComma(selector).map(function (subSelector) {
       if (subSelector.indexOf(":global") > -1) {
         return subSelector.replace(/\:global/g, "");
       } else if (subSelector.indexOf(":host") > -1) {
@@ -1999,60 +3558,182 @@ function injectStyle(className, css) {
       return "." + className + " " + subSelector;
     }).join(", ") + "{";
   });
-  (document.head || document.body).appendChild(style);
+  (shadowRoot || document.head || document.body).appendChild(style);
   return style;
 }
 
-function styled(Tag, css) {
+function styled(css) {
   var injectClassName = "rCS" + getHash(css);
   var injectCount = 0;
   var injectElement;
+  return {
+    className: injectClassName,
+    inject: function (el) {
+      var shadowRoot = getShadowRoot(el);
+      var firstMount = injectCount === 0;
+      var styleElement;
+
+      if (shadowRoot || firstMount) {
+        styleElement = injectStyle(injectClassName, css, shadowRoot);
+      }
+
+      if (firstMount) {
+        injectElement = styleElement;
+      }
+
+      if (!shadowRoot) {
+        ++injectCount;
+      }
+
+      return {
+        destroy: function () {
+          if (shadowRoot) {
+            el.removeChild(styleElement);
+            styleElement = null;
+          } else {
+            if (injectCount > 0) {
+              --injectCount;
+            }
+
+            if (injectCount === 0 && injectElement) {
+              injectElement.parentNode.removeChild(injectElement);
+              injectElement = null;
+            }
+          }
+        }
+      };
+    }
+  };
+}
+
+/* harmony default export */ var styled_esm = (styled);
+//# sourceMappingURL=styled.esm.js.map
+
+// CONCATENATED MODULE: ./node_modules/react-compat-css-styled/dist/styled.esm.js
+/*
+Copyright (c) Daybrush
+name: react-compat-css-styled
+license: MIT
+author: Daybrush
+repository: git+https://github.com/daybrush/css-styled.git
+version: 0.1.2
+*/
+
+
+
+
+/*
+Copyright (c) 2019 Daybrush
+name: react-css-styled
+license: MIT
+author: Daybrush
+repository: https://github.com/daybrush/css-styled/tree/master/packages/react-css-styled
+version: 0.1.4
+*/
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/* global Reflect, Promise */
+var styled_esm_extendStatics = function (d, b) {
+  styled_esm_extendStatics = Object.setPrototypeOf || {
+    __proto__: []
+  } instanceof Array && function (d, b) {
+    d.__proto__ = b;
+  } || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+  };
+
+  return styled_esm_extendStatics(d, b);
+};
+
+function styled_esm_extends(d, b) {
+  styled_esm_extendStatics(d, b);
+
+  function __() {
+    this.constructor = d;
+  }
+
+  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+var styled_esm_assign = function () {
+  styled_esm_assign = Object.assign || function __assign(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+
+    return t;
+  };
+
+  return styled_esm_assign.apply(this, arguments);
+};
+function styled_esm_rest(s, e) {
+  var t = {};
+
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+}
+
+function styled_esm_styled(Tag, css) {
+  var injector = styled_esm(css);
   return (
     /*#__PURE__*/
     function (_super) {
-      __extends(Styler, _super);
+      styled_esm_extends(Styled, _super);
 
-      function Styler(props) {
-        return _super.call(this, props) || this;
+      function Styled() {
+        return _super !== null && _super.apply(this, arguments) || this;
       }
 
-      Styler.prototype.render = function () {
+      Styled.prototype.render = function () {
         var _a = this.props,
-            className = _a.className,
-            attributes = __rest(_a, ["className"]);
+            _b = _a.className,
+            className = _b === void 0 ? "" : _b,
+            attributes = styled_esm_rest(_a, ["className"]);
 
-        return compat_module_D(Tag, __assign({
-          className: className + " " + injectClassName
+        return createElement(Tag, styled_esm_assign({
+          ref: ref(this, "element"),
+          className: className + " " + injector.className
         }, attributes));
       };
 
-      Styler.prototype.componentDidMount = function () {
-        if (injectCount === 0) {
-          injectElement = injectStyle(injectClassName, css);
-        }
-
-        ++injectCount;
+      Styled.prototype.componentDidMount = function () {
+        this.injectResult = injector.inject(this.element);
       };
 
-      Styler.prototype.componentWillUnmount = function () {
-        --injectCount;
-
-        if (injectCount === 0 && injectElement) {
-          injectElement.parentNode.removeChild(injectElement);
-        }
+      Styled.prototype.componentWillUnmount = function () {
+        this.injectResult.destroy();
+        this.injectResult = null;
       };
 
-      Styler.prototype.getElement = function () {
-        return this.element || (this.element = compat_module_$(this));
+      Styled.prototype.getElement = function () {
+        return this.element;
       };
 
-      return Styler;
-    }(y)
+      return Styled;
+    }(compat_esm_Component)
   );
 }
 
-/* harmony default export */ var styler_esm = (styled);
-//# sourceMappingURL=styler.esm.js.map
+/* harmony default export */ var dist_styled_esm = (styled_esm_styled);
 
 // CONCATENATED MODULE: ./node_modules/@daybrush/drag/dist/drag.esm.js
 /*
@@ -2061,7 +3742,7 @@ name: @daybrush/drag
 license: MIT
 author: Daybrush
 repository: git+https://github.com/daybrush/drag.git
-version: 0.11.1
+version: 0.12.0
 */
 
 
@@ -2174,9 +3855,16 @@ function getMinusClient(client1, client2) {
   };
 }
 
+/**
+ * You can set up drag events in any browser.
+ */
+
 var drag_esm_Dragger =
 /*#__PURE__*/
 function () {
+  /**
+   *
+   */
   function Dragger(el, options) {
     var _this = this;
 
@@ -2199,6 +3887,9 @@ function () {
     this.startPinchClients = [];
     this.startDistance = 0;
     this.customDist = [0, 0];
+    /**
+     * @method
+     */
 
     this.onDragStart = function (e) {
       if (!_this.flag && e.cancelable === false) {
@@ -2230,7 +3921,8 @@ function () {
       var position = getPosition(clients[0], _this.prevClients[0], _this.startClients[0]);
       var _a = _this.options,
           dragstart = _a.dragstart,
-          preventRightClick = _a.preventRightClick;
+          preventRightClick = _a.preventRightClick,
+          preventDefault = _a.preventDefault;
 
       if (preventRightClick && e.which === 3 || (dragstart && dragstart(drag_esm_assign({
         datas: _this.datas,
@@ -2241,7 +3933,7 @@ function () {
         _this.flag = false;
       }
 
-      _this.flag && e.preventDefault();
+      _this.flag && preventDefault && e.preventDefault();
     };
 
     this.onDrag = function (e, isScroll) {
@@ -2294,6 +3986,7 @@ function () {
     this.options = drag_esm_assign({
       container: el,
       preventRightClick: true,
+      preventDefault: true,
       pinchThreshold: 0,
       events: ["touch", "mouse"]
     }, options);
@@ -2319,16 +4012,36 @@ function () {
       addEvent(container, "touchend", this.onDragEnd, passive);
     }
   }
+  /**
+   *
+   */
+
 
   var __proto = Dragger.prototype;
 
   __proto.isDragging = function () {
     return this.isDrag;
   };
+  /**
+   *
+   */
+
+
+  __proto.isFlag = function () {
+    return this.flag;
+  };
+  /**
+   *
+   */
+
 
   __proto.isPinching = function () {
     return this.isPinch;
   };
+  /**
+   *
+   */
+
 
   __proto.scrollBy = function (deltaX, deltaY, e, isCallDrag) {
     if (isCallDrag === void 0) {
@@ -2470,6 +4183,10 @@ function () {
     this.isPinch = false;
     this.pinchFlag = false;
   };
+  /**
+   *
+   */
+
 
   __proto.unset = function () {
     var el = this.el;
@@ -2499,409 +4216,193 @@ function setDrag(el, options) {
 
 //# sourceMappingURL=drag.esm.js.map
 
-// CONCATENATED MODULE: ./node_modules/@egjs/list-differ/dist/list-differ.esm.js
+// CONCATENATED MODULE: ./node_modules/@scena/dragscroll/dist/dragscroll.esm.js
 /*
-Copyright (c) 2019-present NAVER Corp.
-name: @egjs/list-differ
+Copyright (c) 2019 Daybrush
+name: @scena/dragscroll
 license: MIT
-author: NAVER Corp.
-repository: https://github.com/naver/egjs-list-differ
-version: 1.0.0
+author: Daybrush
+repository: git+https://github.com/daybrush/dragscroll.git
+version: 0.2.1
 */
-/*
-egjs-list-differ
-Copyright (c) 2019-present NAVER Corp.
-MIT license
-*/
-var PolyMap =
-/*#__PURE__*/
-function () {
-  function PolyMap() {
-    this.keys = [];
-    this.values = [];
+
+
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/* global Reflect, Promise */
+var dragscroll_esm_extendStatics = function (d, b) {
+  dragscroll_esm_extendStatics = Object.setPrototypeOf || {
+    __proto__: []
+  } instanceof Array && function (d, b) {
+    d.__proto__ = b;
+  } || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+  };
+
+  return dragscroll_esm_extendStatics(d, b);
+};
+
+function dragscroll_esm_extends(d, b) {
+  dragscroll_esm_extendStatics(d, b);
+
+  function __() {
+    this.constructor = d;
   }
 
-  var __proto = PolyMap.prototype;
-
-  __proto.get = function (key) {
-    return this.values[this.keys.indexOf(key)];
-  };
-
-  __proto.set = function (key, value) {
-    var keys = this.keys;
-    var values = this.values;
-    var prevIndex = keys.indexOf(key);
-    var index = prevIndex === -1 ? keys.length : prevIndex;
-    keys[index] = key;
-    values[index] = value;
-  };
-
-  return PolyMap;
-}();
-
-/*
-egjs-list-differ
-Copyright (c) 2019-present NAVER Corp.
-MIT license
-*/
-var HashMap =
-/*#__PURE__*/
-function () {
-  function HashMap() {
-    this.object = {};
-  }
-
-  var __proto = HashMap.prototype;
-
-  __proto.get = function (key) {
-    return this.object[key];
-  };
-
-  __proto.set = function (key, value) {
-    this.object[key] = value;
-  };
-
-  return HashMap;
-}();
-
-/*
-egjs-list-differ
-Copyright (c) 2019-present NAVER Corp.
-MIT license
-*/
-var SUPPORT_MAP = typeof Map === "function";
-
-/*
-egjs-list-differ
-Copyright (c) 2019-present NAVER Corp.
-MIT license
-*/
-var Link =
-/*#__PURE__*/
-function () {
-  function Link() {}
-
-  var __proto = Link.prototype;
-
-  __proto.connect = function (prevLink, nextLink) {
-    this.prev = prevLink;
-    this.next = nextLink;
-    prevLink && (prevLink.next = this);
-    nextLink && (nextLink.prev = this);
-  };
-
-  __proto.disconnect = function () {
-    // In double linked list, diconnect the interconnected relationship.
-    var prevLink = this.prev;
-    var nextLink = this.next;
-    prevLink && (prevLink.next = nextLink);
-    nextLink && (nextLink.prev = prevLink);
-  };
-
-  __proto.getIndex = function () {
-    var link = this;
-    var index = -1;
-
-    while (link) {
-      link = link.prev;
-      ++index;
-    }
-
-    return index;
-  };
-
-  return Link;
-}();
-
-/*
-egjs-list-differ
-Copyright (c) 2019-present NAVER Corp.
-MIT license
-*/
-
-function orderChanged(changed, fixed) {
-  // It is roughly in the order of these examples.
-  // 4, 6, 0, 2, 1, 3, 5, 7
-  var fromLinks = []; // 0, 1, 2, 3, 4, 5, 6, 7
-
-  var toLinks = [];
-  changed.forEach(function (_a) {
-    var from = _a[0],
-        to = _a[1];
-    var link = new Link();
-    fromLinks[from] = link;
-    toLinks[to] = link;
-  }); // `fromLinks` are connected to each other by double linked list.
-
-  fromLinks.forEach(function (link, i) {
-    link.connect(fromLinks[i - 1]);
-  });
-  return changed.filter(function (_, i) {
-    return !fixed[i];
-  }).map(function (_a, i) {
-    var from = _a[0],
-        to = _a[1];
-
-    if (from === to) {
-      return [0, 0];
-    }
-
-    var fromLink = fromLinks[from];
-    var toLink = toLinks[to - 1];
-    var fromIndex = fromLink.getIndex(); // Disconnect the link connected to `fromLink`.
-
-    fromLink.disconnect(); // Connect `fromLink` to the right of `toLink`.
-
-    if (!toLink) {
-      fromLink.connect(undefined, fromLinks[0]);
-    } else {
-      fromLink.connect(toLink, toLink.next);
-    }
-
-    var toIndex = fromLink.getIndex();
-    return [fromIndex, toIndex];
-  });
+  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 }
 
-var Result =
+function getDefaultScrollPosition(e) {
+  var container = e.container;
+  return [container.scrollLeft, container.scrollTop];
+}
+
+var dragscroll_esm_DragScroll =
 /*#__PURE__*/
-function () {
-  function Result(prevList, list, added, removed, changed, maintained, changedBeforeAdded, fixed) {
-    this.prevList = prevList;
-    this.list = list;
-    this.added = added;
-    this.removed = removed;
-    this.changed = changed;
-    this.maintained = maintained;
-    this.changedBeforeAdded = changedBeforeAdded;
-    this.fixed = fixed;
+function (_super) {
+  dragscroll_esm_extends(DragScroll, _super);
+
+  function DragScroll() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.startRect = null;
+    _this.startPos = [];
+    _this.prevTime = 0;
+    _this.timer = 0;
+    return _this;
   }
 
-  var __proto = Result.prototype;
-  Object.defineProperty(__proto, "ordered", {
-    get: function () {
-      if (!this.cacheOrdered) {
-        this.caculateOrdered();
+  var __proto = DragScroll.prototype;
+
+  __proto.dragStart = function (e, options) {
+    var _a = options.container.getBoundingClientRect(),
+        top = _a.top,
+        left = _a.left,
+        width = _a.width,
+        height = _a.height;
+
+    this.startPos = [e.clientX, e.clientY];
+    this.startRect = {
+      top: top,
+      left: left,
+      width: width,
+      height: height
+    };
+  };
+
+  __proto.drag = function (e, options) {
+    var _this = this;
+
+    var clientX = e.clientX,
+        clientY = e.clientY;
+    var container = options.container,
+        _a = options.threshold,
+        threshold = _a === void 0 ? 0 : _a,
+        _b = options.throttleTime,
+        throttleTime = _b === void 0 ? 0 : _b,
+        _c = options.getScrollPosition,
+        getScrollPosition = _c === void 0 ? getDefaultScrollPosition : _c;
+
+    var _d = this,
+        startRect = _d.startRect,
+        startPos = _d.startPos;
+
+    var nowTime = now();
+    var distTime = Math.max(throttleTime + this.prevTime - nowTime, 0);
+    var direction = [0, 0];
+
+    if (startRect.top > clientY - threshold) {
+      if (startPos[1] > startRect.top || clientY < startPos[1]) {
+        direction[1] = -1;
       }
-
-      return this.cacheOrdered;
-    },
-    enumerable: true,
-    configurable: true
-  });
-  Object.defineProperty(__proto, "pureChanged", {
-    get: function () {
-      if (!this.cachePureChanged) {
-        this.caculateOrdered();
+    } else if (startRect.top + startRect.height < clientY + threshold) {
+      if (startPos[1] < startRect.top + startRect.height || clientY > startPos[1]) {
+        direction[1] = 1;
       }
+    }
 
-      return this.cachePureChanged;
-    },
-    enumerable: true,
-    configurable: true
-  });
-
-  __proto.caculateOrdered = function () {
-    var ordered = orderChanged(this.changedBeforeAdded, this.fixed);
-    var changed = this.changed;
-    var pureChanged = [];
-    this.cacheOrdered = ordered.filter(function (_a, i) {
-      var from = _a[0],
-          to = _a[1];
-      var _b = changed[i],
-          fromBefore = _b[0],
-          toBefore = _b[1];
-
-      if (from !== to) {
-        pureChanged.push([fromBefore, toBefore]);
-        return true;
+    if (startRect.left > clientX - threshold) {
+      if (startPos[0] > startRect.left || clientX < startPos[0]) {
+        direction[0] = -1;
       }
+    } else if (startRect.left + startRect.width < clientX + threshold) {
+      if (startPos[0] < startRect.left + startRect.width || clientX > startPos[0]) {
+        direction[0] = 1;
+      }
+    }
+
+    clearTimeout(this.timer);
+
+    if (!direction[0] && !direction[1]) {
+      return false;
+    }
+
+    if (distTime > 0) {
+      this.timer = window.setTimeout(function () {
+        _this.drag(e, options);
+      }, distTime);
+      return false;
+    }
+
+    this.prevTime = nowTime;
+    var prevPos = getScrollPosition({
+      container: container,
+      direction: direction
     });
-    this.cachePureChanged = pureChanged;
-  };
+    this.trigger("scroll", {
+      container: container,
+      direction: direction,
+      inputEvent: e
+    });
+    var nextPos = getScrollPosition({
+      container: container,
+      direction: direction
+    });
+    var offsetX = nextPos[0] - prevPos[0];
+    var offsetY = nextPos[1] - prevPos[1];
 
-  return Result;
-}();
-
-/**
- *
- * @memberof eg.ListDiffer
- * @static
- * @function
- * @param - Previous List <ko> 이전 목록 </ko>
- * @param - List to Update <ko> 업데이트 할 목록 </ko>
- * @param - This callback function returns the key of the item. <ko> 아이템의 키를 반환하는 콜백 함수입니다.</ko>
- * @return - Returns the diff between `prevList` and `list` <ko> `prevList`와 `list`의 다른 점을 반환한다.</ko>
- * @example
- * import { diff } from "@egjs/list-differ";
- * // script => eg.ListDiffer.diff
- * const result = diff([0, 1, 2, 3, 4, 5], [7, 8, 0, 4, 3, 6, 2, 1], e => e);
- * // List before update
- * // [1, 2, 3, 4, 5]
- * console.log(result.prevList);
- * // Updated list
- * // [4, 3, 6, 2, 1]
- * console.log(result.list);
- * // Index array of values added to `list`
- * // [0, 1, 5]
- * console.log(result.added);
- * // Index array of values removed in `prevList`
- * // [5]
- * console.log(result.removed);
- * // An array of index pairs of `prevList` and `list` with different indexes from `prevList` and `list`
- * // [[0, 2], [4, 3], [3, 4], [2, 6], [1, 7]]
- * console.log(result.changed);
- * // The subset of `changed` and an array of index pairs that moved data directly. Indicate an array of absolute index pairs of `ordered`.(Formatted by: Array<[index of prevList, index of list]>)
- * // [[4, 3], [3, 4], [2, 6]]
- * console.log(result.pureChanged);
- * // An array of index pairs to be `ordered` that can synchronize `list` before adding data. (Formatted by: Array<[prevIndex, nextIndex]>)
- * // [[4, 1], [4, 2], [4, 3]]
- * console.log(result.ordered);
- * // An array of index pairs of `prevList` and `list` that have not been added/removed so data is preserved
- * // [[0, 2], [4, 3], [3, 4], [2, 6], [1, 7]]
- * console.log(result.maintained);
- */
-
-function diff(prevList, list, findKeyCallback) {
-  var mapClass = SUPPORT_MAP ? Map : findKeyCallback ? HashMap : PolyMap;
-
-  var callback = findKeyCallback || function (e) {
-    return e;
-  };
-
-  var added = [];
-  var removed = [];
-  var maintained = [];
-  var prevKeys = prevList.map(callback);
-  var keys = list.map(callback);
-  var prevKeyMap = new mapClass();
-  var keyMap = new mapClass();
-  var changedBeforeAdded = [];
-  var fixed = [];
-  var removedMap = {};
-  var changed = [];
-  var addedCount = 0;
-  var removedCount = 0; // Add prevKeys and keys to the hashmap.
-
-  prevKeys.forEach(function (key, prevListIndex) {
-    prevKeyMap.set(key, prevListIndex);
-  });
-  keys.forEach(function (key, listIndex) {
-    keyMap.set(key, listIndex);
-  }); // Compare `prevKeys` and `keys` and add them to `removed` if they are not in `keys`.
-
-  prevKeys.forEach(function (key, prevListIndex) {
-    var listIndex = keyMap.get(key); // In prevList, but not in list, it is removed.
-
-    if (typeof listIndex === "undefined") {
-      ++removedCount;
-      removed.push(prevListIndex);
-    } else {
-      removedMap[listIndex] = removedCount;
-    }
-  }); // Compare `prevKeys` and `keys` and add them to `added` if they are not in `prevKeys`.
-
-  keys.forEach(function (key, listIndex) {
-    var prevListIndex = prevKeyMap.get(key); // In list, but not in prevList, it is added.
-
-    if (typeof prevListIndex === "undefined") {
-      added.push(listIndex);
-      ++addedCount;
-    } else {
-      maintained.push([prevListIndex, listIndex]);
-      removedCount = removedMap[listIndex] || 0;
-      changedBeforeAdded.push([prevListIndex - removedCount, listIndex - addedCount]);
-      fixed.push(listIndex === prevListIndex);
-
-      if (prevListIndex !== listIndex) {
-        changed.push([prevListIndex, listIndex]);
-      }
-    }
-  }); // Sort by ascending order of 'to(list's index).
-
-  removed.reverse();
-  return new Result(prevList, list, added, removed, changed, maintained, changedBeforeAdded, fixed);
-}
-
-/**
- * A module that checks diff when values are added, removed, or changed in an array.
- * @ko 배열 또는 오브젝트에서 값이 추가되거나 삭제되거나 순서가 변경사항을 체크하는 모듈입니다.
- * @memberof eg
- */
-
-var ListDiffer =
-/*#__PURE__*/
-function () {
-  /**
-   * @param - Initializing Data Array. <ko> 초기 설정할 데이터 배열.</ko>
-   * @param - This callback function returns the key of the item. <ko> 아이템의 키를 반환하는 콜백 함수입니다.</ko>
-   * @example
-   * import ListDiffer from "@egjs/list-differ";
-   * // script => eg.ListDiffer
-   * const differ = new ListDiffer([0, 1, 2, 3, 4, 5], e => e);
-   * const result = differ.update([7, 8, 0, 4, 3, 6, 2, 1]);
-   * // List before update
-   * // [1, 2, 3, 4, 5]
-   * console.log(result.prevList);
-   * // Updated list
-   * // [4, 3, 6, 2, 1]
-   * console.log(result.list);
-   * // Index array of values added to `list`.
-   * // [0, 1, 5]
-   * console.log(result.added);
-   * // Index array of values removed in `prevList`.
-   * // [5]
-   * console.log(result.removed);
-   * // An array of index pairs of `prevList` and `list` with different indexes from `prevList` and `list`.
-   * // [[0, 2], [4, 3], [3, 4], [2, 6], [1, 7]]
-   * console.log(result.changed);
-   * // The subset of `changed` and an array of index pairs that moved data directly. Indicate an array of absolute index pairs of `ordered`.(Formatted by: Array<[index of prevList, index of list]>)
-   * // [[4, 3], [3, 4], [2, 6]]
-   * console.log(result.pureChanged);
-   * // An array of index pairs to be `ordered` that can synchronize `list` before adding data. (Formatted by: Array<[prevIndex, nextIndex]>)
-   * // [[4, 1], [4, 2], [4, 3]]
-   * console.log(result.ordered);
-   * // An array of index pairs of `prevList` and `list` that have not been added/removed so data is preserved.
-   * // [[0, 2], [4, 3], [3, 4], [2, 6], [1, 7]]
-   * console.log(result.maintained);
-   */
-  function ListDiffer(list, findKeyCallback) {
-    if (list === void 0) {
-      list = [];
+    if (!offsetX && !offsetY) {
+      return false;
     }
 
-    this.findKeyCallback = findKeyCallback;
-    this.list = [].slice.call(list);
-  }
-  /**
-   * Update list.
-   * @ko 리스트를 업데이트를 합니다.
-   * @param - List to update <ko> 업데이트할 리스트 </ko>
-   * @return - Returns the results of an update from `prevList` to `list`.<ko> `prevList`에서 `list`로 업데이트한 결과를 반환한다. </ko>
-   */
+    this.trigger("move", {
+      offsetX: direction[0] ? offsetX : 0,
+      offsetY: direction[1] ? offsetY : 0,
+      inputEvent: e
+    });
 
+    if (throttleTime) {
+      this.timer = window.setTimeout(function () {
+        _this.drag(e, options);
+      }, throttleTime);
+    }
 
-  var __proto = ListDiffer.prototype;
-
-  __proto.update = function (list) {
-    var newData = [].slice.call(list);
-    var result = diff(this.list, newData, this.findKeyCallback);
-    this.list = newData;
-    return result;
+    return true;
   };
 
-  return ListDiffer;
-}();
+  __proto.dragEnd = function () {
+    clearTimeout(this.timer);
+  };
 
-/*
-egjs-list-differ
-Copyright (c) 2019-present NAVER Corp.
-MIT license
-*/
+  return DragScroll;
+}(component_esm);
 
-/* harmony default export */ var list_differ_esm = (ListDiffer);
-
-//# sourceMappingURL=list-differ.esm.js.map
+/* harmony default export */ var dragscroll_esm = (dragscroll_esm_DragScroll);
+//# sourceMappingURL=dragscroll.esm.js.map
 
 // CONCATENATED MODULE: ./node_modules/@egjs/children-differ/dist/children-differ.esm.js
 /*
@@ -3048,14 +4549,14 @@ MIT license
 
 //# sourceMappingURL=children-differ.esm.js.map
 
-// CONCATENATED MODULE: ./node_modules/preact-moveable/dist/moveable.esm.js
+// CONCATENATED MODULE: ./node_modules/react-compat-moveable/dist/moveable.esm.js
 /*
 Copyright (c) 2019 Daybrush
-name: preact-moveable
+name: react-compat-moveable
 license: MIT
 author: Daybrush
-repository: https://github.com/daybrush/moveable/blob/master/packages/preact-moveable
-version: 0.14.0
+repository: https://github.com/daybrush/moveable/blob/master/packages/react-compat-moveable
+version: 0.2.2
 */
 
 
@@ -3066,362 +4567,6 @@ version: 0.14.0
 
 
 
-/*
-Copyright (c) 2019 Daybrush
-name: @moveable/matrix
-license: MIT
-author: Daybrush
-repository: git+https://github.com/daybrush/moveable.git
-version: 0.3.0
-*/
-function add(matrix, inverseMatrix, startIndex, endIndex, fromStart, k) {
-  for (var i = startIndex; i < endIndex; ++i) {
-    matrix[i] += matrix[fromStart + i - startIndex] * k;
-    inverseMatrix[i] += inverseMatrix[fromStart + i - startIndex] * k;
-  }
-}
-
-function swap(matrix, inverseMatrix, startIndex, endIndex, fromStart) {
-  for (var i = startIndex; i < endIndex; ++i) {
-    var v = matrix[i];
-    var iv = inverseMatrix[i];
-    matrix[i] = matrix[fromStart + i - startIndex];
-    matrix[fromStart + i - startIndex] = v;
-    inverseMatrix[i] = inverseMatrix[fromStart + i - startIndex];
-    inverseMatrix[fromStart + i - startIndex] = iv;
-  }
-}
-
-function divide(matrix, inverseMatrix, startIndex, endIndex, k) {
-  for (var i = startIndex; i < endIndex; ++i) {
-    matrix[i] /= k;
-    inverseMatrix[i] /= k;
-  }
-}
-
-function ignoreDimension(matrix, m, n) {
-  if (n === void 0) {
-    n = Math.sqrt(matrix.length);
-  }
-
-  var newMatrix = matrix.slice();
-
-  for (var i = 0; i < n; ++i) {
-    newMatrix[i * n + m - 1] = 0;
-    newMatrix[(m - 1) * n + i] = 0;
-  }
-
-  newMatrix[(m - 1) * (n + 1)] = 1;
-  return newMatrix;
-}
-function invert(matrix, n) {
-  if (n === void 0) {
-    n = Math.sqrt(matrix.length);
-  }
-
-  var newMatrix = matrix.slice();
-  var inverseMatrix = createIdentityMatrix(n);
-
-  for (var i = 0; i < n; ++i) {
-    var startIndex = n * i;
-    var endIndex = n * (i + 1);
-    var identityIndex = startIndex + i;
-
-    if (newMatrix[identityIndex] === 0) {
-      for (var j = i + 1; j < n; ++j) {
-        if (newMatrix[n * j + i]) {
-          swap(newMatrix, inverseMatrix, startIndex, endIndex, n * j);
-          break;
-        }
-      }
-    }
-
-    if (newMatrix[identityIndex]) {
-      divide(newMatrix, inverseMatrix, startIndex, endIndex, newMatrix[identityIndex]);
-    } else {
-      // no inverse matrix
-      return [];
-    }
-
-    for (var j = 0; j < n; ++j) {
-      var targetStartIndex = n * j;
-      var targetEndIndex = targetStartIndex + n;
-      var targetIndex = targetStartIndex + i;
-      var target = newMatrix[targetIndex];
-
-      if (target === 0 || i === j) {
-        continue;
-      }
-
-      add(newMatrix, inverseMatrix, targetStartIndex, targetEndIndex, startIndex, -target);
-    }
-  }
-
-  return inverseMatrix;
-}
-function transpose(matrix, n) {
-  if (n === void 0) {
-    n = Math.sqrt(matrix.length);
-  }
-
-  var newMatrix = [];
-
-  for (var i = 0; i < n; ++i) {
-    for (var j = 0; j < n; ++j) {
-      newMatrix[j * n + i] = matrix[n * i + j];
-    }
-  }
-
-  return newMatrix;
-}
-function getRad(pos1, pos2) {
-  var distX = pos2[0] - pos1[0];
-  var distY = pos2[1] - pos1[1];
-  var rad = Math.atan2(distY, distX);
-  return rad > 0 ? rad : rad + Math.PI * 2;
-}
-function getOrigin(matrix, n) {
-  if (n === void 0) {
-    n = Math.sqrt(matrix.length);
-  }
-
-  var originMatrix = [];
-
-  for (var i = 0; i < n - 1; ++i) {
-    originMatrix[i] = matrix[(i + 1) * n - 1];
-  }
-
-  originMatrix[n - 1] = 0;
-  return originMatrix;
-}
-function convertPositionMatrix(matrix, n) {
-  var newMatrix = matrix.slice();
-
-  for (var i = matrix.length; i < n - 1; ++i) {
-    newMatrix[i] = 0;
-  }
-
-  newMatrix[n - 1] = 1;
-  return newMatrix;
-}
-function convertDimension(matrix, n, m) {
-  if (n === void 0) {
-    n = Math.sqrt(matrix.length);
-  } // n < m
-
-
-  if (n === m) {
-    return matrix;
-  }
-
-  var newMatrix = createIdentityMatrix(m);
-  var length = Math.min(n, m);
-
-  for (var i = 0; i < length - 1; ++i) {
-    for (var j = 0; j < length - 1; ++j) {
-      newMatrix[i * m + j] = matrix[i * n + j];
-    }
-
-    newMatrix[(i + 1) * m - 1] = matrix[(i + 1) * n - 1];
-    newMatrix[(m - 1) * m + i] = matrix[(n - 1) * n + i];
-  }
-
-  newMatrix[m * m - 1] = matrix[n * n - 1];
-  return newMatrix;
-}
-function multiplies(n) {
-  var matrixes = [];
-
-  for (var _i = 1; _i < arguments.length; _i++) {
-    matrixes[_i - 1] = arguments[_i];
-  }
-
-  var m = createIdentityMatrix(n);
-  matrixes.forEach(function (matrix) {
-    m = multiply(m, matrix, n);
-  });
-  return m;
-}
-function multiply(matrix, matrix2, n) {
-  var newMatrix = []; // n * m X m * k
-
-  var m = matrix.length / n;
-  var k = matrix2.length / m;
-
-  if (!m) {
-    return matrix2;
-  } else if (!k) {
-    return matrix;
-  }
-
-  for (var i = 0; i < n; ++i) {
-    for (var j = 0; j < k; ++j) {
-      newMatrix[i * k + j] = 0;
-
-      for (var l = 0; l < m; ++l) {
-        newMatrix[i * k + j] += matrix[i * m + l] * matrix2[l * k + j];
-      }
-    }
-  } // n * k
-
-
-  return newMatrix;
-}
-function multiplyCSS(matrix, matrix2, n) {
-  if (n === void 0) {
-    n = Math.sqrt(matrix.length);
-  }
-
-  var newMatrix = []; // n(y) * m(x) X m(y) * k(x)
-
-  var m = matrix.length / n;
-  var k = matrix2.length / m;
-
-  for (var i = 0; i < n; ++i) {
-    for (var j = 0; j < k; ++j) {
-      newMatrix[i + j * k] = 0;
-
-      for (var l = 0; l < m; ++l) {
-        newMatrix[i + j * k] += matrix[i + l * m] * matrix2[l + j * k];
-      }
-    }
-  } // n * k
-
-
-  return newMatrix;
-}
-function average() {
-  var nums = [];
-
-  for (var _i = 0; _i < arguments.length; _i++) {
-    nums[_i] = arguments[_i];
-  }
-
-  var length = nums.length;
-  var total = 0;
-
-  for (var i = length - 1; i >= 0; --i) {
-    total += nums[i];
-  }
-
-  return length ? total / length : 0;
-}
-function plus(pos1, pos2) {
-  var length = Math.min(pos1.length, pos2.length);
-  var nextPos = pos1.slice();
-
-  for (var i = 0; i < length; ++i) {
-    nextPos[i] = nextPos[i] + pos2[i];
-  }
-
-  return nextPos;
-}
-function minus(pos1, pos2) {
-  var length = Math.min(pos1.length, pos2.length);
-  var nextPos = pos1.slice();
-
-  for (var i = 0; i < length; ++i) {
-    nextPos[i] = nextPos[i] - pos2[i];
-  }
-
-  return nextPos;
-}
-function caculate(matrix, matrix2, n) {
-  if (n === void 0) {
-    n = matrix2.length;
-  }
-
-  var result = multiply(matrix, matrix2, n);
-  var k = result[n - 1];
-  return result.map(function (v) {
-    return v / k;
-  });
-}
-function rotate(pos, rad) {
-  return caculate(createRotateMatrix(rad, 3), convertPositionMatrix(pos, 3));
-}
-function convertCSStoMatrix(a) {
-  if (a.length === 6) {
-    return [a[0], a[2], a[4], a[1], a[3], a[5], 0, 0, 1];
-  }
-
-  return transpose(a);
-}
-function convertMatrixtoCSS(a) {
-  if (a.length === 9) {
-    return [a[0], a[3], a[1], a[4], a[2], a[5]];
-  }
-
-  return transpose(a);
-}
-function createRotateMatrix(rad, n) {
-  var cos = Math.cos(rad);
-  var sin = Math.sin(rad);
-  var m = createIdentityMatrix(n);
-  m[0] = cos;
-  m[1] = -sin;
-  m[n] = sin;
-  m[n + 1] = cos;
-  return m;
-}
-function createIdentityMatrix(n) {
-  var length = n * n;
-  var matrix = [];
-
-  for (var i = 0; i < length; ++i) {
-    matrix[i] = i % (n + 1) ? 0 : 1;
-  }
-
-  return matrix;
-}
-function createScaleMatrix(scale, n) {
-  var m = createIdentityMatrix(n);
-  var length = Math.min(scale.length, n - 1);
-
-  for (var i = 0; i < length; ++i) {
-    m[(n + 1) * i] = scale[i];
-  }
-
-  return m;
-}
-function createOriginMatrix(origin, n) {
-  var m = createIdentityMatrix(n);
-  var length = Math.min(origin.length, n - 1);
-
-  for (var i = 0; i < length; ++i) {
-    m[n * (i + 1) - 1] = origin[i];
-  }
-
-  return m;
-}
-function createWarpMatrix(pos0, pos1, pos2, pos3, nextPos0, nextPos1, nextPos2, nextPos3) {
-  var x0 = pos0[0],
-      y0 = pos0[1];
-  var x1 = pos1[0],
-      y1 = pos1[1];
-  var x2 = pos2[0],
-      y2 = pos2[1];
-  var x3 = pos3[0],
-      y3 = pos3[1];
-  var u0 = nextPos0[0],
-      v0 = nextPos0[1];
-  var u1 = nextPos1[0],
-      v1 = nextPos1[1];
-  var u2 = nextPos2[0],
-      v2 = nextPos2[1];
-  var u3 = nextPos3[0],
-      v3 = nextPos3[1];
-  var matrix = [x0, y0, 1, 0, 0, 0, -u0 * x0, -u0 * y0, 0, 0, 0, x0, y0, 1, -v0 * x0, -v0 * y0, x1, y1, 1, 0, 0, 0, -u1 * x1, -u1 * y1, 0, 0, 0, x1, y1, 1, -v1 * x1, -v1 * y1, x2, y2, 1, 0, 0, 0, -u2 * x2, -u2 * y2, 0, 0, 0, x2, y2, 1, -v2 * x2, -v2 * y2, x3, y3, 1, 0, 0, 0, -u3 * x3, -u3 * y3, 0, 0, 0, x3, y3, 1, -v3 * x3, -v3 * y3];
-  var inverseMatrix = invert(matrix, 8);
-
-  if (!inverseMatrix.length) {
-    return [];
-  }
-
-  var h = multiply(inverseMatrix, [u0, v0, u1, v1, u2, v2, u3, v3], 8);
-  h[8] = 1;
-  return convertDimension(h, 3, 4);
-}
 
 /*
 Copyright (c) 2019 Daybrush
@@ -3429,7 +4574,7 @@ name: react-moveable
 license: MIT
 author: Daybrush
 repository: https://github.com/daybrush/moveable/blob/master/packages/react-moveable
-version: 0.15.0
+version: 0.17.0
 */
 
 /*! *****************************************************************************
@@ -3483,10 +4628,26 @@ var moveable_esm_assign = function () {
   return moveable_esm_assign.apply(this, arguments);
 };
 
+function getSVGCursor(scale, degree) {
+  return "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" + 32 * scale + "px\" height=\"" + 32 * scale + "px\" viewBox=\"0 0 32 32\" ><path d=\"M 16,5 L 12,10 L 14.5,10 L 14.5,22 L 12,22 L 16,27 L 20,22 L 17.5,22 L 17.5,10 L 20, 10 L 16,5 Z\" stroke-linejoin=\"round\" stroke-width=\"1.2\" fill=\"black\" stroke=\"white\" style=\"transform:rotate(" + degree + "deg);transform-origin: 16px 16px\"></path></svg>";
+}
+
+function getCursorCSS(degree) {
+  var x1 = getSVGCursor(1, degree);
+  var x2 = getSVGCursor(2, degree);
+  var degree45 = Math.round(degree / 45) * 45 % 180;
+  var defaultCursor = degree45 === 135 ? "nwse-resize" : degree45 === 45 ? "nesw-resize" : degree45 === 90 ? "ew-resize" : "ns-resize"; // 135
+  // tslint:disable-next-line: max-line-length
+
+  return "cursor:" + defaultCursor + ";cursor: url('" + x1 + "') 16 16, " + defaultCursor + ";cursor: -webkit-image-set(url('" + x1 + "') 1x, url('" + x2 + "') 2x) 16 16, " + defaultCursor + ";";
+}
+
 var moveable_esm_agent = agent_esm();
 var isWebkit = moveable_esm_agent.os.name.indexOf("ios") > -1 || moveable_esm_agent.browser.name.indexOf("safari") > -1;
 var PREFIX = "moveable-";
-var MOVEABLE_CSS = prefixCSS(PREFIX, "\n{\n\tposition: fixed;\n\twidth: 0;\n\theight: 0;\n\tleft: 0;\n\ttop: 0;\n\tz-index: 3000;\n}\n.control-box {\n    z-index: 0;\n}\n.line, .control {\n\tleft: 0;\n\ttop: 0;\n}\n.control {\n\tposition: absolute;\n\twidth: 14px;\n\theight: 14px;\n\tborder-radius: 50%;\n\tborder: 2px solid #fff;\n\tbox-sizing: border-box;\n\tbackground: #4af;\n\tmargin-top: -7px;\n    margin-left: -7px;\n    z-index: 10;\n    will-change: transform;\n}\n.line {\n\tposition: absolute;\n\twidth: 1px;\n\theight: 1px;\n\tbackground: #4af;\n\ttransform-origin: 0px 0.5px;\n}\n.line.rotation-line {\n\theight: 40px;\n\twidth: 1px;\n\ttransform-origin: 0.5px 39.5px;\n}\n.line.rotation-line .control {\n\tborder-color: #4af;\n\tbackground:#fff;\n\tcursor: alias;\n}\n.line.vertical.bold {\n    width: 2px;\n    margin-left: -1px;\n}\n.line.horizontal.bold {\n    height: 2px;\n    margin-top: -1px;\n}\n.control.origin {\n\tborder-color: #f55;\n\tbackground: #fff;\n\twidth: 12px;\n\theight: 12px;\n\tmargin-top: -6px;\n\tmargin-left: -6px;\n\tpointer-events: none;\n}\n.direction.e, .direction.w {\n\tcursor: ew-resize;\n}\n.direction.s, .direction.n {\n\tcursor: ns-resize;\n}\n.direction.nw, .direction.se, :host.reverse .direction.ne, :host.reverse .direction.sw {\n\tcursor: nwse-resize;\n}\n.direction.ne, .direction.sw, :host.reverse .direction.nw, :host.reverse .direction.se {\n\tcursor: nesw-resize;\n}\n.group {\n    z-index: -1;\n}\n.area {\n    position: absolute;\n}\n.area-pieces {\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: none;\n}\n.area.avoid {\n    pointer-events: none;\n}\n.area.avoid+.area-pieces {\n    display: block;\n}\n.area-piece {\n    position: absolute;\n}\n" + (isWebkit ? ":global svg *:before {\n\tcontent:\"\";\n\ttransform-origin: inherit;\n}" : "") + "\n");
+var MOVEABLE_CSS = prefixCSS(PREFIX, "\n{\n\tposition: fixed;\n\twidth: 0;\n\theight: 0;\n\tleft: 0;\n\ttop: 0;\n\tz-index: 3000;\n}\n.control-box {\n    z-index: 0;\n}\n.line, .control {\n\tleft: 0;\n    top: 0;\n    will-change: transform;\n}\n.control {\n\tposition: absolute;\n\twidth: 14px;\n\theight: 14px;\n\tborder-radius: 50%;\n\tborder: 2px solid #fff;\n\tbox-sizing: border-box;\n\tbackground: #4af;\n\tmargin-top: -7px;\n    margin-left: -7px;\n    z-index: 10;\n}\n.line {\n\tposition: absolute;\n\twidth: 1px;\n\theight: 1px;\n\tbackground: #4af;\n\ttransform-origin: 0px 0.5px;\n}\n.line.dashed {\n    box-sizing: border-box;\n    background: transparent;\n}\n.line.dashed.horizontal {\n    border-top: 1px dashed #4af;\n}\n.line.dashed.vertical {\n    border-left: 1px dashed #4af;\n}\n.line.dashed:before {\n    position: absolute;\n    content: attr(data-size);\n    color: #4af;\n    font-size: 12px;\n    font-weight: bold;\n}\n.line.dashed.horizontal:before {\n    left: 50%;\n    transform: translateX(-50%);\n    bottom: 5px;\n}\n.line.dashed.vertical:before {\n    top: 50%;\n    transform: translateY(-50%);\n    left: 5px;\n}\n.line.rotation-line {\n\theight: 40px;\n\twidth: 1px;\n    transform-origin: 0.5px 39.5px;\n    top: -40px;\n}\n.line.rotation-line .control {\n\tborder-color: #4af;\n\tbackground:#fff;\n\tcursor: alias;\n}\n.line.vertical {\n    transform: translateX(-50%);\n}\n.line.horizontal {\n    transform: translateY(-50%);\n}\n.line.vertical.bold {\n    width: 2px;\n}\n.line.horizontal.bold {\n    height: 2px;\n}\n.control.origin {\n\tborder-color: #f55;\n\tbackground: #fff;\n\twidth: 12px;\n\theight: 12px;\n\tmargin-top: -6px;\n\tmargin-left: -6px;\n\tpointer-events: none;\n}\n" + [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165].map(function (degree) {
+  return "\n.direction[data-rotation=\"" + degree + "\"] {\n\t" + getCursorCSS(degree) + "\n}\n";
+}).join("\n") + "\n.group {\n    z-index: -1;\n}\n.area {\n    position: absolute;\n}\n.area-pieces {\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: none;\n}\n.area.avoid {\n    pointer-events: none;\n}\n.area.avoid+.area-pieces {\n    display: block;\n}\n.area-piece {\n    position: absolute;\n}\n" + (isWebkit ? ":global svg *:before {\n\tcontent:\"\";\n\ttransform-origin: inherit;\n}" : "") + "\n");
 var NEARBY_POS = [[0, 1, 2], [1, 0, 3], [2, 0, 3], [3, 1, 2]];
 var TINY_NUM = 0.0000001;
 var MIN_SCALE = 0.000000001;
@@ -3501,6 +4662,16 @@ var DIRECTION_INDEXES = {
   ne: [1],
   sw: [2],
   se: [3]
+};
+var DIRECTION_ROTATIONS = {
+  n: 0,
+  s: 180,
+  w: 270,
+  e: 90,
+  nw: 315,
+  ne: 45,
+  sw: 225,
+  se: 135
 };
 
 function multiply2(pos1, pos2) {
@@ -3632,9 +4803,9 @@ function caculateMatrixStack(target, container, prevMatrix, prevN) {
     var offsetTop = el.offsetTop;
 
     if (isFixed) {
-      var containerRect = (container || document.documentElement).getBoundingClientRect();
-      offsetLeft -= containerRect.left;
-      offsetTop -= containerRect.top;
+      var containerClientRect = (container || document.documentElement).getBoundingClientRect();
+      offsetLeft -= containerClientRect.left;
+      offsetTop -= containerClientRect.top;
     } // svg
 
 
@@ -3816,10 +4987,10 @@ function getSVGOffset(el, container, n, origin, beforeMatrix, absoluteMatrix) {
       width = _b[0],
       height = _b[1];
 
-  var containerRect = container.getBoundingClientRect();
+  var containerClientRect = container.getBoundingClientRect();
   var rect = el.getBoundingClientRect();
-  var rectLeft = rect.left - containerRect.left + container.scrollLeft;
-  var rectTop = rect.top - containerRect.top + container.scrollTop;
+  var rectLeft = rect.left - containerClientRect.left + container.scrollLeft;
+  var rectTop = rect.top - containerClientRect.top + container.scrollTop;
   var rectWidth = rect.width;
   var rectHeight = rect.height;
   var mat = multiplies(n, beforeMatrix, absoluteMatrix);
@@ -3902,11 +5073,18 @@ function caculateMoveablePosition(matrix, origin, width, height) {
   var direction = pos1Rad < pos2Rad && pos2Rad - pos1Rad < Math.PI || pos1Rad > pos2Rad && pos2Rad - pos1Rad < -Math.PI ? 1 : -1;
   return [[left, top, right, bottom], [originX, originY], [x1, y1], [x2, y2], [x3, y3], [x4, y4], direction];
 }
-function getLineStyle(pos1, pos2) {
-  var distX = pos2[0] - pos1[0];
-  var distY = pos2[1] - pos1[1];
-  var width = Math.sqrt(distX * distX + distY * distY);
-  var rad = getRad(pos1, pos2);
+function getDistSize(vec) {
+  return Math.sqrt(vec[0] * vec[0] + vec[1] * vec[1]);
+}
+function getDiagonalSize(pos1, pos2) {
+  return getDistSize([pos2[0] - pos1[0], pos2[1] - pos1[1]]);
+}
+function getLineStyle(pos1, pos2, rad) {
+  if (rad === void 0) {
+    rad = getRad(pos1, pos2);
+  }
+
+  var width = getDiagonalSize(pos1, pos2);
   return {
     transform: "translate(" + pos1[0] + "px, " + pos1[1] + "px) rotate(" + rad + "rad)",
     width: width + "px"
@@ -3927,7 +5105,7 @@ function getControlTransform(rotation) {
     return prev + pos[1];
   }, 0) / length;
   return {
-    transform: "translate(" + x + "px, " + y + "px) rotate(" + rotation + "deg)"
+    transform: "translate(" + x + "px, " + y + "px) rotate(" + rotation + "rad)"
   };
 }
 function getCSSSize(target) {
@@ -4000,22 +5178,8 @@ function getTargetInfo(target, container, parentContainer, state) {
   var is3d = false;
   var targetTransform = "";
   var beforeOrigin = [0, 0];
-  var clientRect = {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    width: 0,
-    height: 0
-  };
-  var containerRect = {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    width: 0,
-    height: 0
-  };
+  var targetClientRect = resetClientRect();
+  var containerClientRect = resetClientRect();
   var rotation = 0;
   var prevMatrix = state ? state.beforeMatrix : undefined;
   var prevN = state ? state.is3d ? 4 : 3 : undefined;
@@ -4040,14 +5204,15 @@ function getTargetInfo(target, container, parentContainer, state) {
     var beforePos = [0, 0];
     _e = caculateMoveablePosition(offsetMatrix, plus(transformOrigin, getOrigin(targetMatrix, n)), width, height), beforePos = _e[0], beforeOrigin = _e[1], beforeDirection = _e[6];
     beforeOrigin = [beforeOrigin[0] + beforePos[0] - left, beforeOrigin[1] + beforePos[1] - top];
-    clientRect = getClientRect(target);
-    containerRect = getClientRect(getOffsetInfo(parentContainer, parentContainer, true).offsetParent || document.body);
+    targetClientRect = getClientRect(target);
+    containerClientRect = getClientRect(getOffsetInfo(parentContainer, parentContainer, true).offsetParent || document.body);
     rotation = getRotationRad([pos1, pos2], direction);
   }
 
   return {
     rotation: rotation,
-    containerRect: containerRect,
+    targetClientRect: targetClientRect,
+    containerClientRect: containerClientRect,
     beforeDirection: beforeDirection,
     direction: direction,
     target: target,
@@ -4069,8 +5234,17 @@ function getTargetInfo(target, container, parentContainer, state) {
     is3d: is3d,
     beforeOrigin: beforeOrigin,
     origin: origin,
-    transformOrigin: transformOrigin,
-    clientRect: clientRect
+    transformOrigin: transformOrigin
+  };
+}
+function resetClientRect() {
+  return {
+    left: 0,
+    right: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+    bottom: 0
   };
 }
 function getClientRect(el) {
@@ -4120,6 +5294,9 @@ function getAbsolutePosesByState(_a) {
       pos3 = _a.pos3,
       pos4 = _a.pos4;
   return getAbsolutePoses([pos1, pos2, pos3, pos4], [left, top]);
+}
+function roundSign(num) {
+  return Math.round(num % 1 === -0.5 ? num - 1 : num);
 }
 function throttle(num, unit) {
   if (!unit) {
@@ -4202,11 +5379,11 @@ function filterAbles(ables, methods) {
     }
 
     if (able.ableGroup) {
-      if (ableGroups[name]) {
+      if (ableGroups[able.ableGroup]) {
         return false;
       }
 
-      ableGroups[name] = true;
+      ableGroups[able.ableGroup] = true;
     }
 
     enabledAbles[name] = true;
@@ -4220,13 +5397,46 @@ function getKeepRatioWidth(height, isWidth, ratio) {
   return height * (isWidth ? 1 / ratio : ratio);
 }
 function equals(a1, a2) {
-  if (a1 === a2) {
-    return true;
-  } else if (a1 == null && a2 == null) {
-    return true;
-  } else {
-    return false;
+  return a1 === a2 || a1 == null && a2 == null;
+}
+function selectValue() {
+  var values = [];
+
+  for (var _i = 0; _i < arguments.length; _i++) {
+    values[_i] = arguments[_i];
   }
+
+  var length = values.length - 1;
+
+  for (var i = 0; i < length; ++i) {
+    var value = values[i];
+
+    if (!utils_esm_isUndefined(value)) {
+      return value;
+    }
+  }
+
+  return values[length];
+}
+function groupBy(arr, func) {
+  var group = [];
+  var groupMap = {};
+  arr.forEach(function (el, index) {
+    var groupKey = func(el, index, arr);
+
+    if (!groupMap[groupKey]) {
+      groupMap[groupKey] = [];
+      group.push(groupMap[groupKey]);
+    }
+
+    groupMap[groupKey].push(el);
+  });
+  return group;
+}
+function moveable_esm_flat(arr) {
+  return arr.reduce(function (prev, cur) {
+    return prev.concat(cur);
+  }, []);
 }
 
 function triggerRenderStart(moveable, isGroup, e) {
@@ -4285,10 +5495,13 @@ function triggerAble(moveable, ableType, eventOperation, eventAffix, eventType, 
 
   var isGroup = eventAffix.indexOf("Group") > -1;
   var ables = moveable[ableType];
-  var results = ables.filter(function (able) {
+  var events = ables.filter(function (able) {
+    return able[eventName];
+  });
+  var results = events.filter(function (able) {
     var condition = isStart && able[conditionName];
 
-    if (able[eventName] && (!condition || condition(e.inputEvent.target, moveable))) {
+    if (!condition || condition(e.inputEvent.target, moveable)) {
       return able[eventName](moveable, e);
     }
 
@@ -4297,6 +5510,18 @@ function triggerAble(moveable, ableType, eventOperation, eventAffix, eventType, 
   var isUpdate = results.length;
 
   if (isStart) {
+    if (events.length && !isUpdate) {
+      moveable.state.dragger = null;
+
+      if (moveable.moveables) {
+        moveable.moveables.forEach(function (childeMoveable) {
+          childeMoveable.state.dragger = null;
+        });
+      }
+
+      return false;
+    }
+
     triggerRenderStart(moveable, isGroup, e);
   } else if (isEnd) {
     triggerRenderEnd(moveable, isGroup, e);
@@ -4342,14 +5567,17 @@ function getAbleDragger(moveable, target, ableType, eventAffix) {
   return new drag_esm(target, options);
 }
 
-var ControlBoxElement = styler_esm("div", MOVEABLE_CSS);
+var ControlBoxElement = dist_styled_esm("div", MOVEABLE_CSS);
 
 function renderLine(direction, pos1, pos2, index) {
-  return compat_module_D("div", {
+  var rad = getRad(pos1, pos2);
+  var rotation = direction ? throttle(rad / Math.PI * 180, 15) % 180 : -1;
+  return createElement("div", {
     key: "line" + index,
     className: prefix("line", "direction", direction),
+    "data-rotation": rotation,
     "data-direction": direction,
-    style: getLineStyle(pos1, pos2)
+    style: getLineStyle(pos1, pos2, rad)
   });
 }
 
@@ -4382,22 +5610,8 @@ function (_super) {
       pos2: [0, 0],
       pos3: [0, 0],
       pos4: [0, 0],
-      clientRect: {
-        left: 0,
-        top: 0,
-        bottom: 0,
-        right: 0,
-        width: 0,
-        height: 0
-      },
-      containerRect: {
-        left: 0,
-        top: 0,
-        bottom: 0,
-        right: 0,
-        width: 0,
-        height: 0
-      },
+      targetClientRect: resetClientRect(),
+      containerClientRect: resetClientRect(),
       rotation: 0
     };
     _this.targetAbles = [];
@@ -4408,10 +5622,12 @@ function (_super) {
   var __proto = MoveableManager.prototype;
 
   __proto.render = function () {
+    var props = this.props;
     var _a = this.props,
         edge = _a.edge,
         parentPosition = _a.parentPosition,
-        className = _a.className;
+        className = _a.className,
+        propsTarget = _a.target;
     this.checkUpdate();
 
     var _b = parentPosition || {
@@ -4428,14 +5644,16 @@ function (_super) {
         pos2 = _c.pos2,
         pos3 = _c.pos3,
         pos4 = _c.pos4,
-        target = _c.target,
+        stateTarget = _c.target,
         direction = _c.direction;
-    return compat_module_D(ControlBoxElement, {
+    var groupTargets = props.targets;
+    var isDisplay = (groupTargets && groupTargets.length || propsTarget) && stateTarget;
+    return createElement(ControlBoxElement, {
       ref: ref(this, "controlBox"),
       className: prefix("control-box", direction === -1 ? "reverse" : "") + " " + className,
       style: {
         position: "absolute",
-        display: target ? "block" : "none",
+        display: isDisplay ? "block" : "none",
         transform: "translate(" + (left - parentLeft) + "px, " + (top - parentTop) + "px) translateZ(50px)"
       }
     }, this.renderAbles(), renderLine(edge ? "n" : "", pos1, pos2, 0), renderLine(edge ? "e" : "", pos2, pos4, 1), renderLine(edge ? "w" : "", pos1, pos3, 2), renderLine(edge ? "s" : "", pos3, pos4, 3));
@@ -4485,16 +5703,15 @@ function (_super) {
         pos2 = _a.pos2,
         pos3 = _a.pos3,
         pos4 = _a.pos4,
-        target = _a.target;
+        target = _a.target,
+        targetClientRect = _a.targetClientRect;
 
     if (!target) {
       return false;
     }
 
-    var _b = target.getBoundingClientRect(),
-        left = _b.left,
-        top = _b.top;
-
+    var left = targetClientRect.left,
+        top = targetClientRect.top;
     var pos = [clientX - left, clientY - top];
     return isInside(pos, pos1, pos2, pos4, pos3);
   };
@@ -4674,17 +5891,19 @@ function (_super) {
     var enabledAbles = ables.filter(function (able) {
       return able && props[able.name];
     });
-    return filterAbles(enabledAbles, ["render"]).map(function (_a) {
+    var Renderer = {
+      createElement: createElement
+    };
+    return moveable_esm_flat(filterAbles(enabledAbles, ["render"]).map(function (_a) {
       var render = _a.render;
-      return render(_this, compat_module_namespaceObject);
-    });
+      return render(_this, Renderer);
+    }));
   };
 
   MoveableManager.defaultProps = {
     target: null,
     container: null,
     origin: true,
-    keepRatio: false,
     edge: false,
     parentMoveable: null,
     parentPosition: null,
@@ -4695,7 +5914,7 @@ function (_super) {
     className: ""
   };
   return MoveableManager;
-}(compat_module_q);
+}(PureComponent);
 
 function getRotatiion(touches) {
   return getRad([touches[0].clientX, touches[0].clientY], [touches[1].clientX, touches[1].clientY]) / Math.PI * 180;
@@ -4704,6 +5923,10 @@ function getRotatiion(touches) {
 var Pinchable = {
   name: "pinchable",
   updateRect: true,
+  props: {
+    pinchable: Boolean,
+    pinchThreshold: Number
+  },
   pinchStart: function (moveable, e) {
     var datas = e.datas,
         clientX = e.clientX,
@@ -4754,7 +5977,9 @@ var Pinchable = {
       };
       able[controlEventName](moveable, ableEvent);
     });
-    moveable.state.snapDirection = [0, 0];
+    moveable.state.snapRenderInfo = {
+      direction: [0, 0]
+    };
     return isPinch;
   },
   pinch: function (moveable, e) {
@@ -5028,7 +6253,7 @@ function moveable_esm_getDist(startPos, matrix, width, height, n, direction) {
 function getNextMatrix(offsetMatrix, targetMatrix, origin, n) {
   return multiply(offsetMatrix, getAbsoluteMatrix(targetMatrix, n, origin), n);
 }
-function scaleMatrix(state, scale) {
+function moveable_esm_scaleMatrix(state, scale) {
   var transformOrigin = state.transformOrigin,
       offsetMatrix = state.offsetMatrix,
       is3d = state.is3d,
@@ -5045,7 +6270,7 @@ function getScaleDist(moveable, scale, direction, dragClient) {
       height = state.height;
   var n = is3d ? 4 : 3;
   var groupable = moveable.props.groupable;
-  var nextMatrix = scaleMatrix(moveable.state, scale);
+  var nextMatrix = moveable_esm_scaleMatrix(moveable.state, scale);
   var groupLeft = groupable ? left : 0;
   var groupTop = groupable ? top : 0;
   var startPos = dragClient ? dragClient : getStartPos(getAbsolutePosesByState(moveable.state), direction);
@@ -5103,33 +6328,22 @@ function snapStart(moveable) {
     return;
   }
 
-  var _e = state.containerRect,
-      containerWidth = _e.width,
-      containerHeight = _e.height,
+  var _e = state.containerClientRect,
       containerTop = _e.top,
       containerLeft = _e.left,
-      _f = state.clientRect,
+      _f = state.targetClientRect,
       clientTop = _f.top,
-      clientLeft = _f.left,
-      targetLeft = state.left,
-      targetTop = state.top;
-  var distLeft = targetLeft - (clientLeft - containerLeft);
-  var distTop = targetTop - (clientTop - containerTop);
+      clientLeft = _f.left;
+  var poses = getAbsolutePosesByState(state);
+  var targetLeft = Math.min.apply(Math, poses.map(function (pos) {
+    return pos[0];
+  }));
+  var targetTop = Math.min.apply(Math, poses.map(function (pos) {
+    return pos[1];
+  }));
+  var distLeft = roundSign(targetLeft - (clientLeft - containerLeft));
+  var distTop = roundSign(targetTop - (clientTop - containerTop));
   var guidelines = [];
-  horizontalGuidelines.forEach(function (pos) {
-    guidelines.push({
-      type: "horizontal",
-      pos: [0, pos],
-      size: containerWidth
-    });
-  });
-  verticalGuidelines.forEach(function (pos) {
-    guidelines.push({
-      type: "vertical",
-      pos: [pos, 0],
-      size: containerHeight
-    });
-  });
   elementGuidelines.forEach(function (el) {
     var rect = el.getBoundingClientRect();
     var top = rect.top,
@@ -5143,25 +6357,25 @@ function snapStart(moveable) {
     guidelines.push({
       type: "vertical",
       element: el,
-      pos: [elementLeft + distLeft, elementTop],
+      pos: [throttle(elementLeft + distLeft, 0.1), elementTop],
       size: height
     });
     guidelines.push({
       type: "vertical",
       element: el,
-      pos: [elementRight + distLeft, elementTop],
+      pos: [throttle(elementRight + distLeft, 0.1), elementTop],
       size: height
     });
     guidelines.push({
       type: "horizontal",
       element: el,
-      pos: [elementLeft, elementTop + distTop],
+      pos: [elementLeft, throttle(elementTop + distTop, 0.1)],
       size: width
     });
     guidelines.push({
       type: "horizontal",
       element: el,
-      pos: [elementLeft, elementBottom + distTop],
+      pos: [elementLeft, throttle(elementBottom + distTop, 0.1)],
       size: width
     });
 
@@ -5169,14 +6383,14 @@ function snapStart(moveable) {
       guidelines.push({
         type: "vertical",
         element: el,
-        pos: [(elementLeft + elementRight) / 2 + distLeft, elementTop],
+        pos: [throttle((elementLeft + elementRight) / 2 + distLeft, 0.1), elementTop],
         size: height,
         center: true
       });
       guidelines.push({
         type: "horizontal",
         element: el,
-        pos: [elementLeft, (elementTop + elementBottom) / 2 + distTop],
+        pos: [elementLeft, throttle((elementTop + elementBottom) / 2 + distTop, 0.1)],
         size: width,
         center: true
       });
@@ -5230,58 +6444,52 @@ function checkBound(moveable, poses, isVertical, snapThreshold) {
   };
 }
 
-function checkSnap(guidelines, targetType, targetPoses, isSnapCenter, snapThreshold) {
-  if (!guidelines) {
+function checkSnap(guidelines, targetType, targetPoses, snapThreshold, snapCenter, snapElement) {
+  if (!guidelines || !guidelines.length) {
     return {
       isSnap: false,
-      dist: -1,
-      offset: 0,
-      guidelines: [],
-      snapPoses: []
+      posInfos: []
     };
   }
 
-  var snapGuidelines = [];
-  var snapDist = Infinity;
-  var snapOffset = 0;
   var isVertical = targetType === "vertical";
   var posType = isVertical ? 0 : 1;
-  var snapPoses = targetPoses.filter(function (targetPos) {
-    return guidelines.filter(function (guideline) {
-      var type = guideline.type,
-          pos = guideline.pos,
-          center = guideline.center;
-
-      if (!isSnapCenter && center || type !== targetType) {
-        return false;
-      }
-
+  var snapPosInfos = targetPoses.map(function (targetPos) {
+    var guidelineInfos = guidelines.map(function (guideline) {
+      var pos = guideline.pos;
       var offset = targetPos - pos[posType];
-      var dist = Math.abs(offset);
+      return {
+        offset: offset,
+        dist: Math.abs(offset),
+        guideline: guideline
+      };
+    }).filter(function (_a) {
+      var guideline = _a.guideline,
+          dist = _a.dist;
+      var type = guideline.type,
+          center = guideline.center,
+          element = guideline.element;
 
-      if (dist > snapThreshold) {
+      if (!snapElement && element || !snapCenter && center || type !== targetType || dist > snapThreshold) {
         return false;
-      }
-
-      if (snapDist > dist) {
-        snapDist = dist;
-        snapGuidelines = [];
-      }
-
-      if (snapDist === dist) {
-        snapOffset = offset;
-        snapGuidelines.push(guideline);
       }
 
       return true;
-    }).length;
+    }).sort(function (a, b) {
+      return a.dist - b.dist;
+    });
+    return {
+      pos: targetPos,
+      guidelineInfos: guidelineInfos
+    };
+  }).filter(function (snapPosInfo) {
+    return snapPosInfo.guidelineInfos.length > 0;
+  }).sort(function (a, b) {
+    return a.guidelineInfos[0].dist - b.guidelineInfos[0].dist;
   });
   return {
-    isSnap: !!snapGuidelines.length,
-    dist: isFinite(snapDist) ? snapDist : -1,
-    offset: snapOffset,
-    guidelines: snapGuidelines,
-    snapPoses: snapPoses
+    isSnap: snapPosInfos.length > 0,
+    posInfos: snapPosInfos
   };
 }
 
@@ -5289,22 +6497,63 @@ function hasGuidelines(moveable, ableName) {
   var _a = moveable.props,
       snappable = _a.snappable,
       bounds = _a.bounds,
+      verticalGuidelines = _a.verticalGuidelines,
+      horizontalGuidelines = _a.horizontalGuidelines,
       _b = moveable.state,
       guidelines = _b.guidelines,
       enableSnap = _b.enableSnap;
 
-  if (!snappable || !enableSnap || ableName && snappable !== true && snappable.indexOf(ableName) || !bounds && (!guidelines || !guidelines.length)) {
+  if (!snappable || !enableSnap || ableName && snappable !== true && snappable.indexOf(ableName) < 0) {
     return false;
   }
 
-  return true;
+  if (bounds || guidelines && guidelines.length || verticalGuidelines && verticalGuidelines.length || horizontalGuidelines && horizontalGuidelines.length) {
+    return true;
+  }
+
+  return false;
 }
-function checkSnapPoses(moveable, posesX, posesY, isSnapCenter, customSnapThreshold) {
-  var guidelines = moveable.state.guidelines;
-  var snapThreshold = !utils_esm_isUndefined(customSnapThreshold) ? customSnapThreshold : !utils_esm_isUndefined(moveable.props.snapThreshold) ? moveable.props.snapThreshold : 5;
+function checkSnapPoses(moveable, posesX, posesY, snapCenter, customSnapThreshold) {
+  var _a = moveable.state,
+      guidelines = _a.guidelines,
+      _b = _a.containerClientRect,
+      containerHeight = _b.height,
+      containerWidth = _b.width;
+  var props = moveable.props;
+  var snapThreshold = selectValue(customSnapThreshold, props.snapThreshold, 5);
+  var _c = props.snapElement,
+      snapElement = _c === void 0 ? true : _c,
+      _d = props.snapHorizontal,
+      snapHorizontal = _d === void 0 ? true : _d,
+      _e = props.snapVertical,
+      snapVertical = _e === void 0 ? true : _e,
+      verticalGuidelines = props.verticalGuidelines,
+      horizontalGuidelines = props.horizontalGuidelines;
+  var totalGuidelines = guidelines.slice();
+
+  if (snapHorizontal && horizontalGuidelines) {
+    horizontalGuidelines.forEach(function (pos) {
+      totalGuidelines.push({
+        type: "horizontal",
+        pos: [0, throttle(pos, 0.1)],
+        size: containerWidth
+      });
+    });
+  }
+
+  if (snapVertical && verticalGuidelines) {
+    verticalGuidelines.forEach(function (pos) {
+      totalGuidelines.push({
+        type: "vertical",
+        pos: [throttle(pos, 0.1), 0],
+        size: containerHeight
+      });
+    });
+  }
+
   return {
-    vertical: checkSnap(guidelines, "vertical", posesX, isSnapCenter, snapThreshold),
-    horizontal: checkSnap(guidelines, "horizontal", posesY, isSnapCenter, snapThreshold)
+    vertical: checkSnap(totalGuidelines, "vertical", posesX, snapThreshold, snapCenter, snapElement),
+    horizontal: checkSnap(totalGuidelines, "horizontal", posesY, snapThreshold, snapCenter, snapElement)
   };
 }
 function checkSnaps(moveable, rect, isCenter, customSnapThreshold) {
@@ -5384,20 +6633,51 @@ function getFixedPoses(matrix, width, height, fixedPos, direction, is3d) {
   return getAbsolutePoses(nextPoses, minus(fixedPos, nextPos));
 }
 
-function checkBoundOneWayPos(moveable, pos, reversePos, isDirectionVertical, datas) {
-  var _a = checkSnapPoses(moveable, [pos[0]], [pos[1]]),
-      _b = _a.horizontal,
-      isHorizontalSnap = _b.isSnap,
-      horizontalOffset = _b.offset,
-      horizontalDist = _b.dist,
-      _c = _a.vertical,
-      isVerticalSnap = _c.isSnap,
-      verticalOffset = _c.offset,
-      verticalDist = _c.dist;
+function getNearestSnapGuidelineInfo(snapInfo) {
+  var isSnap = snapInfo.isSnap;
 
-  var fixedHorizontal = reversePos[1] === pos[1];
-  var fixedVertical = reversePos[0] === pos[0];
+  if (!isSnap) {
+    return {
+      isSnap: false,
+      offset: 0,
+      dist: -1,
+      pos: 0,
+      guideline: null
+    };
+  }
+
+  var posInfo = snapInfo.posInfos[0];
+  var guidelineInfo = posInfo.guidelineInfos[0];
+  var offset = guidelineInfo.offset;
+  var dist = guidelineInfo.dist;
+  var guideline = guidelineInfo.guideline;
+  return {
+    isSnap: isSnap,
+    offset: offset,
+    dist: dist,
+    pos: posInfo.pos,
+    guideline: guideline
+  };
+}
+
+function checkSnapOneWayPos(moveable, pos, reversePos, isDirectionVertical, datas) {
+  var _a = checkSnapPoses(moveable, [pos[0]], [pos[1]]),
+      horizontalSnapInfo = _a.horizontal,
+      verticalSnapInfo = _a.vertical;
+
+  var fixedHorizontal = Math.abs(reversePos[1] - pos[1]) < TINY_NUM;
+  var fixedVertical = Math.abs(reversePos[0] - pos[0]) < TINY_NUM;
   var isVertical;
+
+  var _b = getNearestSnapGuidelineInfo(horizontalSnapInfo),
+      isHorizontalSnap = _b.isSnap,
+      horizontalDist = _b.dist,
+      horizontalOffset = _b.offset;
+
+  var _c = getNearestSnapGuidelineInfo(verticalSnapInfo),
+      isVerticalSnap = _c.isSnap,
+      verticalDist = _c.dist,
+      verticalOffset = _c.offset;
 
   if (!isHorizontalSnap && !isVerticalSnap) {
     // no snap
@@ -5443,7 +6723,7 @@ function checkOneWayPos(moveable, poses, reversePoses, isDirectionVertical, data
     }
   } else {
     poses.some(function (pos, i) {
-      var nextDist = checkBoundOneWayPos(moveable, pos, reversePoses[i], isDirectionVertical, datas);
+      var nextDist = checkSnapOneWayPos(moveable, pos, reversePoses[i], isDirectionVertical, datas);
 
       if (isNaN(nextDist)) {
         return false;
@@ -5506,9 +6786,11 @@ function checkTwoWayDist(moveable, poses, direction, datas, matrix, width, heigh
 
   if (!isVeritcalDirectionBound && !isHorizontalDirectionBound) {
     var _e = checkSnapPoses(moveable, [directionPoses[0][0]], [directionPoses[0][1]]),
-        horizontalOffset = _e.horizontal.offset,
-        verticalOffset = _e.vertical.offset;
+        horizontalSnapInfo = _e.horizontal,
+        verticalSnapInfo = _e.vertical;
 
+    var horizontalOffset = getNearestSnapGuidelineInfo(horizontalSnapInfo).offset;
+    var verticalOffset = getNearestSnapGuidelineInfo(verticalSnapInfo).offset;
     _a = getDragDist({
       datas: datas,
       distX: -(isVerticalBound ? verticalBoundOffset : verticalOffset),
@@ -5551,6 +6833,118 @@ function checkSizeDist(moveable, matrix, width, height, direction, snapDirection
     return checkOneWayDist(moveable, nextPoses, direction, datas);
   }
 }
+function isBoundRotate(relativePoses, boundRect, rad) {
+  var pos1 = relativePoses[0],
+      pos2 = relativePoses[1],
+      pos3 = relativePoses[2],
+      pos4 = relativePoses[3];
+  var nextPos1 = rotate(pos1, rad);
+  var nextPos2 = rotate(pos2, rad);
+  var nextPos3 = rotate(pos3, rad);
+  var nextPos4 = rotate(pos4, rad);
+  return [nextPos1, nextPos2, nextPos3, nextPos4].some(function (pos) {
+    return pos[0] < boundRect.left && Math.abs(pos[0] - boundRect.left) > TINY_NUM || pos[0] > boundRect.right && Math.abs(pos[0] - boundRect.right) > TINY_NUM || pos[1] < boundRect.top && Math.abs(pos[1] - boundRect.top) > TINY_NUM || pos[1] > boundRect.bottom && Math.abs(pos[1] - boundRect.bottom) > TINY_NUM;
+  });
+}
+function boundRotate(vec, boundPos, index) {
+  var r = getDistSize(vec);
+  var nextPos = Math.sqrt(r * r - boundPos * boundPos);
+  return [nextPos, -nextPos].sort(function (a, b) {
+    return Math.abs(a - vec[index ? 0 : 1]) - Math.abs(b - vec[index ? 0 : 1]);
+  }).map(function (pos) {
+    return getRad([0, 0], index ? [pos, boundPos] : [boundPos, pos]);
+  });
+}
+function checkSnapRotate(moveable, rect, origin, rotation) {
+  var bounds = moveable.props.bounds;
+
+  if (!bounds || !hasGuidelines(moveable, "resizable")) {
+    return rotation;
+  }
+
+  var _a = bounds.left,
+      left = _a === void 0 ? -Infinity : _a,
+      _b = bounds.top,
+      top = _b === void 0 ? -Infinity : _b,
+      _c = bounds.right,
+      right = _c === void 0 ? Infinity : _c,
+      _d = bounds.bottom,
+      bottom = _d === void 0 ? Infinity : _d;
+  var pos1 = rect.pos1,
+      pos2 = rect.pos2,
+      pos3 = rect.pos3,
+      pos4 = rect.pos4;
+  var rad = rotation * Math.PI / 180;
+  var relativeLeft = left - origin[0];
+  var relativeRight = right - origin[0];
+  var relativeTop = top - origin[1];
+  var relativeBottom = bottom - origin[1];
+  var boundRect = {
+    left: relativeLeft,
+    top: relativeTop,
+    right: relativeRight,
+    bottom: relativeBottom
+  };
+  var relativePos1 = minus(pos1, origin);
+  var relativePos2 = minus(pos2, origin);
+  var relativePos3 = minus(pos3, origin);
+  var relativePos4 = minus(pos4, origin);
+  var relativePoses = [relativePos1, relativePos2, relativePos3, relativePos4];
+  var nextPos1 = rotate(relativePos1, rad);
+  var nextPos2 = rotate(relativePos2, rad);
+  var nextPos3 = rotate(relativePos3, rad);
+  var nextPos4 = rotate(relativePos4, rad);
+  var nextPoses = [nextPos1, nextPos2, nextPos3, nextPos4];
+
+  if (!isBoundRotate(nextPoses, boundRect, 0)) {
+    return rotation;
+  }
+
+  var canBounds = [];
+  nextPoses.forEach(function (nextPos) {
+    if (nextPos[0] < relativeLeft) {
+      canBounds.push([nextPos, relativeLeft, 0]);
+    }
+
+    if (nextPos[0] > relativeRight) {
+      canBounds.push([nextPos, relativeRight, 0]);
+    }
+
+    if (nextPos[1] < relativeTop) {
+      canBounds.push([nextPos, relativeTop, 1]);
+    }
+
+    if (nextPos[1] > relativeBottom) {
+      canBounds.push([nextPos, relativeBottom, 1]);
+    }
+  });
+  var length = canBounds.length;
+
+  var _loop_1 = function (i) {
+    var _a = canBounds[i],
+        vec = _a[0],
+        boundPos = _a[1],
+        index = _a[2];
+    var relativeRad1 = getRad([0, 0], vec);
+    var result = boundRotate(vec, boundPos, index).filter(function (relativeRad2) {
+      return !isBoundRotate(relativePoses, boundRect, rad + relativeRad2 - relativeRad1);
+    });
+
+    if (result.length) {
+      return {
+        value: throttle((rad + result[0] - relativeRad1) * 180 / Math.PI, TINY_NUM)
+      };
+    }
+  };
+
+  for (var i = 0; i < length; ++i) {
+    var state_1 = _loop_1(i);
+
+    if (typeof state_1 === "object") return state_1.value;
+  }
+
+  return rotation;
+}
 function checkSnapSize(moveable, width, height, direction, datas) {
   if (!hasGuidelines(moveable, "resizable")) {
     return [0, 0];
@@ -5569,12 +6963,20 @@ function checkSnapScale(moveable, scale, direction, snapDirection, datas) {
     return [0, 0];
   }
 
-  var sizeDist = checkSizeDist(moveable, scaleMatrix(datas, scale), width, height, direction, snapDirection, datas, datas.is3d);
+  var sizeDist = checkSizeDist(moveable, moveable_esm_scaleMatrix(datas, scale), width, height, direction, snapDirection, datas, datas.is3d);
   return [sizeDist[0] / width, sizeDist[1] / height];
 }
 function solveEquation(pos1, pos2, snapOffset, isVertical) {
   var dx = pos2[0] - pos1[0];
   var dy = pos2[1] - pos1[1];
+
+  if (Math.abs(dx) < TINY_NUM) {
+    dx = 0;
+  }
+
+  if (Math.abs(dy) < TINY_NUM) {
+    dy = 0;
+  }
 
   if (!dx) {
     // y = 0 * x + b
@@ -5610,12 +7012,7 @@ function solveEquation(pos1, pos2, snapOffset, isVertical) {
   }
 }
 function getSnapInfosByDirection(moveable, poses, snapDirection) {
-  if (snapDirection === true) {
-    var rect = getRect(poses);
-    rect.middle = (rect.top + rect.bottom) / 2;
-    rect.center = (rect.left + rect.right) / 2;
-    return checkSnaps(moveable, rect, true, 1);
-  } else if (!snapDirection[0] && !snapDirection[1]) {
+  if (!snapDirection[0] && !snapDirection[1]) {
     var alignPoses = [poses[0], poses[1], poses[3], poses[2], poses[0]];
     var nextPoses = [];
 
@@ -5655,10 +7052,12 @@ function startCheckSnapDrag(moveable, datas) {
 function checkSnapDrag(moveable, distX, distY, datas) {
   var snapVerticalInfo = {
     isSnap: false,
+    isBound: false,
     offset: 0
   };
   var snapHorizontalInfo = {
     isSnap: false,
+    isBound: false,
     offset: 0
   };
 
@@ -5687,25 +7086,69 @@ function checkSnapDrag(moveable, distX, distY, datas) {
   if (boundInfos.vertical.isBound) {
     snapVerticalInfo.offset = boundInfos.vertical.offset;
     snapVerticalInfo.isSnap = true;
+    snapVerticalInfo.isBound = true;
   } else if (snapInfos.vertical.isSnap) {
     // has vertical guidelines
-    snapVerticalInfo.offset = snapInfos.vertical.offset;
+    snapVerticalInfo.offset = snapInfos.vertical.posInfos[0].guidelineInfos[0].offset;
     snapVerticalInfo.isSnap = true;
   }
 
   if (boundInfos.horizontal.isBound) {
     snapHorizontalInfo.offset = boundInfos.horizontal.offset;
     snapHorizontalInfo.isSnap = true;
+    snapHorizontalInfo.isBound = true;
   } else if (snapInfos.horizontal.isSnap) {
     // has horizontal guidelines
-    snapHorizontalInfo.offset = snapInfos.horizontal.offset;
+    snapHorizontalInfo.offset = snapInfos.horizontal.posInfos[0].guidelineInfos[0].offset;
     snapHorizontalInfo.isSnap = true;
   }
 
   return [snapVerticalInfo, snapHorizontalInfo];
 }
+
+function getSnapGuidelines(posInfos) {
+  var guidelines = [];
+  posInfos.forEach(function (posInfo) {
+    posInfo.guidelineInfos.forEach(function (_a) {
+      var guideline = _a.guideline;
+
+      if (guidelines.indexOf(guideline) > -1) {
+        return;
+      }
+
+      guidelines.push(guideline);
+    });
+  });
+  return guidelines;
+}
+
+function getElementGuidelineDist(elementPos, elementSize, targetPos, targetSize) {
+  // relativePos < 0  => element(l)  ---  (r)target
+  // relativePos > 0  => target(l)   ---  (r)element
+  var relativePos = elementPos - targetPos;
+  var startPos = relativePos < 0 ? relativePos + elementSize : targetSize;
+  var endPos = relativePos < 0 ? 0 : relativePos;
+  var size = endPos - startPos;
+  return {
+    size: size,
+    pos: startPos
+  };
+}
+
 var Snappable = {
   name: "snappable",
+  props: {
+    snappable: [Boolean, Array],
+    snapCenter: Boolean,
+    snapHorizontal: Boolean,
+    snapVertical: Boolean,
+    snapElement: Boolean,
+    snapThreshold: Number,
+    horizontalGuidelines: Array,
+    verticalGuidelines: Array,
+    elementGuidelines: Array,
+    bounds: Object
+  },
   render: function (moveable, React) {
     var _a = moveable.state,
         targetTop = _a.top,
@@ -5714,63 +7157,153 @@ var Snappable = {
         pos2 = _a.pos2,
         pos3 = _a.pos3,
         pos4 = _a.pos4,
-        snapDirection = _a.snapDirection,
-        clientRect = _a.clientRect,
-        containerRect = _a.containerRect;
-    var clientLeft = clientRect.left - containerRect.left;
-    var clientTop = clientRect.top - containerRect.top;
+        snapRenderInfo = _a.snapRenderInfo,
+        targetClientRect = _a.targetClientRect,
+        containerClientRect = _a.containerClientRect;
+    var clientLeft = targetClientRect.left - containerClientRect.left;
+    var clientTop = targetClientRect.top - containerClientRect.top;
     var minLeft = Math.min(pos1[0], pos2[0], pos3[0], pos4[0]);
     var minTop = Math.min(pos1[1], pos2[1], pos3[1], pos4[1]);
 
-    if (!snapDirection || !hasGuidelines(moveable, "")) {
+    if (!snapRenderInfo || !hasGuidelines(moveable, "")) {
       return [];
     }
 
+    var _b = moveable.props.snapThreshold,
+        snapThreshold = _b === void 0 ? 5 : _b;
     var poses = getAbsolutePosesByState(moveable.state);
 
-    var _b = getRect(poses),
-        width = _b.width,
-        height = _b.height,
-        top = _b.top,
-        left = _b.left,
-        bottom = _b.bottom,
-        right = _b.right;
+    var _c = getRect(poses),
+        width = _c.width,
+        height = _c.height,
+        top = _c.top,
+        left = _c.left,
+        bottom = _c.bottom,
+        right = _c.right;
 
-    var _c = getSnapInfosByDirection(moveable, poses, snapDirection),
-        _d = _c.vertical,
-        verticalGuildelines = _d.guidelines,
-        verticalSnapPoses = _d.snapPoses,
-        _e = _c.horizontal,
-        horizontalGuidelines = _e.guidelines,
-        horizontalSnapPoses = _e.snapPoses;
+    var verticalSnapPoses = [];
+    var horizontalSnapPoses = [];
+    var verticalGuildelines = [];
+    var horizontalGuidelines = [];
+    var snapInfos = [];
 
-    var _f = checkBounds(moveable, [left, right], [top, bottom], 1),
-        _g = _f.vertical,
-        isVerticalBound = _g.isBound,
-        verticalBoundPos = _g.pos,
-        _h = _f.horizontal,
-        isHorizontalBound = _h.isBound,
-        horizontalBoundPos = _h.pos;
+    if (snapRenderInfo.direction) {
+      snapInfos.push(getSnapInfosByDirection(moveable, poses, snapRenderInfo.direction));
+    }
+
+    if (snapRenderInfo.snap) {
+      var rect = getRect(poses);
+
+      if (snapRenderInfo.center) {
+        rect.middle = (rect.top + rect.bottom) / 2;
+        rect.center = (rect.left + rect.right) / 2;
+      }
+
+      snapInfos.push(checkSnaps(moveable, rect, true, 1));
+    }
+
+    snapInfos.forEach(function (snapInfo) {
+      var verticalPosInfos = snapInfo.vertical.posInfos,
+          horizontalPosInfos = snapInfo.horizontal.posInfos;
+      verticalSnapPoses.push.apply(verticalSnapPoses, verticalPosInfos.map(function (posInfo) {
+        return posInfo.pos;
+      }));
+      horizontalSnapPoses.push.apply(horizontalSnapPoses, horizontalPosInfos.map(function (posInfo) {
+        return posInfo.pos;
+      }));
+      verticalGuildelines.push.apply(verticalGuildelines, getSnapGuidelines(verticalPosInfos));
+      horizontalGuidelines.push.apply(horizontalGuidelines, getSnapGuidelines(horizontalPosInfos));
+    });
+
+    var _d = checkBounds(moveable, [left, right], [top, bottom], 1),
+        _e = _d.vertical,
+        isVerticalBound = _e.isBound,
+        verticalBoundPos = _e.pos,
+        _f = _d.horizontal,
+        isHorizontalBound = _f.isBound,
+        horizontalBoundPos = _f.pos;
 
     if (isVerticalBound && verticalSnapPoses.indexOf(verticalBoundPos) < 0) {
-      // verticalGuildelines.push({
-      //     type: "vertical",
-      //     pos: [verticalBoundPos, top],
-      //     size: height,
-      // });
       verticalSnapPoses.push(verticalBoundPos);
     }
 
     if (isHorizontalBound && horizontalSnapPoses.indexOf(horizontalBoundPos) < 0) {
-      // horizontalGuidelines.push({
-      //     type: "horizontal",
-      //     pos: [left, horizontalBoundPos],
-      //     size: width,
-      // });
       horizontalSnapPoses.push(horizontalBoundPos);
     }
 
-    return verticalSnapPoses.map(function (pos, i) {
+    var elementVerticalGroup = groupBy(verticalGuildelines.filter(function (_a) {
+      var element = _a.element;
+      return element;
+    }), function (_a) {
+      var pos = _a.pos;
+      return Math.min(0, pos[1] - clientTop) < 0 ? -pos[0] : pos[0];
+    });
+    var elementHorizontalGroup = groupBy(horizontalGuidelines.filter(function (_a) {
+      var element = _a.element;
+      return element;
+    }), function (_a) {
+      var pos = _a.pos;
+      return Math.min(0, pos[0] - clientLeft) < 0 ? -pos[1] : pos[1];
+    });
+    elementHorizontalGroup.forEach(function (elementGuidelines) {
+      elementGuidelines.sort(function (a, b) {
+        return getElementGuidelineDist(a.pos[0], a.size, clientLeft, width).size - getElementGuidelineDist(b.pos[0], a.size, clientLeft, width).size;
+      });
+    });
+    elementVerticalGroup.forEach(function (elementGuidelines) {
+      elementGuidelines.sort(function (a, b) {
+        return getElementGuidelineDist(a.pos[1], a.size, clientTop, height).size - getElementGuidelineDist(b.pos[1], a.size, clientTop, height).size;
+      });
+    });
+    return moveable_esm_flat(elementHorizontalGroup.map(function (elementGuidelines, i) {
+      return elementGuidelines.map(function (_a, j) {
+        var pos = _a.pos,
+            size = _a.size;
+
+        var _b = getElementGuidelineDist(pos[0], size, clientLeft, width),
+            lineLeft = _b.pos,
+            lineSize = _b.size;
+
+        if (lineSize < snapThreshold) {
+          return null;
+        }
+
+        return React.createElement("div", {
+          className: prefix("line", "horizontal", "guideline", "dashed"),
+          "data-size": !j ? parseFloat(lineSize.toFixed(4)) : "",
+          key: "horizontalLinkGuidline" + i + "-" + j,
+          style: {
+            left: minLeft + lineLeft + "px",
+            top: -targetTop + pos[1] + "px",
+            width: lineSize + "px"
+          }
+        });
+      });
+    })).concat(moveable_esm_flat(elementVerticalGroup.map(function (elementGuidelines, i) {
+      return elementGuidelines.map(function (_a, j) {
+        var pos = _a.pos,
+            size = _a.size;
+
+        var _b = getElementGuidelineDist(pos[1], size, clientTop, height),
+            lineTop = _b.pos,
+            lineSize = _b.size;
+
+        if (lineSize < snapThreshold) {
+          return null;
+        }
+
+        return React.createElement("div", {
+          className: prefix("line", "vertical", "guideline", "dashed"),
+          "data-size": !j ? parseFloat(lineSize.toFixed(4)) : "",
+          key: "verticalLinkGuidline" + i + "-" + j,
+          style: {
+            top: lineTop + "px",
+            left: -targetLeft + pos[0] + "px",
+            height: lineSize + "px"
+          }
+        });
+      });
+    })), verticalSnapPoses.map(function (pos, i) {
       return React.createElement("div", {
         className: prefix("line", "vertical", "guideline", "target", "bold"),
         key: "verticalTargetGuidline" + i,
@@ -5780,7 +7313,7 @@ var Snappable = {
           height: height + "px"
         }
       });
-    }).concat(horizontalSnapPoses.map(function (pos, i) {
+    }), horizontalSnapPoses.map(function (pos, i) {
       return React.createElement("div", {
         className: prefix("line", "horizontal", "guideline", "target", "bold"),
         key: "horizontalTargetGuidline" + i,
@@ -5819,7 +7352,10 @@ var Snappable = {
     }));
   },
   dragStart: function (moveable, e) {
-    moveable.state.snapDirection = true;
+    moveable.state.snapRenderInfo = {
+      snap: true,
+      center: true
+    };
     snapStart(moveable);
   },
   pinchStart: function (moveable) {
@@ -5828,23 +7364,24 @@ var Snappable = {
   dragEnd: function (moveable) {
     this.unset(moveable);
   },
-  dragControlCondition: directionCondition,
+  dragControlCondition: function (target) {
+    return directionCondition(target) || dragControlCondition(target);
+  },
   dragControlStart: function (moveable, e) {
-    moveable.state.snapDirection = null;
+    moveable.state.snapRenderInfo = null;
     snapStart(moveable);
   },
   dragControlEnd: function (moveable) {
     this.unset(moveable);
   },
   dragGroupStart: function (moveable, e) {
-    moveable.state.snapDirection = true;
-    snapStart(moveable);
+    this.dragStart(moveable, e);
   },
   dragGroupEnd: function (moveable) {
     this.unset(moveable);
   },
   dragGroupControlStart: function (moveable, e) {
-    moveable.state.snapDirection = null;
+    moveable.state.snapRenderInfo = null;
     snapStart(moveable);
   },
   dragGroupControlEnd: function (moveable) {
@@ -5854,12 +7391,44 @@ var Snappable = {
     var state = moveable.state;
     state.enableSnap = false;
     state.guidelines = [];
-    state.snapDirection = null;
+    state.snapRenderInfo = null;
   }
 };
 
 var Draggable = {
   name: "draggable",
+  props: {
+    draggable: Boolean,
+    throttleDrag: Number,
+    throttleDragRotate: Number
+  },
+  render: function (moveable, React) {
+    var throttleDragRotate = moveable.props.throttleDragRotate;
+    var _a = moveable.state,
+        dragInfo = _a.dragInfo,
+        beforeOrigin = _a.beforeOrigin;
+
+    if (!throttleDragRotate || !dragInfo) {
+      return;
+    }
+
+    var dist = dragInfo.dist;
+
+    if (!dist[0] && !dist[1]) {
+      return;
+    }
+
+    var width = getDistSize(dist);
+    var rad = getRad(dist, [0, 0]);
+    return React.createElement("div", {
+      className: prefix("line", "horizontal", "dragline", "dashed"),
+      key: "dragRotateGuideline",
+      style: {
+        width: width + "px",
+        transform: "translate(" + beforeOrigin[0] + "px, " + beforeOrigin[1] + "px) rotate(" + rad + "rad)"
+      }
+    });
+  },
   dragStart: function (moveable, e) {
     var datas = e.datas,
         parentEvent = e.parentEvent,
@@ -5898,6 +7467,10 @@ var Draggable = {
 
     if (result !== false) {
       datas.isDrag = true;
+      moveable.state.dragInfo = {
+        startRect: moveable.getRect(),
+        dist: [0, 0]
+      };
     } else {
       state.dragger = null;
       datas.isPinch = false;
@@ -5925,16 +7498,68 @@ var Draggable = {
     var props = moveable.props;
     var parentMoveable = props.parentMoveable;
     var throttleDrag = parentEvent ? 0 : props.throttleDrag || 0;
+    var throttleDragRotate = parentEvent ? 0 : props.throttleDragRotate || 0;
     var isSnap = false;
+    var dragRotateRad = 0;
 
-    if (!isPinch && !parentEvent && !parentFlag) {
+    if (throttleDragRotate > 0 && distX && distY) {
+      var deg = throttle(getRad([0, 0], [distX, distY]) * 180 / Math.PI, throttleDragRotate);
+      var r = getDistSize([distX, distY]);
+      dragRotateRad = deg * Math.PI / 180;
+      distX = r * Math.cos(dragRotateRad);
+      distY = r * Math.sin(dragRotateRad);
+    }
+
+    if (!isPinch && !parentEvent && !parentFlag && distX && distY) {
       var _a = checkSnapDrag(moveable, distX, distY, datas),
           verticalInfo = _a[0],
           horizontalInfo = _a[1];
 
-      isSnap = verticalInfo.isSnap || horizontalInfo.isSnap;
-      distX -= verticalInfo.offset;
-      distY -= horizontalInfo.offset;
+      var isVerticalSnap = verticalInfo.isSnap,
+          isVerticalBound = verticalInfo.isBound,
+          verticalOffset = verticalInfo.offset;
+      var isHorizontalSnap = horizontalInfo.isSnap,
+          isHorizontalBound = horizontalInfo.isBound,
+          horizontalOffset = horizontalInfo.offset;
+      isSnap = isVerticalSnap || isHorizontalSnap;
+
+      if (throttleDragRotate) {
+        var adjustPoses = [];
+
+        if (isVerticalBound && isHorizontalBound) {
+          adjustPoses.push([0, horizontalOffset], [verticalOffset, 0]);
+        } else if (isVerticalBound) {
+          adjustPoses.push([verticalOffset, 0]);
+        } else if (isHorizontalBound) {
+          adjustPoses.push([0, horizontalOffset]);
+        } else if (isVerticalSnap && isHorizontalSnap) {
+          adjustPoses.push([0, horizontalOffset], [verticalOffset, 0]);
+        } else if (isVerticalSnap) {
+          adjustPoses.push([verticalOffset, 0]);
+        } else if (isHorizontalSnap) {
+          adjustPoses.push([0, horizontalOffset]);
+        }
+
+        if (adjustPoses.length) {
+          adjustPoses.sort(function (a, b) {
+            return getDistSize(minus([distX, distY], a)) - getDistSize(minus([distX, distY], b));
+          });
+          var adjustPos = adjustPoses[0];
+
+          if (adjustPos[0] && Math.abs(distX) > TINY_NUM) {
+            var prevDistX = distX;
+            distX -= adjustPos[0];
+            distY = distY * Math.abs(distX) / Math.abs(prevDistX);
+          } else if (adjustPos[1] && Math.abs(distY) > TINY_NUM) {
+            var prevDistY = distY;
+            distY -= adjustPos[1];
+            distX = distX * Math.abs(distY) / Math.abs(prevDistY);
+          }
+        }
+      } else {
+        distX -= verticalOffset;
+        distY -= horizontalOffset;
+      }
     }
 
     datas.passDistX = distX;
@@ -5950,7 +7575,7 @@ var Draggable = {
       distY: distY
     }, false), startTranslate);
 
-    if (!isSnap) {
+    if (!throttleDragRotate && !isSnap) {
       throttleArray(translate, throttleDrag);
       throttleArray(beforeTranslate, throttleDrag);
     }
@@ -5966,6 +7591,7 @@ var Draggable = {
     var right = datas.right - beforeDist[0];
     var bottom = datas.bottom - beforeDist[1];
     var nextTransform = transform + " translate(" + dist[0] + "px, " + dist[1] + "px)";
+    moveable.state.dragInfo.dist = dist;
 
     if (!parentEvent && !parentMoveable && delta.every(function (num) {
       return !num;
@@ -5996,12 +7622,13 @@ var Draggable = {
     var parentEvent = e.parentEvent,
         datas = e.datas,
         isDrag = e.isDrag;
+    moveable.state.dragger = null;
+    moveable.state.dragInfo = null;
 
     if (!datas.isDrag) {
       return;
     }
 
-    moveable.state.dragger = null;
     datas.isDrag = false;
     !parentEvent && triggerEvent(moveable, "onDragEnd", fillParams(moveable, e, {
       isDrag: isDrag
@@ -6070,6 +7697,9 @@ var Draggable = {
       isDrag: isDrag
     }));
     return isDrag;
+  },
+  unset: function (moveable) {
+    moveable.state.dragInfo = null;
   }
 };
 
@@ -6143,14 +7773,14 @@ function () {
   return CustomDragger;
 }();
 
-function setRotateStartInfo(datas, clientX, clientY, origin, rotationPos) {
-  datas.startAbsoluteOrigin = [clientX - rotationPos[0] + origin[0], clientY - rotationPos[1] + origin[1]];
+function setRotateStartInfo(datas, clientX, clientY, origin, rect) {
+  datas.startAbsoluteOrigin = [rect.left + origin[0], rect.top + origin[1]];
   datas.prevDeg = getRad(datas.startAbsoluteOrigin, [clientX, clientY]) / Math.PI * 180;
   datas.startDeg = datas.prevDeg;
   datas.loop = 0;
 }
 
-function getDeg(datas, deg, direction, startRotate, throttleRotate) {
+function getDeg(moveable, moveableRect, datas, deg, direction, startRotate, throttleRotate, isSnap) {
   var prevDeg = datas.prevDeg,
       startDeg = datas.startDeg,
       prevLoop = datas.loop;
@@ -6167,14 +7797,20 @@ function getDeg(datas, deg, direction, startRotate, throttleRotate) {
   var absolutePrevDeg = prevLoop * 360 + prevDeg - startDeg + startRotate;
   var absoluteDeg = loop * 360 + deg - startDeg + startRotate;
   absoluteDeg = throttle(absoluteDeg, throttleRotate);
-  var delta = direction * (absoluteDeg - absolutePrevDeg);
   var dist = direction * (absoluteDeg - startRotate);
+
+  if (isSnap) {
+    dist = checkSnapRotate(moveable, moveableRect, datas.origin, dist);
+    absoluteDeg = dist / direction + startRotate;
+  }
+
+  var delta = direction * (absoluteDeg - absolutePrevDeg);
   datas.prevDeg = absoluteDeg - loop * 360 + startDeg - startRotate;
   return [delta, dist, absoluteDeg];
 }
 
-function getRotateInfo(datas, direction, clientX, clientY, startRotate, throttleRotate) {
-  return getDeg(datas, getRad(datas.startAbsoluteOrigin, [clientX, clientY]) / Math.PI * 180, direction, startRotate, throttleRotate);
+function getRotateInfo(moveable, moveableRect, datas, direction, clientX, clientY, startRotate, throttleRotate) {
+  return getDeg(moveable, moveableRect, datas, getRad(datas.startAbsoluteOrigin, [clientX, clientY]) / Math.PI * 180, direction, startRotate, throttleRotate, true);
 }
 
 function moveable_esm_getPositions(rotationPosition, pos1, pos2, pos3, pos4) {
@@ -6188,21 +7824,17 @@ function moveable_esm_getPositions(rotationPosition, pos1, pos2, pos3, pos4) {
 
   return [pos1, pos2];
 }
-function getRotationPosition(_a, rad) {
-  var pos1 = _a[0],
-      pos2 = _a[1];
-  var relativeRotationPos = rotate([0, -40, 1], rad);
-  var rotationPos = [(pos1[0] + pos2[0]) / 2 + relativeRotationPos[0], (pos1[1] + pos2[1]) / 2 + relativeRotationPos[1]];
-  return rotationPos;
-}
-
 function dragControlCondition(target) {
   return hasClass(target, prefix("rotation"));
 }
-
 var Rotatable = {
   name: "rotatable",
   canPinch: true,
+  props: {
+    rotatable: Boolean,
+    rotationPosition: String,
+    throttleRotate: Number
+  },
   render: function (moveable, React) {
     var _a = moveable.props,
         rotatable = _a.rotatable,
@@ -6225,7 +7857,7 @@ var Rotatable = {
       className: prefix("line rotation-line"),
       style: {
         // tslint:disable-next-line: max-line-length
-        transform: "translate(" + (poses[0][0] + poses[1][0]) / 2 + "px, " + (poses[0][1] + poses[1][1]) / 2 + "px) translateY(-40px) rotate(" + rotationRad + "rad)"
+        transform: "translate(" + (poses[0][0] + poses[1][0]) / 2 + "px, " + (poses[0][1] + poses[1][1]) / 2 + "px) rotate(" + rotationRad + "rad)"
       }
     }, React.createElement("div", {
       className: prefix("control", "rotation")
@@ -6247,21 +7879,16 @@ var Rotatable = {
         beforeOrigin = _a.beforeOrigin,
         direction = _a.direction,
         beforeDirection = _a.beforeDirection,
-        targetTransform = _a.targetTransform,
-        pos1 = _a.pos1,
-        pos2 = _a.pos2,
-        pos3 = _a.pos3,
-        pos4 = _a.pos4;
+        targetTransform = _a.targetTransform;
 
     if (!target) {
       return false;
     }
 
+    datas.rect = moveable.getRect();
     datas.transform = targetTransform;
     datas.left = left;
     datas.top = top;
-    var poses = moveable_esm_getPositions(moveable.props.rotationPosition, pos1, pos2, pos3, pos4);
-    var rotationPos = getRotationPosition(poses, getRotationRad(poses, direction));
 
     if (pinchFlag || parentFlag) {
       datas.beforeInfo = {
@@ -6275,10 +7902,15 @@ var Rotatable = {
         loop: 0
       };
     } else {
-      datas.afterInfo = {};
-      datas.beforeInfo = {};
-      setRotateStartInfo(datas.afterInfo, clientX, clientY, origin, rotationPos);
-      setRotateStartInfo(datas.beforeInfo, clientX, clientY, beforeOrigin, rotationPos);
+      datas.beforeInfo = {
+        origin: plus([left, top], beforeOrigin)
+      };
+      datas.afterInfo = {
+        origin: plus([left, top], origin)
+      };
+      var rect = getClientRect(moveable.controlBox.getElement());
+      setRotateStartInfo(datas.afterInfo, clientX, clientY, origin, rect);
+      setRotateStartInfo(datas.beforeInfo, clientX, clientY, beforeOrigin, rect);
     }
 
     datas.direction = direction;
@@ -6292,6 +7924,7 @@ var Rotatable = {
     });
     var result = triggerEvent(moveable, "onRotateStart", params);
     datas.isRotate = result !== false;
+    moveable.state.snapRenderInfo = {};
     return datas.isRotate ? params : false;
   },
   dragControl: function (moveable, e) {
@@ -6308,7 +7941,8 @@ var Rotatable = {
         beforeInfo = datas.beforeInfo,
         afterInfo = datas.afterInfo,
         isRotate = datas.isRotate,
-        startRotate = datas.startRotate;
+        startRotate = datas.startRotate,
+        rect = datas.rect;
 
     if (!isRotate) {
       return;
@@ -6326,11 +7960,11 @@ var Rotatable = {
     var beforeRotate;
 
     if (pinchFlag || parentFlag) {
-      _a = getDeg(afterInfo, parentRotate, direction, startRotate, throttleRotate), delta = _a[0], dist = _a[1], rotate = _a[2];
-      _b = getDeg(beforeInfo, parentRotate, direction, startRotate, throttleRotate), beforeDelta = _b[0], beforeDist = _b[1], beforeRotate = _b[2];
+      _a = getDeg(moveable, rect, afterInfo, parentRotate, direction, startRotate, throttleRotate), delta = _a[0], dist = _a[1], rotate = _a[2];
+      _b = getDeg(moveable, rect, beforeInfo, parentRotate, direction, startRotate, throttleRotate), beforeDelta = _b[0], beforeDist = _b[1], beforeRotate = _b[2];
     } else {
-      _c = getRotateInfo(afterInfo, direction, clientX, clientY, startRotate, throttleRotate), delta = _c[0], dist = _c[1], rotate = _c[2];
-      _d = getRotateInfo(beforeInfo, beforeDirection, clientX, clientY, startRotate, throttleRotate), beforeDelta = _d[0], beforeDist = _d[1], beforeRotate = _d[2];
+      _c = getRotateInfo(moveable, rect, afterInfo, direction, clientX, clientY, startRotate, throttleRotate), delta = _c[0], dist = _c[1], rotate = _c[2];
+      _d = getRotateInfo(moveable, rect, beforeInfo, beforeDirection, clientX, clientY, startRotate, throttleRotate), beforeDelta = _d[0], beforeDist = _d[1], beforeRotate = _d[2];
     }
 
     if (!delta && !beforeDelta && !parentMoveable) {
@@ -6378,6 +8012,7 @@ var Rotatable = {
       return false;
     }
 
+    params.set(moveable.rotation);
     var events = triggerChildAble(moveable, this, "dragControlStart", datas, moveable_esm_assign({}, e, {
       parentRotate: 0
     }), function (child, childDatas, eventParams) {
@@ -6397,7 +8032,7 @@ var Rotatable = {
 
     var result = triggerEvent(moveable, "onRotateGroupStart", nextParams);
     datas.isRotate = result !== false;
-    return datas.isDrag ? params : false;
+    return datas.isRotate ? params : false;
   },
   dragGroupControl: function (moveable, e) {
     var inputEvent = e.inputEvent,
@@ -6432,13 +8067,16 @@ var Rotatable = {
       var dragResult = Draggable.drag(child, setCustomDrag(child.state, delta, inputEvent));
       result.drag = dragResult;
     });
+    moveable.rotation = params.beforeRotate;
 
     var nextParams = moveable_esm_assign({
       targets: moveable.props.targets,
-      events: events
+      events: events,
+      set: function (rotation) {
+        moveable.rotation = rotation;
+      }
     }, params);
 
-    moveable.rotation += params.beforeDelta;
     triggerEvent(moveable, "onRotateGroup", nextParams);
     return nextParams;
   },
@@ -6482,10 +8120,12 @@ function renderControls(moveable, defaultDirections, React) {
       return null;
     }
 
+    var directionRotation = (throttle(rotation / Math.PI * 180, 15) + DIRECTION_ROTATIONS[direction]) % 180;
     return React.createElement("div", {
       className: prefix("control", "direction", direction),
+      "data-rotation": directionRotation,
       "data-direction": direction,
-      key: direction,
+      key: "direction-" + direction,
       style: getControlTransform.apply(void 0, [rotation].concat(indexes.map(function (index) {
         return poses[index];
       })))
@@ -6504,6 +8144,13 @@ var Resizable = {
   ableGroup: "size",
   updateRect: true,
   canPinch: true,
+  props: {
+    resizable: Boolean,
+    throttleResize: Number,
+    renderDirections: Array,
+    baseDirection: Array,
+    keepRatio: Boolean
+  },
   render: function (moveable, React) {
     var _a = moveable.props,
         resizable = _a.resizable,
@@ -6566,7 +8213,9 @@ var Resizable = {
 
     if (result !== false) {
       datas.isResize = true;
-      moveable.state.snapDirection = direction;
+      moveable.state.snapRenderInfo = {
+        direction: direction
+      };
     }
 
     return datas.isResize ? params : false;
@@ -6580,6 +8229,7 @@ var Resizable = {
         parentDistance = e.parentDistance,
         parentScale = e.parentScale,
         inputEvent = e.inputEvent,
+        parentKeepRatio = e.parentKeepRatio,
         dragClient = e.dragClient;
     var direction = datas.direction,
         isResize = datas.isResize,
@@ -6599,7 +8249,7 @@ var Resizable = {
         _b = _a.throttleResize,
         throttleResize = _b === void 0 ? 0 : _b,
         parentMoveable = _a.parentMoveable;
-    var keepRatio = moveable.props.keepRatio || parentScale;
+    var keepRatio = moveable.props.keepRatio || parentKeepRatio;
     var isWidth = direction[0] || !direction[1];
     var ratio = isWidth ? startOffsetHeight / startOffsetWidth : startOffsetWidth / startOffsetHeight;
     var distWidth = 0;
@@ -6626,7 +8276,7 @@ var Resizable = {
         var rad = getRad([0, 0], dist);
         var standardRad = getRad([0, 0], direction);
         var ratioRad = getRad([0, 0], [startOffsetWidth, startOffsetHeight]);
-        var size = Math.sqrt(distWidth * distWidth + distHeight * distHeight);
+        var size = getDistSize([distWidth, distHeight]);
         var signSize = Math.cos(rad - standardRad) * size;
 
         if (!direction[0]) {
@@ -6823,6 +8473,7 @@ var Resizable = {
     var offsetWidth = params.offsetWidth,
         offsetHeight = params.offsetHeight,
         dist = params.dist;
+    var keepRatio = moveable.props.keepRatio;
     var parentScale = [offsetWidth / (offsetWidth - dist[0]), offsetHeight / (offsetHeight - dist[1])];
     var fixedPosition = datas.fixedOriginalPosition;
     var events = triggerChildAble(moveable, this, "dragControl", datas, function (_, childDatas) {
@@ -6832,7 +8483,8 @@ var Resizable = {
 
       return moveable_esm_assign({}, e, {
         parentScale: parentScale,
-        dragClient: plus(fixedPosition, [clientX, clientY])
+        dragClient: plus(fixedPosition, [clientX, clientY]),
+        parentKeepRatio: keepRatio
       });
     });
 
@@ -6867,6 +8519,12 @@ var Scalable = {
   name: "scalable",
   ableGroup: "size",
   canPinch: true,
+  props: {
+    scalable: Boolean,
+    throttleScale: Number,
+    renderDirections: String,
+    keepRatio: Boolean
+  },
   render: function (moveable, React) {
     var _a = moveable.props,
         resizable = _a.resizable,
@@ -6922,7 +8580,9 @@ var Scalable = {
 
     if (result !== false) {
       datas.isScale = true;
-      moveable.state.snapDirection = direction;
+      moveable.state.snapRenderInfo = {
+        direction: direction
+      };
     }
 
     return datas.isScale ? params : false;
@@ -6933,6 +8593,7 @@ var Scalable = {
         distY = e.distY,
         parentScale = e.parentScale,
         parentDistance = e.parentDistance,
+        parentKeepRatio = e.parentKeepRatio,
         parentFlag = e.parentFlag,
         pinchFlag = e.pinchFlag,
         inputEvent = e.inputEvent,
@@ -6952,7 +8613,7 @@ var Scalable = {
     var _a = moveable.props,
         throttleScale = _a.throttleScale,
         parentMoveable = _a.parentMoveable;
-    var keepRatio = moveable.props.keepRatio || parentScale;
+    var keepRatio = moveable.props.keepRatio || parentKeepRatio;
     var state = moveable.state;
     var isWidth = direction[0] || !direction[1];
     var scaleX = 1;
@@ -6982,7 +8643,7 @@ var Scalable = {
         var rad = getRad([0, 0], dist);
         var standardRad = getRad([0, 0], direction);
         var ratioRad = getRad([0, 0], [startWidth, startHeight]);
-        var size = Math.sqrt(distWidth * distWidth + distHeight * distHeight);
+        var size = getDistSize([distWidth, distHeight]);
         var signSize = Math.cos(rad - standardRad) * size;
 
         if (!direction[0]) {
@@ -7021,10 +8682,13 @@ var Scalable = {
 
     if (moveable.props.groupable) {
       snapDirection = [(nowDist[0] >= 0 ? 1 : -1) * direction[0], (nowDist[1] >= 0 ? 1 : -1) * direction[1]];
-      var stateDirection = state.snapDirection;
+      var snapRenderInfo = state.snapRenderInfo || {};
+      var stateDirection = snapRenderInfo.direction;
 
       if (isArray(stateDirection) && (stateDirection[0] || stateDirection[1])) {
-        state.snapDirection = snapDirection;
+        state.snapRenderInfo = {
+          direction: direction
+        };
       }
     }
 
@@ -7063,6 +8727,9 @@ var Scalable = {
         nowDist[0] = snapWidth / width / startScale[0];
       }
     } else {
+      nowDist[0] += snapDist[0];
+      nowDist[1] += snapDist[1];
+
       if (!snapDist[0]) {
         nowDist[0] = throttle(nowDist[0] * startScale[0], throttleScale) / startScale[0];
       }
@@ -7160,6 +8827,7 @@ var Scalable = {
       return;
     }
 
+    var keepRatio = moveable.props.keepRatio;
     var scale = params.scale,
         direction = params.direction,
         dist = params.dist;
@@ -7171,6 +8839,7 @@ var Scalable = {
 
       return moveable_esm_assign({}, e, {
         parentScale: scale,
+        parentKeepRatio: keepRatio,
         dragClient: plus(prevPos, [clientX, clientY])
       });
     });
@@ -7231,6 +8900,10 @@ function isValidPos(poses1, poses2) {
 var Warpable = {
   name: "warpable",
   ableGroup: "size",
+  props: {
+    warpable: Boolean,
+    renderDirections: Array
+  },
   render: function (moveable, React) {
     var _a = moveable.props,
         resizable = _a.resizable,
@@ -7317,7 +8990,9 @@ var Warpable = {
     datas.prevMatrix = createIdentityMatrix(4);
     datas.absolutePoses = getAbsolutePosesByState(state);
     datas.posIndexes = getPosIndexesByDirection(direction);
-    state.snapDirection = direction;
+    state.snapRenderInfo = {
+      direction: direction
+    };
     var params = fillParams(moveable, e, {
       set: function (matrix) {
         datas.startMatrix = matrix;
@@ -7329,7 +9004,7 @@ var Warpable = {
       datas.isWarp = true;
     }
 
-    return result;
+    return datas.isWarp;
   },
   dragControl: function (moveable, e) {
     var datas = e.datas;
@@ -7356,15 +9031,16 @@ var Warpable = {
         selectedPoses.push([(selectedPoses[0][0] + selectedPoses[1][0]) / 2, (selectedPoses[0][1] + selectedPoses[1][1]) / 2]);
       }
 
-      var snapInfos = checkSnapPoses(moveable, selectedPoses.map(function (pos) {
+      var _a = checkSnapPoses(moveable, selectedPoses.map(function (pos) {
         return pos[0] + distX;
       }), selectedPoses.map(function (pos) {
         return pos[1] + distY;
-      }));
-      var horizontalOffset = snapInfos.horizontal.offset,
-          verticalOffset = snapInfos.vertical.offset;
-      distY -= horizontalOffset;
-      distX -= verticalOffset;
+      })),
+          horizontalSnapInfo = _a.horizontal,
+          verticalSnapInfo = _a.vertical;
+
+      distY -= getNearestSnapGuidelineInfo(horizontalSnapInfo).offset;
+      distX -= getNearestSnapGuidelineInfo(verticalSnapInfo).offset;
     }
 
     var dist = getDragDist({
@@ -7453,6 +9129,9 @@ function renderPieces(React) {
 
 var DragArea = {
   name: "dragArea",
+  props: {
+    dragArea: Boolean
+  },
   render: function (moveable, React) {
     var _a = moveable.props,
         target = _a.target,
@@ -7503,15 +9182,15 @@ var DragArea = {
     datas.inputTarget = inputEvent.target;
     var areaElement = moveable.areaElement;
     var _b = moveable.state,
-        clientRect = _b.clientRect,
+        targetClientRect = _b.targetClientRect,
         pos1 = _b.pos1,
         pos2 = _b.pos2,
         pos3 = _b.pos3,
         pos4 = _b.pos4;
-    var left = clientRect.left,
-        top = clientRect.top,
-        width = clientRect.width,
-        height = clientRect.height;
+    var left = targetClientRect.left,
+        top = targetClientRect.top,
+        width = targetClientRect.width,
+        height = targetClientRect.height;
 
     var _c = getRect([pos1, pos2, pos3, pos4]),
         relativeLeft = _c.left,
@@ -7623,6 +9302,9 @@ var DragArea = {
 
 var Origin = {
   name: "origin",
+  props: {
+    origin: Boolean
+  },
   render: function (moveable, React) {
     if (!moveable.props.origin) {
       return null;
@@ -7639,7 +9321,7 @@ var Origin = {
   }
 };
 
-function getDefaultScrollPosition(e) {
+function moveable_esm_getDefaultScrollPosition(e) {
   var scrollContainer = e.scrollContainer;
   return [scrollContainer.scrollLeft, scrollContainer.scrollTop];
 }
@@ -7647,127 +9329,110 @@ function getDefaultScrollPosition(e) {
 var Scrollable = {
   name: "scrollable",
   canPinch: true,
+  props: {
+    scrollable: Boolean,
+    scrollContainer: Object,
+    scrollThreshold: Number
+  },
   dragStart: function (moveable, e) {
     var props = moveable.props;
     var _a = props.scrollContainer,
         scrollContainer = _a === void 0 ? moveable.getContainer() : _a;
-    var scrollClientRect = scrollContainer.getBoundingClientRect();
-    var datas = e.datas;
-    datas.scrollContainer = scrollContainer;
-    datas.scrollRect = {
-      left: scrollClientRect.left,
-      top: scrollClientRect.top,
-      width: scrollClientRect.width,
-      height: scrollClientRect.height
-    };
-    datas.isScroll = true;
+    var dragScroll = new dragscroll_esm();
+    e.datas.dragScroll = dragScroll;
+    var targets = e.targets;
+    dragScroll.on("scroll", function (_a) {
+      var container = _a.container,
+          direction = _a.direction;
+      var params = fillParams(moveable, e, {
+        scrollContainer: container,
+        direction: direction
+      });
+      var eventName = targets ? "onScrollGroup" : "onScroll";
+
+      if (targets) {
+        params.targets = targets;
+      }
+
+      triggerEvent(moveable, eventName, params);
+    }).on("move", function (_a) {
+      var offsetX = _a.offsetX,
+          offsetY = _a.offsetY;
+      moveable.targetDragger.scrollBy(offsetX, offsetY, e.inputEvent, false);
+    });
+    dragScroll.dragStart(e, {
+      container: scrollContainer
+    });
+  },
+  checkScroll: function (moveable, e) {
+    var dragScroll = e.datas.dragScroll;
+
+    if (!dragScroll) {
+      return;
+    }
+
+    var _a = moveable.props,
+        _b = _a.scrollContainer,
+        scrollContainer = _b === void 0 ? moveable.getContainer() : _b,
+        _c = _a.scrollThreshold,
+        scrollThreshold = _c === void 0 ? 0 : _c,
+        _d = _a.getScrollPosition,
+        getScrollPosition = _d === void 0 ? moveable_esm_getDefaultScrollPosition : _d;
+    dragScroll.drag(e, {
+      container: scrollContainer,
+      threshold: scrollThreshold,
+      getScrollPosition: function (ev) {
+        return getScrollPosition({
+          scrollContainer: ev.container,
+          direction: ev.direction
+        });
+      }
+    });
+    return true;
   },
   drag: function (moveable, e) {
-    this.checkScroll(moveable, e);
+    return this.checkScroll(moveable, e);
   },
   dragEnd: function (moveable, e) {
-    e.datas.isScroll = false;
+    e.datas.dragScroll.dragEnd();
+    e.datas.dragScroll = null;
   },
   dragGroupStart: function (moveable, e) {
     this.dragStart(moveable, e);
   },
   dragGroup: function (moveable, e) {
-    this.drag(moveable, moveable_esm_assign({}, e, {
+    return this.drag(moveable, moveable_esm_assign({}, e, {
       targets: moveable.props.targets
     }));
   },
   dragGroupEnd: function (moveable, e) {
     this.dragEnd(moveable, e);
-  },
-  checkScroll: function (moveable, e) {
-    var datas = e.datas,
-        inputEvent = e.inputEvent,
-        clientX = e.clientX,
-        clientY = e.clientY,
-        isScroll = e.isScroll,
-        targets = e.targets;
-
-    if (!datas.isScroll) {
-      return;
-    }
-
-    if (!isScroll) {
-      datas.prevClientX = clientX;
-      datas.prevClientY = clientY;
-    }
-
-    var _a = moveable.props,
-        _b = _a.scrollThreshold,
-        scrollThreshold = _b === void 0 ? 0 : _b,
-        _c = _a.getScrollPosition,
-        getScrollPosition = _c === void 0 ? getDefaultScrollPosition : _c;
-    var scrollContainer = datas.scrollContainer,
-        scrollRect = datas.scrollRect;
-    var direction = [0, 0];
-
-    if (scrollRect.top > clientY - scrollThreshold) {
-      direction[1] = -1;
-    } else if (scrollRect.top + scrollRect.height < clientY + scrollThreshold) {
-      direction[1] = 1;
-    }
-
-    if (scrollRect.left > clientX - scrollThreshold) {
-      direction[0] = -1;
-    } else if (scrollRect.left + scrollRect.width < clientX + scrollThreshold) {
-      direction[0] = 1;
-    }
-
-    if (!direction[0] && !direction[1]) {
-      return;
-    }
-
-    var pos = getScrollPosition({
-      scrollContainer: scrollContainer,
-      direction: direction
-    });
-    var params = fillParams(moveable, e, {
-      scrollContainer: scrollContainer,
-      direction: direction
-    });
-    var eventName = targets ? "onScrollGroup" : "onScroll";
-
-    if (targets) {
-      params.targets = targets;
-    }
-
-    triggerEvent(moveable, eventName, params);
-    requestAnimationFrame(function () {
-      if (datas.prevClientX !== clientX || datas.prevClientY !== clientY) {
-        return;
-      }
-
-      var nextPos = getScrollPosition({
-        scrollContainer: scrollContainer,
-        direction: direction
-      });
-      var offsetX = nextPos[0] - pos[0];
-      var offsetY = nextPos[1] - pos[1];
-
-      if (!offsetX && !offsetY) {
-        return;
-      }
-
-      moveable.targetDragger.scrollBy(direction[0] ? offsetX : 0, direction[1] ? offsetY : 0, inputEvent, false);
-      setTimeout(function () {
-        if (datas.prevClientX !== clientX || datas.prevClientY !== clientY) {
-          return;
-        }
-
-        moveable.targetDragger.onDrag(inputEvent, true);
-      }, 10);
-    });
   }
 };
 
-var MOVEABLE_ABLES = [Snappable, Pinchable, Draggable, Rotatable, Resizable, Scalable, Warpable, Scrollable, DragArea, Origin];
+var Default = {
+  name: "",
+  props: {
+    target: Object,
+    container: Object,
+    dragArea: Boolean,
+    origin: Boolean,
+    transformOrigin: Array,
+    edge: Boolean,
+    ables: Array,
+    className: String,
+    pinchThreshold: Number
+  }
+};
+
+var MOVEABLE_ABLES = [Default, Snappable, Pinchable, Draggable, Rotatable, Resizable, Scalable, Warpable, Scrollable, DragArea, Origin];
 
 var Groupable = {
   name: "groupable",
+  props: {
+    defaultGroupRotate: Number,
+    groupable: Boolean
+  },
   render: function (moveable, React) {
     var targets = moveable.props.targets || [];
     moveable.moveables = [];
@@ -7780,14 +9445,14 @@ var Groupable = {
     };
     return targets.map(function (target, i) {
       return React.createElement(moveable_esm_MoveableManager, {
-        key: i,
+        key: "moveable" + i,
         ref: refs(moveable, "moveables", i),
         target: target,
         origin: false,
         parentMoveable: moveable,
         parentPosition: position
       });
-    }).slice();
+    });
   }
 };
 
@@ -7966,7 +9631,7 @@ function (_super) {
     _a = getAbsolutePosesByState(info), info.pos1 = _a[0], info.pos2 = _a[1], info.pos3 = _a[2], info.pos4 = _a[3];
     info.origin = plus(pos, info.origin);
     info.beforeOrigin = plus(pos, info.beforeOrigin);
-    var clientRect = info.clientRect;
+    var clientRect = info.targetClientRect;
     clientRect.top += top - info.top - state.top;
     clientRect.left += left - info.left - state.left;
     this.updateState(moveable_esm_assign({}, info, {
@@ -8021,13 +9686,13 @@ function (_super) {
         ables: MOVEABLE_ABLES.concat([Groupable], ables)
       });
 
-      return compat_module_D(moveable_esm_MoveableGroup, moveable_esm_assign({
+      return createElement(moveable_esm_MoveableGroup, moveable_esm_assign({
         key: "group",
         ref: ref(this, "moveable")
       }, nextProps));
     } else {
       var moveableTarget = isArr ? target[0] : target;
-      return compat_module_D(moveable_esm_MoveableManager, moveable_esm_assign({
+      return createElement(moveable_esm_MoveableManager, moveable_esm_assign({
         key: "single",
         ref: ref(this, "moveable")
       }, moveable_esm_assign({}, this.props, {
@@ -8066,7 +9731,7 @@ function (_super) {
   };
 
   return Moveable;
-}(compat_module_q);
+}(PureComponent);
 
 /* harmony default export */ var moveable_esm = (moveable_esm_Moveable);
 
@@ -8077,9 +9742,8 @@ name: moveable
 license: MIT
 author: Daybrush
 repository: git+https://github.com/daybrush/moveable.git
-version: 0.12.0
+version: 0.14.1
 */
-
 
 
 
@@ -8149,16 +9813,17 @@ function (_super) {
   var __proto = InnerMoveable.prototype;
 
   __proto.render = function () {
-    return compat_module_z(preact_module_h(moveable_esm, dist_moveable_esm_assign({
-      ref: ref(this, "preactMoveable")
+    return createPortal(createElement(moveable_esm, dist_moveable_esm_assign({
+      ref: ref(this, "moveable")
     }, this.state)), this.state.parentElement);
   };
 
   return InnerMoveable;
-}(y);
+}(compat_esm_Component);
 
-var PROPERTIES = ["draggable", "resizable", "scalable", "rotatable", "warpable", "pinchable", "snappable", "origin", "target", "edge", "throttleDrag", "throttleResize", "throttleScale", "throttleRotate", "keepRatio", "dragArea", "pinchThreshold", "snapCenter", "snapThreshold", "horizontalGuidelines", "verticalGuidelines", "elementGuidelines", "bounds", "className", "renderDirections", "scrollable", "getScrollPosition", "scrollContainer", "scrollThreshold", "baseDirection"];
+var PROPERTIES = ["draggable", "resizable", "scalable", "rotatable", "warpable", "pinchable", "snappable", "origin", "target", "edge", "throttleDrag", "throttleDragRotate", "throttleResize", "throttleScale", "throttleRotate", "keepRatio", "dragArea", "pinchThreshold", "snapCenter", "snapThreshold", "horizontalGuidelines", "verticalGuidelines", "elementGuidelines", "bounds", "className", "renderDirections", "scrollable", "getScrollPosition", "scrollContainer", "scrollThreshold", "baseDirection", "snapElement", "snapVertical", "snapHorizontal"];
 var EVENTS = ["dragStart", "drag", "dragEnd", "resizeStart", "resize", "resizeEnd", "scaleStart", "scale", "scaleEnd", "rotateStart", "rotate", "rotateEnd", "warpStart", "warp", "warpEnd", "pinchStart", "pinch", "pinchEnd", "dragGroupStart", "dragGroup", "dragGroupEnd", "resizeGroupStart", "resizeGroup", "resizeGroupEnd", "scaleGroupStart", "scaleGroup", "scaleGroupEnd", "rotateGroupStart", "rotateGroup", "rotateGroupEnd", "pinchGroupStart", "pinchGroup", "pinchGroupEnd", "clickGroup", "scroll", "scrollGroup", "renderStart", "render", "renderEnd", "renderGroupStart", "renderGroup", "renderGroupEnd"];
+var METHODS = ["isMoveableElement", "updateRect", "updateTarget", "destroy", "dragStart", "isInside", "setState"];
 
 /**
  * Moveable is Draggable! Resizable! Scalable! Rotatable!
@@ -8194,7 +9859,7 @@ function (_super) {
         return _this.trigger(name, e);
       };
     });
-    E(preact_module_h(moveable_esm_InnerMoveable, dist_moveable_esm_assign({
+    compat_esm_render(createElement(moveable_esm_InnerMoveable, dist_moveable_esm_assign({
       ref: ref(_this, "innerMoveable"),
       parentElement: parentElement
     }, nextOptions, events)), _this.tempElement);
@@ -8206,132 +9871,11 @@ function (_super) {
 
     return _this;
   }
-  /**
-   * Check if the target is an element included in the moveable.
-   * @param - the target
-   * @example
-   * import Moveable from "moveable";
-   *
-   * const moveable = new Moveable(document.body);
-   *
-   * window.addEventListener("click", e => {
-   *     if (!moveable.isMoveableElement(e.target)) {
-   *         moveable.target = e.target;
-   *     }
-   * });
-   */
-
 
   var __proto = Moveable.prototype;
 
-  __proto.isMoveableElement = function (target) {
-    return this.getMoveable().isMoveableElement(target);
-  };
-  /**
-   * If the width, height, left, and top of all elements change, update the shape of the moveable.
-   * @example
-   * import Moveable from "moveable";
-   *
-   * const moveable = new Moveable(document.body);
-   *
-   * window.addEventListener("resize", e => {
-   *     moveable.updateRect();
-   * });
-   */
-
-
-  __proto.updateRect = function () {
-    this.getMoveable().updateRect();
-  };
-  /**
-   * You can drag start the Moveable through the external `MouseEvent`or `TouchEvent`. (Angular: ngDragStart)
-   * @param - external `MouseEvent`or `TouchEvent`
-   * @example
-   * import Moveable from "moveable";
-   *
-   * const moveable = new Moveable(document.body);
-   *
-   * document.body.addEventListener("mousedown", e => {
-   *     if (!moveable.isMoveableElement(e.target)) {
-   *          moveable.dragStart(e);
-   *     }
-   * });
-   */
-
-
-  __proto.dragStart = function (e) {
-    this.getMoveable().dragStart(e);
-  };
-  /**
-   * Whether the coordinates are inside Moveable
-   * @param - x coordinate
-   * @param - y coordinate
-   * @return - True if the coordinate is in moveable or false
-   * @example
-   * import Moveable from "moveable";
-   *
-   * const moveable = new Moveable(document.body);
-   *
-   * document.body.addEventListener("mousedown", e => {
-   *     if (moveable.isInside(e.clientX, e.clientY)) {
-   *          console.log("inside");
-   *     }
-   * });
-   */
-
-
-  __proto.isInside = function (clientX, clientY) {
-    return this.getMoveable().isInside(clientX, clientY);
-  };
-  /**
-   * You can get the vertex information, position and offset size information of the target based on the container.
-   * @return - The Rect Info
-   * @example
-   * import Moveable from "moveable";
-   *
-   * const moveable = new Moveable(document.body);
-   *
-   * const rectInfo = moveable.getRect();
-   */
-
-
-  __proto.getRect = function () {
-    return this.getMoveable().getRect();
-  };
-  /**
-   * You can change options or properties dynamically.
-   * @param - options or properties
-   * @param - After the change, the callback function is executed when the update is completed.
-   * @example
-   * import Moveable from "moveable";
-   *
-   * const moveable = new Moveable(document.body);
-   *
-   * moveable.setState({
-   *   target: document.querySelector(".target"),
-   * }, () => {
-   *   moveable.dragStart(e);
-   * })
-   */
-
-
   __proto.setState = function (state, callback) {
     this.innerMoveable.setState(state, callback);
-  };
-  /**
-   * If the width, height, left, and top of the only target change, update the shape of the moveable.
-   * @param - the values of x and y to move moveable.
-   * @example
-   * import Moveable from "moveable";
-   *
-   * const moveable = new Moveable(document.body);
-   *
-   * moveable.updateTarget();
-   */
-
-
-  __proto.updateTarget = function () {
-    this.getMoveable().updateTarget();
   };
   /**
    * Remove the Moveable object and the events.
@@ -8345,17 +9889,37 @@ function (_super) {
 
 
   __proto.destroy = function () {
-    E("", this.tempElement);
+    compat_esm_render(null, this.tempElement);
     this.off();
     this.tempElement = null;
     this.innerMoveable = null;
   };
 
   __proto.getMoveable = function () {
-    return this.innerMoveable.preactMoveable;
+    return this.innerMoveable.moveable;
   };
 
-  Moveable = __decorate([Properties(PROPERTIES, function (prototype, property) {
+  Moveable = __decorate([Properties(METHODS, function (prototype, property) {
+    if (prototype[property]) {
+      return;
+    }
+
+    prototype[property] = function () {
+      var args = [];
+
+      for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+      }
+
+      var self = this.getMoveable();
+
+      if (!self || !self[property]) {
+        return;
+      }
+
+      return self[property].apply(self, args);
+    };
+  }), Properties(PROPERTIES, function (prototype, property) {
     Object.defineProperty(prototype, property, {
       get: function () {
         return this.getMoveable().props[property];
@@ -8391,7 +9955,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 // eslint-disable-next-line import/no-extraneous-dependencies
 
 var MOVEABLE_EVENTS = ['click', 'clickGroup', 'drag', 'dragEnd', 'dragStart', 'dragGroup', 'dragGroupEnd', 'dragGroupStart', 'pinch', 'pinchEnd', 'pinchGroup', 'pinchGroupEnd', 'pinchGroupStart', 'pinchStart', 'render', 'renderEnd', 'renderGroup', 'renderGroupEnd', 'renderGroupStart', 'renderStart', 'resize', 'resizeEnd', 'resizeGroup', 'resizeGroupEnd', 'resizeGroupStart', 'resizeStart', 'rotate', 'rotateEnd', 'rotateGroup', 'rotateGroupEnd', 'rotateGroupStart', 'rotateStart', 'scale', 'scaleEnd', 'scaleGroup', 'scaleGroupEnd', 'scaleGroupStart', 'scaleStart', 'scroll', 'scrollGroup', 'warp', 'warpEnd', 'warpStart'];
-var MOVEABLE_PROPS = ['draggable', 'resizable', 'scalable', 'rotatable', 'warpable', 'pinchable', 'snappable', 'ables', 'origin', 'className', 'throttleDrag', 'throttleResize', 'throttleScale', 'throttleRotate', 'keepRatio', 'edge', 'pinchThreshold', 'snapCenter', 'snapVertical', 'snapHorizontal', 'snapElement', 'snapThreshold', 'horizontalGuidelines', 'verticalGuidelines', 'elementGuidelines', 'bounds', 'dragArea', 'rotationPosition', 'baseDirection', 'renderDirections', 'defaultGroupRotate', 'scrollable', 'scrollThreshold', 'getScrollPosition'];
+var MOVEABLE_PROPS = ['draggable', 'resizable', 'scalable', 'rotatable', 'warpable', 'pinchable', 'snappable', 'ables', 'origin', 'className', 'throttleDrag', 'throttleDragRotate', 'throttleResize', 'throttleScale', 'throttleRotate', 'keepRatio', 'edge', 'pinchThreshold', 'snapCenter', 'snapVertical', 'snapHorizontal', 'snapElement', 'snapThreshold', 'horizontalGuidelines', 'verticalGuidelines', 'elementGuidelines', 'bounds', 'dragArea', 'rotationPosition', 'baseDirection', 'renderDirections', 'defaultGroupRotate', 'scrollable', 'scrollThreshold', 'getScrollPosition'];
 
 var watchReactiveProp = function watchReactiveProp(key, deep) {
   return {
@@ -8432,6 +9996,7 @@ var watchMoveableProps = function watchMoveableProps() {
       }
     },
     throttleDrag: Number,
+    throttleDragRotate: Number,
     throttleResize: Number,
     throttleScale: Number,
     throttleRotate: Number,
@@ -8593,7 +10158,7 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_Moveablevue_type_script_lang_js_,
-  Moveablevue_type_template_id_fdc8396e_render,
+  render,
   staticRenderFns,
   false,
   null,

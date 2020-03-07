@@ -5,99 +5,7 @@
 </template>
 <script>
 // eslint-disable-next-line import/no-extraneous-dependencies
-import Moveable from 'moveable';
-
-const MOVEABLE_EVENTS = [
-  'click',
-  'clickGroup',
-
-  'drag',
-  'dragEnd',
-  'dragStart',
-  'dragGroup',
-  'dragGroupEnd',
-  'dragGroupStart',
-
-  'pinch',
-  'pinchEnd',
-  'pinchGroup',
-  'pinchGroupEnd',
-  'pinchGroupStart',
-  'pinchStart',
-
-  'render',
-  'renderEnd',
-  'renderGroup',
-  'renderGroupEnd',
-  'renderGroupStart',
-  'renderStart',
-
-  'resize',
-  'resizeEnd',
-  'resizeGroup',
-  'resizeGroupEnd',
-  'resizeGroupStart',
-  'resizeStart',
-
-  'rotate',
-  'rotateEnd',
-  'rotateGroup',
-  'rotateGroupEnd',
-  'rotateGroupStart',
-  'rotateStart',
-
-  'scale',
-  'scaleEnd',
-  'scaleGroup',
-  'scaleGroupEnd',
-  'scaleGroupStart',
-  'scaleStart',
-
-  'scroll',
-  'scrollGroup',
-
-  'warp',
-  'warpEnd',
-  'warpStart',
-];
-
-const MOVEABLE_PROPS = [
-  'draggable',
-  'resizable',
-  'scalable',
-  'rotatable',
-  'warpable',
-  'pinchable',
-  'snappable',
-  'ables',
-  'origin',
-  'className',
-  'throttleDrag',
-  'throttleDragRotate',
-  'throttleResize',
-  'throttleScale',
-  'throttleRotate',
-  'keepRatio',
-  'edge',
-  'pinchThreshold',
-  'snapCenter',
-  'snapVertical',
-  'snapHorizontal',
-  'snapElement',
-  'snapThreshold',
-  'horizontalGuidelines',
-  'verticalGuidelines',
-  'elementGuidelines',
-  'bounds',
-  'dragArea',
-  'rotationPosition',
-  'baseDirection',
-  'renderDirections',
-  'defaultGroupRotate',
-  'scrollable',
-  'scrollThreshold',
-  'getScrollPosition',
-];
+import Moveable, { EVENTS, PROPERTIES, METHODS } from 'moveable';
 
 const watchReactiveProp = (key, deep) => ({
   handler(newValue) {
@@ -108,10 +16,18 @@ const watchReactiveProp = (key, deep) => ({
   deep,
 });
 
-const watchMoveableProps = () => MOVEABLE_PROPS.reduce((acc, prop) => {
+const watchMoveableProps = () => PROPERTIES.reduce((acc, prop) => {
   acc[prop] = watchReactiveProp(prop, true);
   return acc;
 }, {});
+
+const methodMap = {};
+
+METHODS.forEach((name) => {
+  methodMap[name] = function func(...args) {
+    return this.moveable[name](...args);
+  };
+});
 
 export default {
   name: 'Moveable',
@@ -158,17 +74,13 @@ export default {
     scrollThreshold: Number,
     getScrollPosition: Function,
   },
-  methods: {
-    updateRec() {
-      this.moveable.updateRect();
-    },
-  },
+  methods: methodMap,
   mounted() {
     this.moveable = new Moveable(this.$props.container, {
       ...this.$props,
       target: this.$el,
     });
-    MOVEABLE_EVENTS.forEach((event) => (
+    EVENTS.forEach((event) => (
       this.moveable.on(event, this.$emit.bind(this, event))
     ));
     window.addEventListener('resize', this.updateRec, { passive: true });
@@ -177,9 +89,6 @@ export default {
     ...watchMoveableProps(),
   },
   beforeDestroy() {
-    MOVEABLE_EVENTS.forEach((event) => (
-      this.moveable.off(event, this.$emit.bind(this, event))
-    ));
     window.removeEventListener('resize', this.updateRec);
     this.moveable.destroy();
   },

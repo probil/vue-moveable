@@ -26,6 +26,9 @@
   "peerDependencies": {
     "vue": "~2"
   },
+  "dependencies": {
+    "moveable": "^0.15.2"
+  },
   "devDependencies": {
     "@vue/cli-plugin-babel": "4.2.2",
     "@vue/cli-plugin-eslint": "4.2.2",
@@ -35,7 +38,6 @@
     "core-js": "3.6.4",
     "eslint": "6.8.0",
     "eslint-plugin-vue": "6.2.2",
-    "moveable": "0.14.1",
     "node-sass": "4.13.1",
     "sass-loader": "8.0.2",
     "vue": "2.6.11",

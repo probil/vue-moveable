@@ -1,0 +1,2 @@
+# remove compiled assets from github statistics
+dist/* linguist-vendored

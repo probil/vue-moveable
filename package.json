@@ -16,7 +16,8 @@
     "url": "git+https://github.com/probil/vue-moveable.git"
   },
   "files": [
-    "dist/lib"
+    "dist/lib",
+    "index.d.ts"
   ],
   "author": "Max Lyashuk <m_lyashuk@ukr.net>",
   "license": "MIT",

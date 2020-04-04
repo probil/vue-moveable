@@ -83,13 +83,13 @@ export default {
     EVENTS.forEach((event) => (
       this.moveable.on(event, this.$emit.bind(this, event))
     ));
-    window.addEventListener('resize', this.updateRec, { passive: true });
+    window.addEventListener('resize', this.updateRect, { passive: true });
   },
   watch: {
     ...watchMoveableProps(),
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.updateRec);
+    window.removeEventListener('resize', this.updateRect);
     this.moveable.destroy();
   },
 };

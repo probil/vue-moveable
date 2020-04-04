@@ -162,12 +162,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f8455c6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=0dd6deba&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68998962-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=5632c640&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=template&id=0dd6deba&
+// CONCATENATED MODULE: ./src/components/Moveable.vue?vue&type=template&id=5632c640&
 
 // CONCATENATED MODULE: ./node_modules/@egjs/component/dist/component.esm.js
 /*
@@ -11559,48 +11559,56 @@ METHODS.forEach(function (name) {
   name: 'Moveable',
   inheritAttrs: false,
   props: {
-    draggable: Boolean,
-    resizable: Boolean,
-    scalable: Boolean,
-    rotatable: Boolean,
-    warpable: Boolean,
-    pinchable: [Boolean, Array],
     snappable: [Boolean, Array],
-    ables: Array,
-    origin: Boolean,
-    className: String,
+    snapCenter: Boolean,
+    snapHorizontal: Boolean,
+    snapVertical: Boolean,
+    snapElement: Boolean,
+    snapGap: Boolean,
+    snapThreshold: Number,
+    snapDigit: Number,
+    isDisplaySnapDigit: Boolean,
+    horizontalGuidelines: Array,
+    verticalGuidelines: Array,
+    elementGuidelines: Array,
+    bounds: Object,
+    innerBounds: Object,
+    defaultGroupRotate: Number,
+    scrollable: Boolean,
+    scrollContainer: [HTMLElement, SVGElement],
+    scrollThreshold: Number,
+    getScrollPosition: Function,
+    warpable: Boolean,
+    renderDirections: Array,
+    rotatable: Boolean,
+    rotationPosition: String,
+    throttleRotate: Number,
+    pinchable: [Boolean, Array],
+    scalable: Boolean,
+    throttleScale: Number,
+    keepRatio: Boolean,
+    resizable: Boolean,
+    throttleResize: Number,
+    baseDirection: Array,
+    draggable: Boolean,
+    throttleDrag: Number,
+    throttleDragRotate: Number,
     container: {
       type: [HTMLElement, SVGElement],
       default: function _default() {
         return document.body;
       }
     },
-    throttleDrag: Number,
-    throttleDragRotate: Number,
-    throttleResize: Number,
-    throttleScale: Number,
-    throttleRotate: Number,
-    keepRatio: Boolean,
-    edge: Boolean,
-    pinchThreshold: Number,
-    snapCenter: Boolean,
-    snapVertical: Boolean,
-    snapHorizontal: Boolean,
-    snapElement: Boolean,
-    snapThreshold: Number,
-    horizontalGuidelines: Array,
-    verticalGuidelines: Array,
-    elementGuidelines: Array,
-    bounds: Object,
+    rootContainer: HTMLElement,
     dragArea: Boolean,
-    rotationPosition: String,
-    baseDirection: Array,
-    renderDirections: Array,
-    defaultGroupRotate: Boolean,
-    scrollable: Boolean,
-    scrollContainer: [HTMLElement, SVGElement],
-    scrollThreshold: Number,
-    getScrollPosition: Function
+    origin: Boolean,
+    zoom: Number,
+    transformOrigin: [Array, String],
+    edge: Boolean,
+    ables: Array,
+    className: String,
+    pinchThreshold: Number,
+    triggerAblesSimultaneously: Boolean
   },
   methods: methodMap,
   mounted: function mounted() {
@@ -11612,13 +11620,13 @@ METHODS.forEach(function (name) {
     EVENTS.forEach(function (event) {
       return _this.moveable.on(event, _this.$emit.bind(_this, event));
     });
-    window.addEventListener('resize', this.updateRec, {
+    window.addEventListener('resize', this.updateRect, {
       passive: true
     });
   },
   watch: _objectSpread({}, Moveablevue_type_script_lang_js_watchMoveableProps()),
   beforeDestroy: function beforeDestroy() {
-    window.removeEventListener('resize', this.updateRec);
+    window.removeEventListener('resize', this.updateRect);
     this.moveable.destroy();
   }
 });

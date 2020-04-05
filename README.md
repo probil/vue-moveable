@@ -168,6 +168,38 @@ export default {
 }
 </script>
 ```
+### Calling moveable methods
+All [moveable instance methods](https://daybrush.com/moveable/release/latest/doc/Moveable.html#methods) are supported. 
+Just use reference to call them. 
+
+E.g. `this.$refs.<moveable_ref>.<moveable_method>`.
+
+Here is an example:
+```vue
+<template>
+  <Moveable
+    ref="moveable"
+    class="moveable"
+  >
+    <span>Vue Moveable</span>
+  </Moveable>
+</template>
+<script>
+import Moveable from 'vue-moveable';
+
+export default {
+  name: 'app',
+  components: {
+    Moveable,
+  },
+  mounted() {
+   console.log("getRect: ", this.$refs.moveable.getRect());
+   console.log("isMoveableElement: ", this.$refs.moveable.isMoveableElement(document.body));
+  },
+}
+</script>
+```
+Demo: https://codesandbox.io/s/vue-moveable-issue-84-xzblq
 
 ## Polyfills
 

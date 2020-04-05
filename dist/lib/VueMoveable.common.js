@@ -87,45 +87,80 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "f6fd":
-/***/ (function(module, exports) {
+/***/ "8875":
+/***/ (function(module, exports, __webpack_require__) {
 
-// document.currentScript polyfill by Adam Miller
-
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// addapted from the document.currentScript polyfill by Adam Miller
 // MIT license
+// source: https://github.com/amiller-gh/currentScript-polyfill
 
-(function(document){
-  var currentScript = "currentScript",
-      scripts = document.getElementsByTagName('script'); // Live NodeList collection
+// added support for Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1620505
 
-  // If browser needs currentScript polyfill, add get currentScript() to the document object
-  if (!(currentScript in document)) {
-    Object.defineProperty(document, currentScript, {
-      get: function(){
-
-        // IE 6-10 supports script readyState
-        // IE 10+ support stack trace
-        try { throw new Error(); }
-        catch (err) {
-
-          // Find the second match for the "at" string to get file src url from stack.
-          // Specifically works with the format of stack traces in IE.
-          var i, res = ((/.*at [^\(]*\((.*):.+:.+\)$/ig).exec(err.stack) || [false])[1];
-
-          // For all scripts on the page, if src matches or if ready state is interactive, return the script tag
-          for(i in scripts){
-            if(scripts[i].src == res || scripts[i].readyState == "interactive"){
-              return scripts[i];
-            }
-          }
-
-          // If no match, return null
-          return null;
+(function (root, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+}(typeof self !== 'undefined' ? self : this, function () {
+  function getCurrentScript () {
+    if (document.currentScript) {
+      return document.currentScript
+    }
+  
+    // IE 8-10 support script readyState
+    // IE 11+ & Firefox support stack trace
+    try {
+      throw new Error();
+    }
+    catch (err) {
+      // Find the second match for the "at" string to get file src url from stack.
+      var ieStackRegExp = /.*at [^(]*\((.*):(.+):(.+)\)$/ig,
+        ffStackRegExp = /@([^@]*):(\d+):(\d+)\s*$/ig,
+        stackDetails = ieStackRegExp.exec(err.stack) || ffStackRegExp.exec(err.stack),
+        scriptLocation = (stackDetails && stackDetails[1]) || false,
+        line = (stackDetails && stackDetails[2]) || false,
+        currentLocation = document.location.href.replace(document.location.hash, ''),
+        pageSource,
+        inlineScriptSourceRegExp,
+        inlineScriptSource,
+        scripts = document.getElementsByTagName('script'); // Live NodeList collection
+  
+      if (scriptLocation === currentLocation) {
+        pageSource = document.documentElement.outerHTML;
+        inlineScriptSourceRegExp = new RegExp('(?:[^\\n]+?\\n){0,' + (line - 2) + '}[^<]*<script>([\\d\\D]*?)<\\/script>[\\d\\D]*', 'i');
+        inlineScriptSource = pageSource.replace(inlineScriptSourceRegExp, '$1').trim();
+      }
+  
+      for (var i = 0; i < scripts.length; i++) {
+        // If ready state is interactive, return the script tag
+        if (scripts[i].readyState === 'interactive') {
+          return scripts[i];
+        }
+  
+        // If src matches, return the script tag
+        if (scripts[i].src === scriptLocation) {
+          return scripts[i];
+        }
+  
+        // If inline source matches, return the script tag
+        if (
+          scriptLocation === currentLocation &&
+          scripts[i].innerHTML &&
+          scripts[i].innerHTML.trim() === inlineScriptSource
+        ) {
+          return scripts[i];
         }
       }
-    });
-  }
-})(document);
+  
+      // If no match, return null
+      return null;
+    }
+  };
+
+  return getCurrentScript
+}));
 
 
 /***/ }),
@@ -134,26 +169,34 @@ module.exports =
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 // This file is imported into lib/wc client bundles.
 
 if (typeof window !== 'undefined') {
+  var currentScript = window.document.currentScript
   if (true) {
-    __webpack_require__("f6fd")
+    var getCurrentScript = __webpack_require__("8875")
+    currentScript = getCurrentScript()
+
+    // for backward compatibility, because previously we directly included the polyfill
+    if (!('currentScript' in document)) {
+      Object.defineProperty(document, 'currentScript', { get: getCurrentScript })
+    }
   }
 
-  var setPublicPath_i
-  if ((setPublicPath_i = window.document.currentScript) && (setPublicPath_i = setPublicPath_i.src.match(/(.+\/)[^/]+\.js(\?.*)?$/))) {
-    __webpack_require__.p = setPublicPath_i[1] // eslint-disable-line
+  var src = currentScript && currentScript.src.match(/(.+\/)[^/]+\.js(\?.*)?$/)
+  if (src) {
+    __webpack_require__.p = src[1] // eslint-disable-line
   }
 }
 
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68998962-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=5632c640&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"43f4d438-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=5632c640&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
 var staticRenderFns = []
 
@@ -4554,7 +4597,7 @@ name: react-compat-moveable
 license: MIT
 author: Daybrush
 repository: https://github.com/daybrush/moveable/blob/master/packages/react-compat-moveable
-version: 0.3.1
+version: 0.4.0
 */
 
 
@@ -4572,7 +4615,7 @@ name: react-moveable
 license: MIT
 author: Daybrush
 repository: https://github.com/daybrush/moveable/blob/master/packages/react-moveable
-version: 0.18.1
+version: 0.19.0
 */
 
 /*! *****************************************************************************
@@ -4643,7 +4686,7 @@ function getCursorCSS(degree) {
 var moveable_esm_agent = agent_esm();
 var IS_WEBKIT = moveable_esm_agent.os.name.indexOf("ios") > -1 || moveable_esm_agent.browser.name.indexOf("safari") > -1;
 var PREFIX = "moveable-";
-var MOVEABLE_CSS = prefixCSS(PREFIX, "\n{\n\tposition: fixed;\n\twidth: 0;\n\theight: 0;\n\tleft: 0;\n\ttop: 0;\n    z-index: 3000;\n    --zoom: 1;\n    --zoompx: 1px;\n}\n.control-box {\n    z-index: 0;\n}\n.line, .control {\n\tleft: 0;\n    top: 0;\n    will-change: transform;\n}\n.control {\n\tposition: absolute;\n\twidth: 14px;\n\theight: 14px;\n\tborder-radius: 50%;\n\tborder: 2px solid #fff;\n\tbox-sizing: border-box;\n\tbackground: #4af;\n\tmargin-top: -7px;\n    margin-left: -7px;\n    width: calc(14 * var(--zoompx));\n    height: calc(14 * var(--zoompx));\n    margin-top: calc(-7 * var(--zoompx));\n    margin-left: calc(-7 * var(--zoompx));\n    border: calc(2 * var(--zoompx)) solid #fff;\n    z-index: 10;\n}\n.line {\n\tposition: absolute;\n\twidth: 1px;\n    height: 1px;\n    width: var(--zoompx);\n    height: var(--zoompx);\n\tbackground: #4af;\n\ttransform-origin: 0px 50%;\n}\n.line.dashed {\n    box-sizing: border-box;\n    background: transparent;\n}\n.line.dashed.horizontal {\n    border-top: 1px dashed #4af;\n    border-top: var(--zoompx) dashed #4af;\n}\n.line.dashed.vertical {\n    border-left: 1px dashed #4af;\n    border-left: var(--zoompx) dashed #4af;\n}\n.line.dashed:before {\n    position: absolute;\n    content: attr(data-size);\n    color: #4af;\n    font-size: 12px;\n    font-weight: bold;\n}\n.line.dashed.horizontal:before {\n    left: 50%;\n    transform: translateX(-50%);\n    bottom: 5px;\n}\n.line.dashed.vertical:before {\n    top: 50%;\n    transform: translateY(-50%);\n    left: 5px;\n}\n.line.rotation-line {\n\theight: 40px;\n    width: 1px;\n    transform-origin: 50% calc(100% - 0.5px);\n    top: -40px;\n    width: var(--zoompx);\n    height: calc(40 * var(--zoompx));\n    top: calc(-40 * var(--zoompx));\n    transform-origin: 50% calc(100% - 0.5 * var(--zoompx));\n}\n.line.rotation-line .control {\n\tborder-color: #4af;\n\tbackground:#fff;\n    cursor: alias;\n    left: 50%;\n}\n.line.vertical {\n    transform: translateX(-50%);\n}\n.line.horizontal {\n    transform: translateY(-50%);\n}\n.line.vertical.bold {\n    width: 2px;\n    width: calc(2 * var(--zoompx));\n}\n.line.horizontal.bold {\n    height: 2px;\n    height: calc(2 * var(--zoompx));\n}\n.control.origin {\n\tborder-color: #f55;\n\tbackground: #fff;\n\twidth: 12px;\n\theight: 12px;\n\tmargin-top: -6px;\n    margin-left: -6px;\n    width: calc(12 * var(--zoompx));\n    height: calc(12 * var(--zoompx));\n    margin-top: calc(-6 * var(--zoompx));\n    margin-left: calc(-6 * var(--zoompx));\n\tpointer-events: none;\n}\n" + [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165].map(function (degree) {
+var MOVEABLE_CSS = prefixCSS(PREFIX, "\n{\n\tposition: fixed;\n\twidth: 0;\n\theight: 0;\n\tleft: 0;\n\ttop: 0;\n    z-index: 3000;\n    --zoom: 1;\n    --zoompx: 1px;\n}\n.control-box {\n    z-index: 0;\n}\n.line, .control {\n\tleft: 0;\n    top: 0;\n    will-change: transform;\n}\n.control {\n\tposition: absolute;\n\twidth: 14px;\n\theight: 14px;\n\tborder-radius: 50%;\n\tborder: 2px solid #fff;\n\tbox-sizing: border-box;\n\tbackground: #4af;\n\tmargin-top: -7px;\n    margin-left: -7px;\n    width: calc(14 * var(--zoompx));\n    height: calc(14 * var(--zoompx));\n    margin-top: calc(-7 * var(--zoompx));\n    margin-left: calc(-7 * var(--zoompx));\n    border: calc(2 * var(--zoompx)) solid #fff;\n    z-index: 10;\n}\n.line {\n\tposition: absolute;\n\twidth: 1px;\n    height: 1px;\n    width: var(--zoompx);\n    height: var(--zoompx);\n\tbackground: #4af;\n\ttransform-origin: 0px 50%;\n}\n.line.dashed {\n    box-sizing: border-box;\n    background: transparent;\n}\n.line.dashed.horizontal {\n    border-top: 1px dashed #4af;\n    border-top: var(--zoompx) dashed #4af;\n}\n.line.dashed.vertical {\n    border-left: 1px dashed #4af;\n    border-left: var(--zoompx) dashed #4af;\n}\n.line.dashed:before {\n    position: absolute;\n    content: attr(data-size);\n    color: #4af;\n    font-size: 12px;\n    font-weight: bold;\n}\n.line.dashed.horizontal:before, .line.gap.horizontal:before {\n    left: 50%;\n    transform: translateX(-50%);\n    bottom: 5px;\n}\n.line.dashed.vertical:before, .line.gap.vertical:before {\n    top: 50%;\n    transform: translateY(-50%);\n    left: 5px;\n}\n.line.rotation-line {\n\theight: 40px;\n    width: 1px;\n    transform-origin: 50% calc(100% - 0.5px);\n    top: -40px;\n    width: var(--zoompx);\n    height: calc(40 * var(--zoompx));\n    top: calc(-40 * var(--zoompx));\n    transform-origin: 50% calc(100% - 0.5 * var(--zoompx));\n}\n.line.rotation-line .control {\n\tborder-color: #4af;\n\tbackground:#fff;\n    cursor: alias;\n    left: 50%;\n}\n.line.vertical {\n    transform: translateX(-50%);\n}\n.line.horizontal {\n    transform: translateY(-50%);\n}\n.line.vertical.bold {\n    width: 2px;\n    width: calc(2 * var(--zoompx));\n}\n.line.horizontal.bold {\n    height: 2px;\n    height: calc(2 * var(--zoompx));\n}\n\n.line.gap {\n    background: #f55;\n}\n.line.gap:before {\n    position: absolute;\n    content: attr(data-size);\n    color: #f55;\n    font-size: 12px;\n    font-weight: bold;\n}\n.control.origin {\n\tborder-color: #f55;\n\tbackground: #fff;\n\twidth: 12px;\n\theight: 12px;\n\tmargin-top: -6px;\n    margin-left: -6px;\n    width: calc(12 * var(--zoompx));\n    height: calc(12 * var(--zoompx));\n    margin-top: calc(-6 * var(--zoompx));\n    margin-left: calc(-6 * var(--zoompx));\n\tpointer-events: none;\n}\n" + [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165].map(function (degree) {
   return "\n.direction[data-rotation=\"" + degree + "\"] {\n\t" + getCursorCSS(degree) + "\n}\n";
 }).join("\n") + "\n.group {\n    z-index: -1;\n}\n.area {\n    position: absolute;\n}\n.area-pieces {\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: none;\n}\n.area.avoid {\n    pointer-events: none;\n}\n.area.avoid+.area-pieces {\n    display: block;\n}\n.area-piece {\n    position: absolute;\n}\n" + (IS_WEBKIT ? ":global svg *:before {\n\tcontent:\"\";\n\ttransform-origin: inherit;\n}" : "") + "\n");
 var NEARBY_POS = [[0, 1, 2], [1, 0, 3], [2, 0, 3], [3, 1, 2]];
@@ -5341,6 +5384,8 @@ function resetClientRect() {
     bottom: 0,
     width: 0,
     height: 0,
+    clientLeft: 0,
+    clientTop: 0,
     clientWidth: 0,
     clientHeight: 0,
     scrollWidth: 0,
@@ -5366,6 +5411,8 @@ function getClientRect(el, isExtends) {
   };
 
   if (isExtends) {
+    rect.clientLeft = el.clientLeft;
+    rect.clientTop = el.clientTop;
     rect.clientWidth = el.clientWidth;
     rect.clientHeight = el.clientHeight;
     rect.scrollWidth = el.scrollWidth;
@@ -5469,13 +5516,17 @@ function fillParams(moveable, e, params) {
     datas: datas.datas
   });
 }
-function triggerEvent(moveable, name, params) {
+function triggerEvent(moveable, name, params, isManager) {
+  if (isManager) {
+    moveable_esm_MoveableManager.prototype.triggerEvent.call(moveable, name, params);
+  }
+
   return moveable.triggerEvent(name, params);
 }
 function getComputedStyle(el, pseudoElt) {
   return window.getComputedStyle(el, pseudoElt);
 }
-function filterAbles(ables, methods) {
+function filterAbles(ables, methods, triggerAblesSimultaneously) {
   var enabledAbles = {};
   var ableGroups = {};
   return ables.filter(function (able) {
@@ -5487,7 +5538,7 @@ function filterAbles(ables, methods) {
       return false;
     }
 
-    if (able.ableGroup) {
+    if (!triggerAblesSimultaneously && able.ableGroup) {
       if (ableGroups[able.ableGroup]) {
         return false;
       }
@@ -5528,19 +5579,38 @@ function selectValue() {
   return values[length];
 }
 function groupBy(arr, func) {
-  var group = [];
-  var groupMap = {};
+  var groups = [];
+  var groupKeys = [];
   arr.forEach(function (el, index) {
     var groupKey = func(el, index, arr);
+    var keyIndex = groupKeys.indexOf(groupKey);
+    var group = groups[keyIndex] || [];
 
-    if (!groupMap[groupKey]) {
-      groupMap[groupKey] = [];
-      group.push(groupMap[groupKey]);
+    if (keyIndex === -1) {
+      groupKeys.push(groupKey);
+      groups.push(group);
     }
 
-    groupMap[groupKey].push(el);
+    group.push(el);
   });
-  return group;
+  return groups;
+}
+function groupByMap(arr, func) {
+  var groups = [];
+  var groupKeys = {};
+  arr.forEach(function (el, index) {
+    var groupKey = func(el, index, arr);
+    var group = groupKeys[groupKey];
+
+    if (!group) {
+      group = [];
+      groupKeys[groupKey] = group;
+      groups.push(group);
+    }
+
+    group.push(el);
+  });
+  return groups;
 }
 function moveable_esm_flat(arr) {
   return arr.reduce(function (prev, cur) {
@@ -5556,6 +5626,18 @@ function maxOffset() {
 
   args.sort(function (a, b) {
     return Math.abs(b) - Math.abs(a);
+  });
+  return args[0];
+}
+function minOffset() {
+  var args = [];
+
+  for (var _i = 0; _i < arguments.length; _i++) {
+    args[_i] = arguments[_i];
+  }
+
+  args.sort(function (a, b) {
+    return Math.abs(a) - Math.abs(b);
   });
   return args[0];
 }
@@ -5632,11 +5714,22 @@ function triggerAble(moveable, ableType, eventOperation, eventAffix, eventType, 
   var events = ables.filter(function (able) {
     return able[eventName];
   });
+  var datas = e.datas;
+  var renderDatas = datas.render || (datas.render = {});
+
+  var renderEvent = moveable_esm_assign({}, e, {
+    datas: renderDatas
+  });
+
   var results = events.filter(function (able) {
     var condition = isStart && able[conditionName];
+    var ableName = able.name;
+    var nextDatas = datas[ableName] || (datas[ableName] = {});
 
     if (!condition || condition(e, moveable)) {
-      return able[eventName](moveable, e);
+      return able[eventName](moveable, moveable_esm_assign({}, e, {
+        datas: nextDatas
+      }));
     }
 
     return false;
@@ -5656,15 +5749,19 @@ function triggerAble(moveable, ableType, eventOperation, eventAffix, eventType, 
       return false;
     }
 
-    triggerRenderStart(moveable, isGroup, e);
+    triggerRenderStart(moveable, isGroup, renderEvent);
   } else if (isEnd) {
-    triggerRenderEnd(moveable, isGroup, e);
+    triggerRenderEnd(moveable, isGroup, renderEvent);
   } else if (isUpdate) {
-    triggerRender(moveable, isGroup, e);
+    triggerRender(moveable, isGroup, renderEvent);
   }
 
   if (isEnd) {
     moveable.state.dragger = null;
+  }
+
+  if (moveable.isUnmounted) {
+    return;
   }
 
   if (!isStart && isUpdate) {
@@ -5749,6 +5846,7 @@ function (_super) {
     };
     _this.targetAbles = [];
     _this.controlAbles = [];
+    _this.isUnmounted = false;
     return _this;
   }
 
@@ -5812,6 +5910,7 @@ function (_super) {
   };
 
   __proto.componentWillUnmount = function () {
+    this.isUnmounted = true;
     unset(this, "targetDragger");
     unset(this, "controlDragger");
   };
@@ -6053,14 +6152,15 @@ function (_super) {
     }
 
     var props = this.props;
+    var triggerAblesSimultaneously = props.triggerAblesSimultaneously;
     var enabledAbles = ables.filter(function (able) {
       return able && props[able.name];
     });
     var dragStart = "drag" + eventAffix + "Start";
     var pinchStart = "pinch" + eventAffix + "Start";
     var dragControlStart = "drag" + eventAffix + "ControlStart";
-    var targetAbles = filterAbles(enabledAbles, [dragStart, pinchStart]);
-    var controlAbles = filterAbles(enabledAbles, [dragControlStart]);
+    var targetAbles = filterAbles(enabledAbles, [dragStart, pinchStart], triggerAblesSimultaneously);
+    var controlAbles = filterAbles(enabledAbles, [dragControlStart], triggerAblesSimultaneously);
     this.targetAbles = targetAbles;
     this.controlAbles = controlAbles;
   };
@@ -6082,16 +6182,24 @@ function (_super) {
 
     var props = this.props;
     var ables = props.ables;
+    var triggerAblesSimultaneously = props.triggerAblesSimultaneously;
     var enabledAbles = ables.filter(function (able) {
       return able && props[able.name];
     });
     var Renderer = {
       createElement: createElement
     };
-    return moveable_esm_flat(filterAbles(enabledAbles, ["render"]).map(function (_a) {
+    return groupByMap(moveable_esm_flat(filterAbles(enabledAbles, ["render"], triggerAblesSimultaneously).map(function (_a) {
       var render = _a.render;
-      return render(_this, Renderer);
-    }));
+      return render(_this, Renderer) || [];
+    })).filter(function (el) {
+      return el;
+    }), function (_a) {
+      var key = _a.key;
+      return key;
+    }).map(function (group) {
+      return group[0];
+    });
   };
 
   MoveableManager.defaultProps = {
@@ -6107,7 +6215,8 @@ function (_super) {
     dragArea: false,
     transformOrigin: "",
     className: "",
-    zoom: 1
+    zoom: 1,
+    triggerAblesSimultaneously: false
   };
   return MoveableManager;
 }(PureComponent);
@@ -6525,6 +6634,94 @@ function directionCondition(e) {
   return hasClass(e.inputEvent.target, prefix("direction"));
 }
 
+function getGapGuidelines(guidelines, type, snapThreshold, index, _a, _b) {
+  var start = _a[0],
+      end = _a[1];
+  var otherStart = _b[0],
+      otherEnd = _b[1];
+  var totalGuidelines = [];
+  var otherIndex = index ? 0 : 1;
+  var otherType = type === "vertical" ? "horizontal" : "vertical";
+  var elementGuidelines = groupBy(guidelines.filter(function (_a) {
+    var guidelineType = _a.type;
+    return guidelineType === type;
+  }), function (_a) {
+    var element = _a.element;
+    return element;
+  }).map(function (group) {
+    return group[0];
+  }).filter(function (_a) {
+    var pos = _a.pos,
+        sizes = _a.sizes;
+    return pos[otherIndex] <= otherEnd && otherStart <= pos[otherIndex] + sizes[otherIndex];
+  });
+  elementGuidelines.forEach(function (guideline1) {
+    var elementStart = guideline1.pos[index];
+    var elementEnd = elementStart + guideline1.sizes[index];
+    elementGuidelines.forEach(function (_a) {
+      var guideline2Pos = _a.pos,
+          guideline2Sizes = _a.sizes,
+          guideline2Element = _a.element;
+      var targetStart = guideline2Pos[index];
+      var targetEnd = targetStart + guideline2Sizes[index];
+      var pos = 0;
+      var gap = 0;
+      var canSnap = true;
+
+      if (elementEnd <= targetStart) {
+        // gap -
+        gap = elementEnd - targetStart;
+        pos = targetEnd - gap;
+
+        if (start < pos - snapThreshold) {
+          canSnap = false;
+        } // element target moveable
+
+      } else if (targetEnd <= elementStart) {
+        // gap +
+        gap = elementStart - targetEnd;
+        pos = targetStart - gap;
+
+        if (end > pos + snapThreshold) {
+          canSnap = false;
+        } // moveable target element
+
+      } else {
+        return;
+      }
+
+      if (canSnap) {
+        totalGuidelines.push({
+          pos: otherType === "vertical" ? [pos, guideline2Pos[1]] : [guideline2Pos[0], pos],
+          element: guideline2Element,
+          sizes: guideline2Sizes,
+          size: 0,
+          type: otherType,
+          gap: gap,
+          gapGuidelines: elementGuidelines
+        });
+      }
+
+      if (elementEnd <= start && end <= targetStart) {
+        // elementEnd   moveable   target
+        var centerPos = (targetStart + elementEnd - (end - start)) / 2;
+
+        if (throttle(start - (centerPos - snapThreshold), 0.1) >= 0) {
+          totalGuidelines.push({
+            pos: otherType === "vertical" ? [centerPos, guideline2Pos[1]] : [guideline2Pos[0], centerPos],
+            element: guideline2Element,
+            sizes: guideline2Sizes,
+            size: 0,
+            type: otherType,
+            gap: elementEnd - start,
+            gapGuidelines: elementGuidelines
+          });
+        }
+      }
+    });
+  });
+  return totalGuidelines;
+}
 function getTotalGuidelines(moveable) {
   var _a = moveable.state,
       guidelines = _a.guidelines,
@@ -6536,9 +6733,27 @@ function getTotalGuidelines(moveable) {
       snapHorizontal = _c === void 0 ? true : _c,
       _d = props.snapVertical,
       snapVertical = _d === void 0 ? true : _d,
+      _e = props.snapGap,
+      snapGap = _e === void 0 ? true : _e,
       verticalGuidelines = props.verticalGuidelines,
-      horizontalGuidelines = props.horizontalGuidelines;
+      horizontalGuidelines = props.horizontalGuidelines,
+      _f = props.snapThreshold,
+      snapThreshold = _f === void 0 ? 5 : _f;
   var totalGuidelines = guidelines.slice();
+
+  if (snapGap) {
+    var _g = getRect(getAbsolutePosesByState(moveable.state)),
+        top = _g.top,
+        left = _g.left,
+        bottom = _g.bottom,
+        right = _g.right;
+
+    var elementGuidelines = guidelines.filter(function (_a) {
+      var element = _a.element;
+      return element;
+    });
+    totalGuidelines.push.apply(totalGuidelines, getGapGuidelines(elementGuidelines, "horizontal", snapThreshold, 0, [left, right], [top, bottom]).concat(getGapGuidelines(elementGuidelines, "vertical", snapThreshold, 1, [top, bottom], [left, right])));
+  }
 
   if (snapHorizontal && horizontalGuidelines) {
     horizontalGuidelines.forEach(function (pos) {
@@ -7544,12 +7759,12 @@ function snapStart(moveable) {
     return;
   }
 
-  var _e = state.containerClientRect,
-      containerTop = _e.top,
-      containerLeft = _e.left,
-      _f = state.targetClientRect,
-      clientTop = _f.top,
-      clientLeft = _f.left;
+  var containerClientRect = state.containerClientRect,
+      _e = state.targetClientRect,
+      clientTop = _e.top,
+      clientLeft = _e.left;
+  var containerLeft = containerClientRect.left + containerClientRect.clientLeft;
+  var containerTop = containerClientRect.top + containerClientRect.clientTop;
   var poses = getAbsolutePosesByState(state);
   var targetLeft = Math.min.apply(Math, poses.map(function (pos) {
     return pos[0];
@@ -7570,29 +7785,34 @@ function snapStart(moveable) {
     var elementBottom = elementTop + height;
     var elementLeft = left - containerLeft;
     var elementRight = elementLeft + width;
+    var sizes = [width, height];
     guidelines.push({
       type: "vertical",
       element: el,
       pos: [throttle(elementLeft + distLeft, 0.1), elementTop],
-      size: height
+      size: height,
+      sizes: sizes
     });
     guidelines.push({
       type: "vertical",
       element: el,
       pos: [throttle(elementRight + distLeft, 0.1), elementTop],
-      size: height
+      size: height,
+      sizes: sizes
     });
     guidelines.push({
       type: "horizontal",
       element: el,
       pos: [elementLeft, throttle(elementTop + distTop, 0.1)],
-      size: width
+      size: width,
+      sizes: sizes
     });
     guidelines.push({
       type: "horizontal",
       element: el,
       pos: [elementLeft, throttle(elementBottom + distTop, 0.1)],
-      size: width
+      size: width,
+      sizes: sizes
     });
 
     if (snapCenter) {
@@ -7601,6 +7821,7 @@ function snapStart(moveable) {
         element: el,
         pos: [throttle((elementLeft + elementRight) / 2 + distLeft, 0.1), elementTop],
         size: height,
+        sizes: sizes,
         center: true
       });
       guidelines.push({
@@ -7608,6 +7829,7 @@ function snapStart(moveable) {
         element: el,
         pos: [elementLeft, throttle((elementTop + elementBottom) / 2 + distTop, 0.1)],
         size: width,
+        sizes: sizes,
         center: true
       });
     }
@@ -7955,7 +8177,6 @@ function checkSizeDist(moveable, getNextPoses, matrix, width, height, direction,
 
     widthOffset += nextWidthOffset;
     heightOffset += nextHeightOffset;
-    return [widthOffset, heightOffset];
   }
 
   if (direction[0] && direction[1]) {
@@ -8232,12 +8453,12 @@ function getElementGuidelineDist(elementPos, elementSize, targetPos, targetSize)
 function groupByElementGuidelines(guidelines, clientPos, size, index) {
   var groupInfos = [];
   var group = groupBy(guidelines.filter(function (_a) {
-    var element = _a.element;
-    return element;
+    var element = _a.element,
+        gap = _a.gap;
+    return element && !gap;
   }), function (_a) {
     var element = _a.element,
-        pos = _a.pos,
-        size2 = _a.size;
+        pos = _a.pos;
     var elementPos = pos[index];
     var sign = Math.min(0, elementPos - clientPos) < 0 ? -1 : 1;
     var groupKey = sign + "_" + pos[index ? 0 : 1];
@@ -8332,6 +8553,129 @@ function renderGuidelines(guidelines, _a, targetPos1, targetPos2, index, React) 
   });
 }
 
+function getGapGuidelinesToStart(guidelines, index, targetPos, targetSizes, guidelinePos, gap, otherPos) {
+  var absGap = Math.abs(gap);
+  var start = guidelinePos[index] + (gap > 0 ? targetSizes[0] : 0);
+  return guidelines.filter(function (_a) {
+    var gapPos = _a.pos;
+    return gapPos[index] <= targetPos[index];
+  }).sort(function (_a, _b) {
+    var aPos = _a.pos;
+    var bPos = _b.pos;
+    return bPos[index] - aPos[index];
+  }).filter(function (_a) {
+    var gapPos = _a.pos,
+        gapSizes = _a.sizes;
+    var nextPos = gapPos[index];
+
+    if (throttle(nextPos + gapSizes[index], 0.0001) === throttle(start - absGap, 0.0001)) {
+      start = nextPos;
+      return true;
+    }
+
+    return false;
+  }).map(function (gapGuideline) {
+    var renderPos = -targetPos[index] + gapGuideline.pos[index] + gapGuideline.sizes[index];
+    return moveable_esm_assign({}, gapGuideline, {
+      gap: gap,
+      renderPos: index ? [otherPos, renderPos] : [renderPos, otherPos]
+    });
+  });
+}
+
+function getGapGuidelinesToEnd(guidelines, index, targetPos, targetSizes, guidelinePos, gap, otherPos) {
+  var absGap = Math.abs(gap);
+  var start = guidelinePos[index] + (gap < 0 ? targetSizes[index] : 0);
+  return guidelines.filter(function (_a) {
+    var gapPos = _a.pos;
+    return gapPos[index] > targetPos[index];
+  }).sort(function (_a, _b) {
+    var aPos = _a.pos;
+    var bPos = _b.pos;
+    return aPos[index] - bPos[index];
+  }).filter(function (_a) {
+    var gapPos = _a.pos,
+        gapSizes = _a.sizes;
+    var nextPos = gapPos[index];
+
+    if (throttle(nextPos, 0.0001) === throttle(start + absGap, 0.0001)) {
+      start = nextPos + gapSizes[index];
+      return true;
+    }
+
+    return false;
+  }).map(function (gapGuideline) {
+    var renderPos = -targetPos[index] + gapGuideline.pos[index] - absGap;
+    return moveable_esm_assign({}, gapGuideline, {
+      gap: gap,
+      renderPos: index ? [otherPos, renderPos] : [renderPos, otherPos]
+    });
+  });
+}
+
+function getGapGuidelines$1(guidelines, type, targetPos, targetSizes) {
+  var elementGuidelines = guidelines.filter(function (_a) {
+    var element = _a.element,
+        gap = _a.gap,
+        guidelineType = _a.type;
+    return element && gap && guidelineType === type;
+  });
+
+  var _a = type === "vertical" ? [0, 1] : [1, 0],
+      index = _a[0],
+      otherIndex = _a[1];
+
+  return moveable_esm_flat(elementGuidelines.map(function (guideline, i) {
+    var pos = guideline.pos;
+    var gap = guideline.gap;
+    var gapGuidelines = guideline.gapGuidelines;
+    var sizes = guideline.sizes;
+    var offset = minOffset(pos[otherIndex] + sizes[otherIndex] - targetPos[otherIndex], pos[otherIndex] - targetPos[otherIndex] - targetSizes[otherIndex]);
+    var minSize = Math.min(sizes[otherIndex], targetSizes[otherIndex]);
+
+    if (offset > 0 && offset > minSize) {
+      offset = (offset - minSize / 2) * 2;
+    } else if (offset < 0 && offset < -minSize) {
+      offset = (offset + minSize / 2) * 2;
+    }
+
+    var otherPos = (offset > 0 ? 0 : targetSizes[otherIndex]) + offset / 2;
+    return getGapGuidelinesToStart(gapGuidelines, index, targetPos, targetSizes, pos, gap, otherPos).concat(getGapGuidelinesToEnd(gapGuidelines, index, targetPos, targetSizes, pos, gap, otherPos));
+  }));
+}
+
+function renderGapGuidelines(moveable, gapGuidelines, type, _a, React) {
+  var directionName = _a[0],
+      posName1 = _a[1],
+      posName2 = _a[2],
+      sizeName = _a[3];
+  var _b = moveable.props,
+      _c = _b.snapDigit,
+      snapDigit = _c === void 0 ? 0 : _c,
+      _d = _b.isDisplaySnapDigit,
+      isDisplaySnapDigit = _d === void 0 ? true : _d;
+  var otherType = type === "vertical" ? "horizontal" : "vertical";
+
+  var _e = type === "vertical" ? [0, 1] : [1, 0],
+      index = _e[0],
+      otherIndex = _e[1];
+
+  return gapGuidelines.map(function (_a, i) {
+    var _b;
+
+    var renderPos = _a.renderPos,
+        gap = _a.gap;
+    var absGap = Math.abs(gap);
+    var snapSize = isDisplaySnapDigit ? parseFloat(absGap.toFixed(snapDigit)) : 0;
+    return React.createElement("div", {
+      className: prefix("line", directionName, "guideline", "gap"),
+      "data-size": snapSize,
+      key: otherType + "GapGuideline" + i,
+      style: (_b = {}, _b[posName1] = renderPos[index] + "px", _b[posName2] = renderPos[otherIndex] + "px", _b[sizeName] = absGap + "px", _b)
+    });
+  });
+}
+
 function addBoundGuidelines(moveable, verticalPoses, horizontalPoses, verticalSnapPoses, horizontalSnapPoses) {
   var _a = checkBoundPoses(moveable, verticalPoses, horizontalPoses),
       _b = _a.vertical,
@@ -8369,6 +8713,7 @@ var Snappable = {
     snapHorizontal: Boolean,
     snapVertical: Boolean,
     snapElement: Boolean,
+    snapGap: Boolean,
     isDisplaySnapDigit: Boolean,
     snapDigit: Number,
     snapThreshold: Number,
@@ -8389,8 +8734,8 @@ var Snappable = {
         snapRenderInfo = _a.snapRenderInfo,
         targetClientRect = _a.targetClientRect,
         containerClientRect = _a.containerClientRect;
-    var clientLeft = targetClientRect.left - containerClientRect.left;
-    var clientTop = targetClientRect.top - containerClientRect.top;
+    var clientLeft = targetClientRect.left - containerClientRect.left - containerClientRect.clientLeft;
+    var clientTop = targetClientRect.top - containerClientRect.top - containerClientRect.clientTop;
     var minLeft = Math.min(pos1[0], pos2[0], pos3[0], pos4[0]);
     var minTop = Math.min(pos1[1], pos2[1], pos3[1], pos4[1]);
 
@@ -8417,7 +8762,7 @@ var Snappable = {
 
     var verticalSnapPoses = [];
     var horizontalSnapPoses = [];
-    var verticalGuildelines = [];
+    var verticalGuidelines = [];
     var horizontalGuidelines = [];
     var snapInfos = [];
 
@@ -8445,15 +8790,32 @@ var Snappable = {
       horizontalSnapPoses.push.apply(horizontalSnapPoses, horizontalPosInfos.map(function (posInfo) {
         return posInfo.pos;
       }));
-      verticalGuildelines.push.apply(verticalGuildelines, getSnapGuidelines(verticalPosInfos));
+      verticalGuidelines.push.apply(verticalGuidelines, getSnapGuidelines(verticalPosInfos));
       horizontalGuidelines.push.apply(horizontalGuidelines, getSnapGuidelines(horizontalPosInfos));
     });
     addBoundGuidelines(moveable, [left, right], [top, bottom], verticalSnapPoses, horizontalSnapPoses);
     var elementHorizontalGroup = groupByElementGuidelines(horizontalGuidelines, clientLeft, width, 0);
-    var elementVerticalGroup = groupByElementGuidelines(verticalGuildelines, clientTop, height, 1);
+    var elementVerticalGroup = groupByElementGuidelines(verticalGuidelines, clientTop, height, 1);
     var horizontalNames = ["horizontal", "left", "top", "width"];
     var verticalNames = ["vertical", "top", "left", "height"];
-    return renderElementGroup(elementHorizontalGroup, horizontalNames, minLeft, clientLeft, width, targetTop, snapThreshold, isDisplaySnapDigit, snapDigit, 0, React).concat(renderElementGroup(elementVerticalGroup, verticalNames, minTop, clientTop, height, targetLeft, snapThreshold, isDisplaySnapDigit, snapDigit, 1, React), renderSnapPoses(horizontalSnapPoses, horizontalNames, minLeft, targetTop, width, React), renderSnapPoses(verticalSnapPoses, verticalNames, minTop, targetLeft, height, React), renderGuidelines(horizontalGuidelines, horizontalNames, targetLeft, targetTop, 0, React), renderGuidelines(verticalGuildelines, verticalNames, targetTop, targetLeft, 1, React));
+    var gapVerticalGuidelines = getGapGuidelines$1(verticalGuidelines, "vertical", [targetLeft, targetTop], [width, height]);
+    var gapHorizontalGuidelines = getGapGuidelines$1(horizontalGuidelines, "horizontal", [targetLeft, targetTop], [width, height]);
+    var allGuidelines = verticalGuidelines.concat(horizontalGuidelines);
+    triggerEvent(moveable, "onSnap", {
+      guidelines: allGuidelines.filter(function (_a) {
+        var element = _a.element;
+        return !element;
+      }),
+      elements: groupBy(allGuidelines.filter(function (_a) {
+        var element = _a.element;
+        return element;
+      }), function (_a) {
+        var element = _a.element;
+        return element;
+      }),
+      gaps: gapVerticalGuidelines.concat(gapHorizontalGuidelines)
+    }, true);
+    return renderGapGuidelines(moveable, gapVerticalGuidelines, "vertical", horizontalNames, React).concat(renderGapGuidelines(moveable, gapHorizontalGuidelines, "horizontal", verticalNames, React), renderElementGroup(elementHorizontalGroup, horizontalNames, minLeft, clientLeft, width, targetTop, snapThreshold, isDisplaySnapDigit, snapDigit, 0, React), renderElementGroup(elementVerticalGroup, verticalNames, minTop, clientTop, height, targetLeft, snapThreshold, isDisplaySnapDigit, snapDigit, 1, React), renderSnapPoses(horizontalSnapPoses, horizontalNames, minLeft, targetTop, width, React), renderSnapPoses(verticalSnapPoses, verticalNames, minTop, targetLeft, height, React), renderGuidelines(horizontalGuidelines, horizontalNames, targetLeft, targetTop, 0, React), renderGuidelines(verticalGuidelines, verticalNames, targetTop, targetLeft, 1, React));
   },
   dragStart: function (moveable, e) {
     moveable.state.snapRenderInfo = {
@@ -10832,7 +11194,9 @@ var Scrollable = {
     return this.dragEnd(moveable, e);
   },
   dragGroupStart: function (moveable, e) {
-    return this.dragStart(moveable, e);
+    return this.dragStart(moveable, moveable_esm_assign({}, e, {
+      targets: moveable.props.targets
+    }));
   },
   dragGroup: function (moveable, e) {
     return this.drag(moveable, moveable_esm_assign({}, e, {
@@ -10840,10 +11204,15 @@ var Scrollable = {
     }));
   },
   dragGroupEnd: function (moveable, e) {
-    return this.dragEnd(moveable, e);
+    return this.dragEnd(moveable, moveable_esm_assign({}, e, {
+      targets: moveable.props.targets
+    }));
   },
   dragGroupControlStart: function (moveable, e) {
-    return this.dragStart(moveable, e);
+    return this.dragStart(moveable, moveable_esm_assign({}, e, {
+      targets: moveable.props.targets,
+      isControl: true
+    }));
   },
   dragGroupContro: function (moveable, e) {
     return this.drag(moveable, moveable_esm_assign({}, e, {
@@ -10851,7 +11220,9 @@ var Scrollable = {
     }));
   },
   dragGroupControEnd: function (moveable, e) {
-    return this.dragEnd(moveable, e);
+    return this.dragEnd(moveable, moveable_esm_assign({}, e, {
+      targets: moveable.props.targets
+    }));
   }
 };
 
@@ -11242,6 +11613,27 @@ function (_super) {
     this.moveable.updateTarget();
   };
   /**
+   * Check if the moveable state is being dragged.
+   * @method Moveable#isDragging
+   * @example
+   * import Moveable from "moveable";
+   *
+   * const moveable = new Moveable(document.body);
+   *
+   * // false
+   * console.log(moveable.isDragging());
+   *
+   * moveable.on("drag", () => {
+   *   // true
+   *   console.log(moveable.isDragging());
+   * });
+   */
+
+
+  __proto.isDragging = function () {
+    return this.moveable.isDragging();
+  };
+  /**
    * You can get the vertex information, position and offset size information of the target based on the container.
    * @method Moveable#getRect
    * @return - The Rect Info
@@ -11317,7 +11709,7 @@ name: moveable
 license: MIT
 author: Daybrush
 repository: git+https://github.com/daybrush/moveable.git
-version: 0.15.2
+version: 0.16.0
 */
 
 
@@ -11396,9 +11788,9 @@ function (_super) {
   return InnerMoveable;
 }(compat_esm_Component);
 
-var PROPERTIES = ["draggable", "resizable", "scalable", "rotatable", "warpable", "pinchable", "snappable", "origin", "target", "edge", "throttleDrag", "throttleDragRotate", "throttleResize", "throttleScale", "throttleRotate", "keepRatio", "dragArea", "pinchThreshold", "snapCenter", "snapThreshold", "horizontalGuidelines", "verticalGuidelines", "elementGuidelines", "bounds", "innerBounds", "className", "renderDirections", "scrollable", "getScrollPosition", "scrollContainer", "scrollThreshold", "baseDirection", "snapElement", "snapVertical", "snapHorizontal", "isDisplaySnapDigit", "snapDigit", "zoom"];
-var EVENTS = ["dragStart", "drag", "dragEnd", "resizeStart", "resize", "resizeEnd", "scaleStart", "scale", "scaleEnd", "rotateStart", "rotate", "rotateEnd", "warpStart", "warp", "warpEnd", "pinchStart", "pinch", "pinchEnd", "dragGroupStart", "dragGroup", "dragGroupEnd", "resizeGroupStart", "resizeGroup", "resizeGroupEnd", "scaleGroupStart", "scaleGroup", "scaleGroupEnd", "rotateGroupStart", "rotateGroup", "rotateGroupEnd", "pinchGroupStart", "pinchGroup", "pinchGroupEnd", "clickGroup", "scroll", "scrollGroup", "renderStart", "render", "renderEnd", "renderGroupStart", "renderGroup", "renderGroupEnd"];
-var METHODS = ["isMoveableElement", "updateRect", "updateTarget", "destroy", "dragStart", "isInside", "setState", "getRect", "request"];
+var PROPERTIES = ["draggable", "resizable", "scalable", "rotatable", "warpable", "pinchable", "snappable", "origin", "target", "edge", "throttleDrag", "throttleDragRotate", "throttleResize", "throttleScale", "throttleRotate", "keepRatio", "dragArea", "pinchThreshold", "snapCenter", "snapThreshold", "horizontalGuidelines", "verticalGuidelines", "elementGuidelines", "bounds", "innerBounds", "className", "renderDirections", "scrollable", "getScrollPosition", "scrollContainer", "scrollThreshold", "baseDirection", "snapElement", "snapVertical", "snapHorizontal", "snapGap", "isDisplaySnapDigit", "snapDigit", "zoom", "triggerAblesSimultaneously"];
+var EVENTS = ["dragStart", "drag", "dragEnd", "resizeStart", "resize", "resizeEnd", "scaleStart", "scale", "scaleEnd", "rotateStart", "rotate", "rotateEnd", "warpStart", "warp", "warpEnd", "pinchStart", "pinch", "pinchEnd", "dragGroupStart", "dragGroup", "dragGroupEnd", "resizeGroupStart", "resizeGroup", "resizeGroupEnd", "scaleGroupStart", "scaleGroup", "scaleGroupEnd", "rotateGroupStart", "rotateGroup", "rotateGroupEnd", "pinchGroupStart", "pinchGroup", "pinchGroupEnd", "clickGroup", "scroll", "scrollGroup", "renderStart", "render", "renderEnd", "renderGroupStart", "renderGroup", "renderGroupEnd", "snap"];
+var METHODS = ["isMoveableElement", "updateRect", "updateTarget", "destroy", "dragStart", "isInside", "setState", "getRect", "request", "isDragging"];
 
 /**
  * Moveable is Draggable! Resizable! Scalable! Rotatable!

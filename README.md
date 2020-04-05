@@ -193,8 +193,11 @@ export default {
     Moveable,
   },
   mounted() {
-   console.log("getRect: ", this.$refs.moveable.getRect());
+   console.log("getRect: ", this.$refs.moveable.getRect()); 
+   // -> getRect: Object {width: 300, height: 200, left: 127, top: 120.5, pos1: Array[2]…}
    console.log("isMoveableElement: ", this.$refs.moveable.isMoveableElement(document.body));
+   // -> isMoveableElement: false
+
   },
 }
 </script>

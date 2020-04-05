@@ -23,6 +23,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   fi
 
   # build
+  npm i   # make sure we use latest dependencies
   VERSION=${VERSION} npm run build:lib
 
   # commit

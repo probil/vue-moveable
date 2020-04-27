@@ -1,8 +1,9 @@
 {
   "name": "vue-moveable",
-  "version": "1.2.0",
+  "version": "1.7.1",
   "description": "A Vue Component that creates Moveable, Draggable, Resizable, Scalable, Rotatable, Warpable, Pinchable, Groupable, Snappable",
-  "main": "dist/lib/VueMoveable.common.js",
+  "main": "./dist/lib/VueMoveable.common.js",
+  "types": "./index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:demo": "vue-cli-service build --dest dist/demo",
@@ -15,7 +16,8 @@
     "url": "git+https://github.com/probil/vue-moveable.git"
   },
   "files": [
-    "dist/lib"
+    "dist/lib",
+    "index.d.ts"
   ],
   "author": "Max Lyashuk <m_lyashuk@ukr.net>",
   "license": "MIT",
@@ -25,19 +27,21 @@
   "peerDependencies": {
     "vue": "~2"
   },
+  "dependencies": {
+    "moveable": "^0.16.0"
+  },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.1.1",
-    "@vue/cli-plugin-eslint": "4.1.1",
-    "@vue/cli-service": "4.1.1",
-    "@vue/eslint-config-airbnb": "5.0.0",
-    "babel-eslint": "10.0.3",
-    "core-js": "3.4.5",
-    "eslint": "6.7.1",
-    "eslint-plugin-vue": "6.0.1",
-    "moveable": "0.11.1",
-    "node-sass": "4.13.0",
-    "sass-loader": "8.0.0",
-    "vue": "2.6.10",
-    "vue-template-compiler": "2.6.10"
+    "@vue/cli-plugin-babel": "4.3.1",
+    "@vue/cli-plugin-eslint": "4.3.1",
+    "@vue/cli-service": "4.3.1",
+    "@vue/eslint-config-airbnb": "5.0.2",
+    "babel-eslint": "10.1.0",
+    "core-js": "3.6.5",
+    "eslint": "6.8.0",
+    "eslint-plugin-vue": "6.2.2",
+    "node-sass": "4.14.0",
+    "sass-loader": "8.0.2",
+    "vue": "2.6.11",
+    "vue-template-compiler": "2.6.11"
   }
 }

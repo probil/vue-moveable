@@ -88,9 +88,12 @@ export default {
       ...this.$props,
       target: this.$el,
     });
-    EVENTS.forEach((event) => (
-      this.moveable.on(event, this.$emit.bind(this, event))
-    ));
+    EVENTS.forEach((event) => {
+      const kebabCaseEvent = event.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
+      this.moveable.on(event, this.$emit.bind(this, kebabCaseEvent));
+      // Backwards support for camelCase events
+      this.moveable.on(event, this.$emit.bind(this, event));
+    });
     window.addEventListener('resize', this.updateRect, { passive: true });
   },
   watch: {

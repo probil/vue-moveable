@@ -47,6 +47,7 @@ export default {
     elementGuidelines: Array,
     bounds: Object,
     innerBounds: Object,
+    snapDistFormat: Function,
     defaultGroupRotate: Number,
     scrollable: Boolean,
     scrollContainer: [HTMLElement, SVGElement],
@@ -67,6 +68,7 @@ export default {
     draggable: Boolean,
     throttleDrag: Number,
     throttleDragRotate: Number,
+    dragTarget: [HTMLElement, SVGElement],
     container: {
       type: [HTMLElement, SVGElement],
       default: () => document.body,
@@ -80,7 +82,9 @@ export default {
     ables: Array,
     className: String,
     pinchThreshold: Number,
+    pinchOutside: Boolean,
     triggerAblesSimultaneously: Boolean,
+    padding: Object, // { left: number, top: number, right: number, bottom: number }
   },
   methods: methodMap,
   mounted() {

@@ -28,7 +28,7 @@
     "vue": "~2"
   },
   "dependencies": {
-    "moveable": "^0.16.0"
+    "moveable": "^0.17.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "4.3.1",

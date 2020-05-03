@@ -2,31 +2,20 @@
   "name": "vue-moveable",
   "version": "1.8.1",
   "description": "A Vue Component that creates Moveable, Draggable, Resizable, Scalable, Rotatable, Warpable, Pinchable, Groupable, Snappable",
-  "main": "./dist/lib/VueMoveable.common.js",
-  "types": "./index.d.ts",
+  "author": "Max Lyashuk <m_lyashuk@ukr.net>",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "lint": "npx eslint --ext .js,.vue src *.js",
     "build:demo": "vue-cli-service build --dest dist/demo",
     "build:lib": "vue-cli-service build --target lib --dest dist/lib --name VueMoveable 'src/components/Moveable.vue'",
-    "lint": "npx eslint --ext .js,.vue src *.js",
-    "release": "bash scripts/release.sh"
+    "release": "bash scripts/release.sh",
+    "test:components": "vue-cli-service test:components"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/probil/vue-moveable.git"
-  },
+  "main": "./dist/lib/VueMoveable.common.js",
   "files": [
     "dist/lib",
     "index.d.ts"
   ],
-  "author": "Max Lyashuk <m_lyashuk@ukr.net>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/probil/vue-moveable/issues"
-  },
-  "peerDependencies": {
-    "vue": "~2"
-  },
   "dependencies": {
     "moveable": "0.17.5"
   },
@@ -37,11 +26,26 @@
     "@vue/eslint-config-airbnb": "5.0.2",
     "babel-eslint": "10.1.0",
     "core-js": "3.6.5",
+    "cypress": "*",
+    "cypress-vue-unit-test": "*",
     "eslint": "7.0.0",
     "eslint-plugin-vue": "6.2.2",
     "node-sass": "4.14.1",
     "sass-loader": "8.0.2",
     "vue": "2.6.11",
+    "vue-cli-plugin-cypress-experimental": "0.0.4",
     "vue-template-compiler": "2.6.11"
-  }
+  },
+  "peerDependencies": {
+    "vue": "~2"
+  },
+  "bugs": {
+    "url": "https://github.com/probil/vue-moveable/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/probil/vue-moveable.git"
+  },
+  "types": "./index.d.ts"
 }

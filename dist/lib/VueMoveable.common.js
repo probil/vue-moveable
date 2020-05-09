@@ -196,7 +196,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d0c3616c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=52f70a84&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"86640a42-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Moveable.vue?vue&type=template&id=52f70a84&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
 var staticRenderFns = []
 
@@ -4709,7 +4709,7 @@ name: react-compat-moveable
 license: MIT
 author: Daybrush
 repository: https://github.com/daybrush/moveable/blob/master/packages/react-compat-moveable
-version: 0.5.0
+version: 0.5.6
 */
 
 
@@ -4727,7 +4727,7 @@ name: react-moveable
 license: MIT
 author: Daybrush
 repository: https://github.com/daybrush/moveable/blob/master/packages/react-moveable
-version: 0.20.0
+version: 0.20.6
 */
 
 /*! *****************************************************************************
@@ -4798,7 +4798,7 @@ function getCursorCSS(degree) {
 var moveable_esm_agent = agent_esm();
 var IS_WEBKIT = moveable_esm_agent.os.name.indexOf("ios") > -1 || moveable_esm_agent.browser.name.indexOf("safari") > -1;
 var PREFIX = "moveable-";
-var MOVEABLE_CSS = prefixCSS(PREFIX, "\n{\n\tposition: fixed;\n\twidth: 0;\n\theight: 0;\n\tleft: 0;\n\ttop: 0;\n    z-index: 3000;\n    --zoom: 1;\n    --zoompx: 1px;\n}\n.control-box {\n    z-index: 0;\n}\n.line, .control {\n\tleft: 0;\n    top: 0;\n    will-change: transform;\n}\n.control {\n\tposition: absolute;\n\twidth: 14px;\n\theight: 14px;\n\tborder-radius: 50%;\n\tborder: 2px solid #fff;\n\tbox-sizing: border-box;\n\tbackground: #4af;\n\tmargin-top: -7px;\n    margin-left: -7px;\n    width: calc(14 * var(--zoompx));\n    height: calc(14 * var(--zoompx));\n    margin-top: calc(-7 * var(--zoompx));\n    margin-left: calc(-7 * var(--zoompx));\n    border: calc(2 * var(--zoompx)) solid #fff;\n    z-index: 10;\n}\n.padding {\n    position: absolute;\n    top: 0px;\n    left: 0px;\n    width: 100px;\n    height: 100px;\n    transform-origin: 0 0;\n    background: rgba(255, 100, 100, 0.3);\n}\n.line {\n\tposition: absolute;\n\twidth: 1px;\n    height: 1px;\n    width: var(--zoompx);\n    height: var(--zoompx);\n\tbackground: #4af;\n\ttransform-origin: 0px 50%;\n}\n.line.dashed {\n    box-sizing: border-box;\n    background: transparent;\n}\n.line.dashed.horizontal {\n    border-top: 1px dashed #4af;\n    border-top: var(--zoompx) dashed #4af;\n}\n.line.dashed.vertical {\n    border-left: 1px dashed #4af;\n    border-left: var(--zoompx) dashed #4af;\n}\n.line.dashed:before {\n    position: absolute;\n    content: attr(data-size);\n    color: #4af;\n    font-size: 12px;\n    font-weight: bold;\n}\n.line.dashed.horizontal:before, .line.gap.horizontal:before {\n    left: 50%;\n    transform: translateX(-50%);\n    bottom: 5px;\n}\n.line.dashed.vertical:before, .line.gap.vertical:before {\n    top: 50%;\n    transform: translateY(-50%);\n    left: 5px;\n}\n.line.rotation-line {\n\theight: 40px;\n    width: 1px;\n    transform-origin: 50% calc(100% - 0.5px);\n    top: -40px;\n    width: var(--zoompx);\n    height: calc(40 * var(--zoompx));\n    top: calc(-40 * var(--zoompx));\n    transform-origin: 50% calc(100% - 0.5 * var(--zoompx));\n}\n.line.rotation-line .control {\n\tborder-color: #4af;\n\tbackground:#fff;\n    cursor: alias;\n    left: 50%;\n}\n.line.vertical {\n    transform: translateX(-50%);\n}\n.line.horizontal {\n    transform: translateY(-50%);\n}\n.line.vertical.bold {\n    width: 2px;\n    width: calc(2 * var(--zoompx));\n}\n.line.horizontal.bold {\n    height: 2px;\n    height: calc(2 * var(--zoompx));\n}\n\n.line.gap {\n    background: #f55;\n}\n.line.gap:before {\n    position: absolute;\n    content: attr(data-size);\n    color: #f55;\n    font-size: 12px;\n    font-weight: bold;\n}\n.control.origin {\n\tborder-color: #f55;\n\tbackground: #fff;\n\twidth: 12px;\n\theight: 12px;\n\tmargin-top: -6px;\n    margin-left: -6px;\n    width: calc(12 * var(--zoompx));\n    height: calc(12 * var(--zoompx));\n    margin-top: calc(-6 * var(--zoompx));\n    margin-left: calc(-6 * var(--zoompx));\n\tpointer-events: none;\n}\n" + [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165].map(function (degree) {
+var MOVEABLE_CSS = prefixCSS(PREFIX, "\n{\n\tposition: fixed;\n\twidth: 0;\n\theight: 0;\n\tleft: 0;\n\ttop: 0;\n    z-index: 3000;\n    --zoom: 1;\n    --zoompx: 1px;\n}\n.control-box {\n    z-index: 0;\n}\n.line, .control {\n\tleft: 0;\n    top: 0;\n    will-change: transform;\n}\n.control {\n\tposition: absolute;\n\twidth: 14px;\n\theight: 14px;\n\tborder-radius: 50%;\n\tborder: 2px solid #fff;\n\tbox-sizing: border-box;\n\tbackground: #4af;\n\tmargin-top: -7px;\n    margin-left: -7px;\n    width: calc(14 * var(--zoompx));\n    height: calc(14 * var(--zoompx));\n    margin-top: calc(-7 * var(--zoompx));\n    margin-left: calc(-7 * var(--zoompx));\n    border: calc(2 * var(--zoompx)) solid #fff;\n    z-index: 10;\n}\n.padding {\n    position: absolute;\n    top: 0px;\n    left: 0px;\n    width: 100px;\n    height: 100px;\n    transform-origin: 0 0;\n}\n.line {\n\tposition: absolute;\n\twidth: 1px;\n    height: 1px;\n    width: var(--zoompx);\n    height: var(--zoompx);\n\tbackground: #4af;\n\ttransform-origin: 0px 50%;\n}\n.line.dashed {\n    box-sizing: border-box;\n    background: transparent;\n}\n.line.dashed.horizontal {\n    border-top: 1px dashed #4af;\n    border-top: var(--zoompx) dashed #4af;\n}\n.line.dashed.vertical {\n    border-left: 1px dashed #4af;\n    border-left: var(--zoompx) dashed #4af;\n}\n.line.dashed:before {\n    position: absolute;\n    content: attr(data-size);\n    color: #4af;\n    font-size: 12px;\n    font-weight: bold;\n}\n.line.dashed.horizontal:before, .line.gap.horizontal:before {\n    left: 50%;\n    transform: translateX(-50%);\n    bottom: 5px;\n}\n.line.dashed.vertical:before, .line.gap.vertical:before {\n    top: 50%;\n    transform: translateY(-50%);\n    left: 5px;\n}\n.line.rotation-line {\n\theight: 40px;\n    width: 1px;\n    transform-origin: 50% calc(100% - 0.5px);\n    top: -40px;\n    width: var(--zoompx);\n    height: calc(40 * var(--zoompx));\n    top: calc(-40 * var(--zoompx));\n    transform-origin: 50% calc(100% - 0.5 * var(--zoompx));\n}\n.line.rotation-line .control {\n\tborder-color: #4af;\n\tbackground:#fff;\n    cursor: alias;\n    left: 50%;\n}\n.line.vertical {\n    transform: translateX(-50%);\n}\n.line.horizontal {\n    transform: translateY(-50%);\n}\n.line.vertical.bold {\n    width: 2px;\n    width: calc(2 * var(--zoompx));\n}\n.line.horizontal.bold {\n    height: 2px;\n    height: calc(2 * var(--zoompx));\n}\n\n.line.gap {\n    background: #f55;\n}\n.line.gap:before {\n    position: absolute;\n    content: attr(data-size);\n    color: #f55;\n    font-size: 12px;\n    font-weight: bold;\n}\n.control.origin {\n\tborder-color: #f55;\n\tbackground: #fff;\n\twidth: 12px;\n\theight: 12px;\n\tmargin-top: -6px;\n    margin-left: -6px;\n    width: calc(12 * var(--zoompx));\n    height: calc(12 * var(--zoompx));\n    margin-top: calc(-6 * var(--zoompx));\n    margin-left: calc(-6 * var(--zoompx));\n\tpointer-events: none;\n}\n" + [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165].map(function (degree) {
   return "\n.direction[data-rotation=\"" + degree + "\"] {\n\t" + getCursorCSS(degree) + "\n}\n";
 }).join("\n") + "\n.group {\n    z-index: -1;\n}\n.area {\n    position: absolute;\n}\n.area-pieces {\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: none;\n}\n.area.avoid {\n    pointer-events: none;\n}\n.area.avoid+.area-pieces {\n    display: block;\n}\n.area-piece {\n    position: absolute;\n}\n" + (IS_WEBKIT ? ":global svg *:before {\n\tcontent:\"\";\n\ttransform-origin: inherit;\n}" : "") + "\n");
 var NEARBY_POS = [[0, 1, 2], [1, 0, 3], [2, 0, 3], [3, 1, 2]];
@@ -5418,7 +5418,7 @@ function getSize(target, style, isOffset, isBoxSizing) {
 function getRotationRad(poses, direction) {
   return getRad(direction > 0 ? poses[0] : poses[1], direction > 0 ? poses[1] : poses[0]);
 }
-function getTargetInfo(target, container, parentContainer, rootContainer, state) {
+function getTargetInfo(moveableElement, target, container, parentContainer, rootContainer, state) {
   var _a, _b, _c, _d, _e;
 
   var left = 0;
@@ -5442,6 +5442,7 @@ function getTargetInfo(target, container, parentContainer, rootContainer, state)
   var beforeOrigin = [0, 0];
   var targetClientRect = resetClientRect();
   var containerClientRect = resetClientRect();
+  var moveableClientRect = resetClientRect();
   var rotation = 0;
   var prevMatrix = state ? state.beforeMatrix : undefined;
   var prevRootMatrix = state ? state.rootMatrix : undefined;
@@ -5469,6 +5470,11 @@ function getTargetInfo(target, container, parentContainer, rootContainer, state)
     beforeOrigin = [beforeOrigin[0] + beforePos[0] - left, beforeOrigin[1] + beforePos[1] - top];
     targetClientRect = getClientRect(target);
     containerClientRect = getClientRect(getOffsetInfo(parentContainer, parentContainer, true).offsetParent || document.body, true);
+
+    if (moveableElement) {
+      moveableClientRect = getClientRect(moveableElement);
+    }
+
     rotation = getRotationRad([poses[0], poses[1]], direction);
   }
 
@@ -5476,6 +5482,7 @@ function getTargetInfo(target, container, parentContainer, rootContainer, state)
     rotation: rotation,
     targetClientRect: targetClientRect,
     containerClientRect: containerClientRect,
+    moveableClientRect: moveableClientRect,
     beforeDirection: beforeDirection,
     direction: direction,
     target: target,
@@ -5781,6 +5788,41 @@ function convertDragDist(state, e) {
 function caculatePadding(matrix, pos, transformOrigin, origin, n) {
   return minus(caculatePosition(matrix, plus(transformOrigin, pos), n), origin);
 }
+function checkSize(targetSize, compareSize, isMax) {
+  return [[compareSize[0], compareSize[0] * targetSize[1] / targetSize[0]], [compareSize[1] * targetSize[0] / targetSize[1], compareSize[1]]].filter(function (size) {
+    return size.every(function (value, i) {
+      return isMax ? value <= compareSize[i] : value >= compareSize[i];
+    });
+  })[0] || targetSize;
+}
+function caculateBoundSize(size, minSize, maxSize, keepRatio) {
+  if (!keepRatio) {
+    return size.map(function (value, i) {
+      return Math.min(maxSize[i], Math.max(value, minSize[i]));
+    });
+  }
+
+  var width = size[0],
+      height = size[1]; // width : height = minWidth : minHeight;
+
+  var _a = checkSize(size, minSize, false),
+      minWidth = _a[0],
+      minHeight = _a[1];
+
+  var _b = checkSize(size, maxSize, true),
+      maxWidth = _b[0],
+      maxHeight = _b[1];
+
+  if (width < minWidth || height < minHeight) {
+    width = minWidth;
+    height = minHeight;
+  } else if (width > maxWidth || height > maxHeight) {
+    width = maxWidth;
+    height = maxHeight;
+  }
+
+  return [width, height];
+}
 
 function triggerRenderStart(moveable, isGroup, e) {
   var params = fillParams(moveable, e, {
@@ -6016,6 +6058,7 @@ function (_super) {
       renderPoses: [[0, 0], [0, 0], [0, 0], [0, 0]],
       targetClientRect: resetClientRect(),
       containerClientRect: resetClientRect(),
+      moveableClientRect: resetClientRect(),
       rotation: 0
     };
     _this.targetAbles = [];
@@ -6035,6 +6078,7 @@ function (_super) {
         propsTarget = props.target,
         zoom = props.zoom;
     this.checkUpdate();
+    this.updateRenderPoses();
 
     var _a = parentPosition || {
       left: 0,
@@ -6178,7 +6222,7 @@ function (_super) {
     var target = state.target || this.props.target;
     var container = this.getContainer();
     var rootContainer = parentMoveable ? parentMoveable.props.rootContainer : props.rootContainer;
-    this.updateState(getTargetInfo(target, container, container, rootContainer || container, isTarget ? state : undefined), parentMoveable ? false : isSetState);
+    this.updateState(getTargetInfo(this.controlBox && this.controlBox.getElement(), target, container, container, rootContainer || container, isTarget ? state : undefined), parentMoveable ? false : isSetState);
   };
 
   __proto.updateEvent = function (prevProps) {
@@ -6348,7 +6392,6 @@ function (_super) {
     }
 
     this.updateAbles();
-    this.updateRenderPoses();
     var isChanged = !equals(stateTarget, target) || !equals(stateContainer, container);
 
     if (!isChanged) {
@@ -8887,7 +8930,7 @@ function groupByElementGuidelines(guidelines, clientPos, size, index) {
   return group;
 }
 
-function renderElementGroup(group, _a, minPos, clientPos, clientSize, targetPos, snapThreshold, isDisplaySnapDigit, snapDigit, index, snapDistForamt, React) {
+function renderElementGroup(group, _a, minPos, clientPos, clientSize, targetPos, snapThreshold, isDisplaySnapDigit, snapDigit, index, snapDistFormat, React) {
   var directionName = _a[0],
       posName1 = _a[1],
       posName2 = _a[2],
@@ -8913,7 +8956,7 @@ function renderElementGroup(group, _a, minPos, clientPos, clientSize, targetPos,
       var snapSize = isDisplaySnapDigit && isRenderSize ? parseFloat(lineSize.toFixed(snapDigit)) : 0;
       return React.createElement("div", {
         className: prefix("line", directionName, "guideline", "dashed"),
-        "data-size": snapSize > 0 ? snapDistForamt(snapSize) : "",
+        "data-size": snapSize > 0 ? snapDistFormat(snapSize) : "",
         key: directionName + "LinkGuidline" + i + "-" + j,
         style: (_b = {}, _b[posName1] = minPos + linePos + "px", _b[posName2] = -targetPos + pos[index ? 0 : 1] + "px", _b[sizeName] = lineSize + "px", _b)
       });
@@ -9047,7 +9090,7 @@ function getGapGuidelines$1(guidelines, type, targetPos, targetSizes) {
   }));
 }
 
-function renderGapGuidelines(moveable, gapGuidelines, type, _a, snapDistForamt, React) {
+function renderGapGuidelines(moveable, gapGuidelines, type, _a, snapDistFormat, React) {
   var directionName = _a[0],
       posName1 = _a[1],
       posName2 = _a[2],
@@ -9072,7 +9115,7 @@ function renderGapGuidelines(moveable, gapGuidelines, type, _a, snapDistForamt, 
     var snapSize = isDisplaySnapDigit ? parseFloat(absGap.toFixed(snapDigit)) : 0;
     return React.createElement("div", {
       className: prefix("line", directionName, "guideline", "gap"),
-      "data-size": snapSize > 0 ? snapDistForamt(snapSize) : "",
+      "data-size": snapSize > 0 ? snapDistFormat(snapSize) : "",
       key: otherType + "GapGuideline" + i,
       style: (_b = {}, _b[posName1] = renderPos[index] + "px", _b[posName2] = renderPos[otherIndex] + "px", _b[sizeName] = absGap + "px", _b)
     });
@@ -9160,8 +9203,8 @@ var Snappable = {
         snapDigit = _e === void 0 ? 0 : _e,
         _f = _c.isDisplaySnapDigit,
         isDisplaySnapDigit = _f === void 0 ? true : _f,
-        _g = _c.snapDistForamt,
-        snapDistForamt = _g === void 0 ? function (v) {
+        _g = _c.snapDistFormat,
+        snapDistFormat = _g === void 0 ? function (v) {
       return v;
     } : _g;
     var poses = getAbsolutePosesByState(moveable.state);
@@ -9232,7 +9275,7 @@ var Snappable = {
       }),
       gaps: gapVerticalGuidelines.concat(gapHorizontalGuidelines)
     }, true);
-    return renderGapGuidelines(moveable, gapVerticalGuidelines, "vertical", horizontalNames, snapDistForamt, React).concat(renderGapGuidelines(moveable, gapHorizontalGuidelines, "horizontal", verticalNames, snapDistForamt, React), renderElementGroup(elementHorizontalGroup, horizontalNames, minLeft, clientLeft, width, targetTop, snapThreshold, isDisplaySnapDigit, snapDigit, 0, snapDistForamt, React), renderElementGroup(elementVerticalGroup, verticalNames, minTop, clientTop, height, targetLeft, snapThreshold, isDisplaySnapDigit, snapDigit, 1, snapDistForamt, React), renderSnapPoses(horizontalSnapPoses, horizontalNames, minLeft, targetTop, width, React), renderSnapPoses(verticalSnapPoses, verticalNames, minTop, targetLeft, height, React), renderGuidelines(horizontalGuidelines, horizontalNames, targetLeft, targetTop, 0, React), renderGuidelines(verticalGuidelines, verticalNames, targetTop, targetLeft, 1, React));
+    return renderGapGuidelines(moveable, gapVerticalGuidelines, "vertical", horizontalNames, snapDistFormat, React).concat(renderGapGuidelines(moveable, gapHorizontalGuidelines, "horizontal", verticalNames, snapDistFormat, React), renderElementGroup(elementHorizontalGroup, horizontalNames, minLeft, clientLeft, width, targetTop, snapThreshold, isDisplaySnapDigit, snapDigit, 0, snapDistFormat, React), renderElementGroup(elementVerticalGroup, verticalNames, minTop, clientTop, height, targetLeft, snapThreshold, isDisplaySnapDigit, snapDigit, 1, snapDistFormat, React), renderSnapPoses(horizontalSnapPoses, horizontalNames, minLeft, targetTop, width, React), renderSnapPoses(verticalSnapPoses, verticalNames, minTop, targetLeft, height, React), renderGuidelines(horizontalGuidelines, horizontalNames, targetLeft, targetTop, 0, React), renderGuidelines(verticalGuidelines, verticalNames, targetTop, targetLeft, 1, React));
   },
   dragStart: function (moveable, e) {
     moveable.state.snapRenderInfo = {
@@ -9501,7 +9544,7 @@ var Draggable = {
       return false;
     }
 
-    var events = triggerChildDragger(moveable, this, "dragStart", [clientX, clientY], e, false);
+    var events = triggerChildDragger(moveable, this, "dragStart", [clientX || 0, clientY || 0], e, false);
 
     var nextParams = moveable_esm_assign({}, params, {
       targets: moveable.props.targets,
@@ -10115,7 +10158,8 @@ var Resizable = {
     var inputEvent = e.inputEvent,
         isPinch = e.isPinch,
         parentDirection = e.parentDirection,
-        datas = e.datas;
+        datas = e.datas,
+        parentFlag = e.parentFlag;
     var direction = parentDirection || (isPinch ? [0, 0] : getDirection(inputEvent.target));
     var _b = moveable.state,
         target = _b.target,
@@ -10136,6 +10180,16 @@ var Resizable = {
     datas.prevWidth = 0;
     datas.prevHeight = 0;
     _a = getCSSSize(target), datas.startWidth = _a[0], datas.startHeight = _a[1];
+    var padding = [Math.max(0, width - datas.startWidth), Math.max(0, height - datas.startHeight)];
+    datas.minSize = padding;
+    datas.maxSize = [Infinity, Infinity];
+
+    if (!parentFlag) {
+      var style = window.getComputedStyle(target);
+      datas.minSize = plus([parseFloat(style.minWidth) || 0, parseFloat(style.minHeight) || 0], padding);
+      datas.maxSize = plus([parseFloat(style.maxWidth) || Infinity, parseFloat(style.maxHeight) || Infinity], padding);
+    }
+
     datas.transformOrigin = moveable.props.transformOrigin;
     datas.startDirection = getStartDirection(moveable, direction);
     datas.fixedPosition = getAbsoluteFixedPosition(moveable, datas.startDirection);
@@ -10166,6 +10220,8 @@ var Resizable = {
     return datas.isResize ? params : false;
   },
   dragControl: function (moveable, e) {
+    var _a;
+
     var datas = e.datas,
         distX = e.distX,
         distY = e.distY,
@@ -10191,11 +10247,13 @@ var Resizable = {
         startOffsetWidth = datas.startOffsetWidth,
         startOffsetHeight = datas.startOffsetHeight,
         prevWidth = datas.prevWidth,
-        prevHeight = datas.prevHeight;
-    var _a = moveable.props,
-        _b = _a.throttleResize,
-        throttleResize = _b === void 0 ? 0 : _b,
-        parentMoveable = _a.parentMoveable;
+        prevHeight = datas.prevHeight,
+        minSize = datas.minSize,
+        maxSize = datas.maxSize;
+    var _b = moveable.props,
+        _c = _b.throttleResize,
+        throttleResize = _c === void 0 ? 0 : _c,
+        parentMoveable = _b.parentMoveable;
     var sizeDirection = direction;
 
     if (!direction[0] && !direction[1]) {
@@ -10319,6 +10377,7 @@ var Resizable = {
       }
     }
 
+    _a = caculateBoundSize([nextWidth, nextHeight], minSize, maxSize, keepRatio), nextWidth = _a[0], nextHeight = _a[1];
     nextWidth = Math.round(nextWidth);
     nextHeight = Math.round(nextHeight);
     distWidth = nextWidth - startOffsetWidth;
@@ -11270,10 +11329,7 @@ var DragArea = {
     var _b = moveable.state,
         width = _b.width,
         height = _b.height,
-        pos1 = _b.pos1,
-        pos2 = _b.pos2,
-        pos3 = _b.pos3,
-        pos4 = _b.pos4;
+        renderPoses = _b.renderPoses;
 
     if (groupable) {
       return [React.createElement("div", {
@@ -11287,7 +11343,7 @@ var DragArea = {
       return [];
     }
 
-    var h = createWarpMatrix([0, 0], [width, 0], [0, height], [width, height], pos1, pos2, pos3, pos4);
+    var h = createWarpMatrix([0, 0], [width, 0], [0, height], [width, height], renderPoses[0], renderPoses[1], renderPoses[2], renderPoses[3]);
     var transform = h.length ? "matrix3d(" + convertMatrixtoCSS(h).join(",") + ")" : "none";
     return [React.createElement("div", {
       key: "area",
@@ -11317,35 +11373,27 @@ var DragArea = {
     datas.inputTarget = inputEvent.target;
     var areaElement = moveable.areaElement;
     var _b = moveable.state,
-        targetClientRect = _b.targetClientRect,
-        pos1 = _b.pos1,
-        pos2 = _b.pos2,
-        pos3 = _b.pos3,
-        pos4 = _b.pos4,
-        width = _b.width,
-        height = _b.height,
+        moveableClientRect = _b.moveableClientRect,
+        renderPoses = _b.renderPoses,
         rootMatrix = _b.rootMatrix,
         is3d = _b.is3d;
-    var left = targetClientRect.left,
-        top = targetClientRect.top;
+    var left = moveableClientRect.left,
+        top = moveableClientRect.top;
 
-    var _c = getRect([pos1, pos2, pos3, pos4]),
+    var _c = getRect(renderPoses),
         relativeLeft = _c.left,
-        relativeTop = _c.top;
+        relativeTop = _c.top,
+        width = _c.width,
+        height = _c.height;
 
     var n = is3d ? 4 : 3;
-    var poses = caculatePoses(rootMatrix, width, height, n);
 
-    var _d = getRect(poses),
-        rootLeft = _d.left,
-        rootTop = _d.top;
+    var _d = caculateInversePosition(rootMatrix, [clientX - left, clientY - top], n),
+        posX = _d[0],
+        posY = _d[1];
 
-    var rootRelativePos = minus([clientX, clientY], plus([left - rootLeft, top - rootTop], poses[0]));
-
-    var _e = caculate(invert(rootMatrix, n), convertPositionMatrix(rootRelativePos, n), n),
-        posX = _e[0],
-        posY = _e[1];
-
+    posX -= relativeLeft;
+    posY -= relativeTop;
     var rects = [{
       left: relativeLeft,
       top: relativeTop,
@@ -11372,6 +11420,7 @@ var DragArea = {
       children[i].style.cssText = "left: " + rect.left + "px;top: " + rect.top + "px; width: " + rect.width + "px; height: " + rect.height + "px;";
     });
     addClass(areaElement, AVOID);
+    return true;
   },
   drag: function (moveable, _a) {
     var datas = _a.datas,
@@ -11624,7 +11673,13 @@ var Padding = {
     padding: Object
   },
   render: function (moveable, React) {
-    var padding = moveable.props.padding || {};
+    var props = moveable.props;
+
+    if (props.dragArea) {
+      return [];
+    }
+
+    var padding = props.padding || {};
     var _a = padding.left,
         left = _a === void 0 ? 0 : _a,
         _b = padding.top,
@@ -11845,7 +11900,6 @@ function (_super) {
   };
 
   __proto.checkUpdate = function () {
-    this.updateRenderPoses();
     this.updateAbles();
   };
 
@@ -11885,7 +11939,7 @@ function (_super) {
     state.width = width;
     state.height = height;
     var container = this.getContainer();
-    var info = getTargetInfo(target, this.controlBox.getElement(), this.getContainer(), this.props.rootContainer || container, state);
+    var info = getTargetInfo(this.controlBox.getElement(), target, this.controlBox.getElement(), this.getContainer(), this.props.rootContainer || container, state);
     var pos = [info.left, info.top];
     _a = getAbsolutePosesByState(info), info.pos1 = _a[0], info.pos2 = _a[1], info.pos3 = _a[2], info.pos4 = _a[3];
     info.origin = plus(pos, info.origin);
@@ -12022,6 +12076,23 @@ function (_super) {
   __proto.isInside = function (clientX, clientY) {
     return this.moveable.isInside(clientX, clientY);
   };
+  /**
+   * Hit test an element or rect on a moveable target.
+   * @method Moveable#hitTest
+   * @param - element or rect to test
+   * @return - Get hit test rate (rate > 0 is hitted)
+   * @example
+   * import Moveable from "moveable";
+   *
+   * const moveable = new Moveable(document.body);
+   *
+   * document.body.addEventListener("mousedown", e => {
+   *     if (moveable.hitTest(e.target) > 0) {
+   *          console.log("hiited");
+   *     }
+   * });
+   */
+
 
   __proto.hitTest = function (el) {
     return this.moveable.hitTest(el);
@@ -12155,7 +12226,7 @@ name: moveable
 license: MIT
 author: Daybrush
 repository: git+https://github.com/daybrush/moveable.git
-version: 0.17.0
+version: 0.17.5
 */
 
 
@@ -12234,7 +12305,7 @@ function (_super) {
   return InnerMoveable;
 }(compat_esm_Component);
 
-var PROPERTIES = ["draggable", "resizable", "scalable", "rotatable", "warpable", "pinchable", "snappable", "origin", "target", "edge", "throttleDrag", "throttleDragRotate", "throttleResize", "throttleScale", "throttleRotate", "keepRatio", "dragArea", "pinchThreshold", "snapCenter", "snapThreshold", "horizontalGuidelines", "verticalGuidelines", "elementGuidelines", "bounds", "innerBounds", "className", "renderDirections", "scrollable", "getScrollPosition", "scrollContainer", "scrollThreshold", "baseDirection", "snapElement", "snapVertical", "snapHorizontal", "snapGap", "isDisplaySnapDigit", "snapDigit", "zoom", "triggerAblesSimultaneously", "padding", "snapDistForamt", "dragTarget"];
+var PROPERTIES = ["draggable", "resizable", "scalable", "rotatable", "warpable", "pinchable", "snappable", "origin", "target", "edge", "throttleDrag", "throttleDragRotate", "throttleResize", "throttleScale", "throttleRotate", "keepRatio", "dragArea", "pinchThreshold", "snapCenter", "snapThreshold", "horizontalGuidelines", "verticalGuidelines", "elementGuidelines", "bounds", "innerBounds", "className", "renderDirections", "scrollable", "getScrollPosition", "scrollContainer", "scrollThreshold", "baseDirection", "snapElement", "snapVertical", "snapHorizontal", "snapGap", "isDisplaySnapDigit", "snapDigit", "zoom", "triggerAblesSimultaneously", "padding", "snapDistFormat", "dragTarget"];
 var EVENTS = ["dragStart", "drag", "dragEnd", "resizeStart", "resize", "resizeEnd", "scaleStart", "scale", "scaleEnd", "rotateStart", "rotate", "rotateEnd", "warpStart", "warp", "warpEnd", "pinchStart", "pinch", "pinchEnd", "dragGroupStart", "dragGroup", "dragGroupEnd", "resizeGroupStart", "resizeGroup", "resizeGroupEnd", "scaleGroupStart", "scaleGroup", "scaleGroupEnd", "rotateGroupStart", "rotateGroup", "rotateGroupEnd", "pinchGroupStart", "pinchGroup", "pinchGroupEnd", "click", "clickGroup", "scroll", "scrollGroup", "renderStart", "render", "renderEnd", "renderGroupStart", "renderGroup", "renderGroupEnd", "snap"];
 var METHODS = ["isMoveableElement", "updateRect", "updateTarget", "destroy", "dragStart", "isInside", "hitTest", "setState", "getRect", "request", "isDragging"];
 

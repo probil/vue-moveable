@@ -8,8 +8,7 @@
     "serve": "vue-cli-service serve",
     "build:demo": "vue-cli-service build --dest dist/demo",
     "build:lib": "vue-cli-service build --target lib --dest dist/lib --name VueMoveable 'src/components/Moveable.vue'",
-    "lint": "npx eslint --ext .js,.vue src *.js",
-    "release": "bash scripts/release.sh"
+    "lint": "npx eslint --ext .js,.vue src *.js"
   },
   "repository": {
     "type": "git",

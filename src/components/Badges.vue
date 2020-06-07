@@ -14,12 +14,7 @@
         alt="license"
       />
     </a>
-    <a
-      href="https://raw.githubusercontent.com/probil/moveable/master/dist/lib/VueMoveable.umd.min.js"
-      target="_blank">
-      <img src="https://flat.badgen.net/bundlephobia/minzip/vue-moveable"
-           alt="Minified library size">
-    </a>
+    <img src="https://img.shields.io/bundlephobia/minzip/vue-moveable?style=flat-square" alt="Minified library size">
     <a href="https://github.com/daybrush/moveable/tree/master/packages/react-moveable"
        target="_blank">
       <img

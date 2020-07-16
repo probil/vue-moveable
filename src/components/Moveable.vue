@@ -7,6 +7,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Moveable, { EVENTS, PROPERTIES, METHODS } from 'moveable';
 
+console.log(PROPERTIES);
+
 const watchReactiveProp = (key, deep) => ({
   handler(newValue) {
     const existingValue = this.moveable[key];
@@ -33,6 +35,20 @@ export default {
   name: 'Moveable',
   inheritAttrs: false,
   props: {
+    roundable: Boolean,
+    roundRelative: Boolean,
+    originDraggable: Boolean,
+    originRelative: Boolean,
+    clippable: Boolean,
+    customClipPath: String,
+    defaultClipPath: String,
+    clipRelative: Boolean,
+    dragWithClip: Boolean,
+    clipArea: Boolean,
+    defaultGroupOrigin: String,
+    cspNonce: String,
+    checkInput: Boolean,
+    groupable: Boolean,
     snappable: [Boolean, Array],
     snapCenter: Boolean,
     snapHorizontal: Boolean,
@@ -68,6 +84,7 @@ export default {
     draggable: Boolean,
     throttleDrag: Number,
     throttleDragRotate: Number,
+    startDragRotate: Number,
     dragTarget: [HTMLElement, SVGElement],
     container: {
       type: [HTMLElement, SVGElement],

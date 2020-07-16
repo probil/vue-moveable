@@ -68,6 +68,18 @@
 <td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/groupable.gif"></td>
 <td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/snappable.gif"></td>
 </tr>
+<tr>
+<td align="center"><strong>Clippable</strong></td>
+<td align="center"><strong>Roundable</strong></td>
+<td align="center"><strong>OriginDraggable</strong></td>
+<td align="center"><strong>Selecto</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/clippable.gif"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/roundable.gif"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/origindraggable.gif"></td>
+<td align="center"><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/selecto.gif"></td>
+</tr>
 </table>
 
 
@@ -76,12 +88,15 @@
 * **Resizable** indicates whether the target's width and height can be increased or decreased.
 * **Scalable** indicates whether the target's x and y can be scale of transform.
 * **Rotatable** indicates whether the target can be rotated.
-* **Warpable** indicates whether the target can be warped(distorted, bented).
+* **Warpable** indicates whether the target can be warped (distorted, bented).
 * **Pinchable** indicates whether the target can be pinched with draggable, resizable, scalable, rotatable.
 * **Groupable** indicates Whether the targets can be moved in group with draggable, resizable, scalable, rotatable.
 * **Snappable** indicates whether to snap to the guideline.
+* **OriginDraggable*** indicates Whether to drag origin.
+* **Clippable** indicates Whether to clip the target.
+* **Roundable** indicates Whether to show and drag or double click border-radius.
 * Support SVG Elements (svg, path, line, ellipse, g, rect, ...etc)
-* Support Webkit Safari (Mac, iOS)
+* Support Major Browsers
 * Support 3d Transform
 
 ## ⚙️ Installation

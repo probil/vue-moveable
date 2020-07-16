@@ -7,8 +7,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Moveable, { EVENTS, PROPERTIES, METHODS } from 'moveable';
 
-console.log(PROPERTIES);
-
 const watchReactiveProp = (key, deep) => ({
   handler(newValue) {
     const existingValue = this.moveable[key];

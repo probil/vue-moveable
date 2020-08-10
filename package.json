@@ -30,9 +30,9 @@
     "moveable": "0.18.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.4.6",
-    "@vue/cli-plugin-eslint": "4.4.6",
-    "@vue/cli-service": "4.4.6",
+    "@vue/cli-plugin-babel": "4.5.2",
+    "@vue/cli-plugin-eslint": "4.5.2",
+    "@vue/cli-service": "4.5.2",
     "@vue/eslint-config-airbnb": "5.1.0",
     "babel-eslint": "10.1.0",
     "core-js": "3.6.5",

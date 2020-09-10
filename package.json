@@ -30,9 +30,9 @@
     "moveable": "0.18.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.5.3",
-    "@vue/cli-plugin-eslint": "4.5.3",
-    "@vue/cli-service": "4.5.3",
+    "@vue/cli-plugin-babel": "4.5.5",
+    "@vue/cli-plugin-eslint": "4.5.5",
+    "@vue/cli-service": "4.5.5",
     "@vue/eslint-config-airbnb": "5.1.0",
     "babel-eslint": "10.1.0",
     "core-js": "3.6.5",
@@ -40,7 +40,7 @@
     "eslint-plugin-vue": "6.2.2",
     "node-sass": "4.14.1",
     "sass-loader": "10.0.2",
-    "vue": "2.6.11",
-    "vue-template-compiler": "2.6.11"
+    "vue": "2.6.12",
+    "vue-template-compiler": "2.6.12"
   }
 }

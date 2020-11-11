@@ -33,6 +33,7 @@ export default {
   name: 'Moveable',
   inheritAttrs: false,
   props: {
+    target: [HTMLElement, SVGElement],
     roundable: Boolean,
     roundRelative: Boolean,
     originDraggable: Boolean,
@@ -105,7 +106,7 @@ export default {
   mounted() {
     this.moveable = new Moveable(this.$props.container, {
       ...this.$props,
-      target: this.$el,
+      target: this.target || this.$el,
     });
     EVENTS.forEach((event) => {
       const kebabCaseEvent = event.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();

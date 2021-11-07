@@ -33,7 +33,7 @@ export default {
   name: 'Moveable',
   inheritAttrs: false,
   props: {
-    target: [HTMLElement, SVGElement],
+    target: [HTMLElement, SVGElement, Array],
     roundable: {
       type: Boolean,
       required: false,

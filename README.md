@@ -1,4 +1,7 @@
+**This project is superseded by the official Moveable Vue plugin:**
 
+* https://github.com/daybrush/moveable/tree/master/packages/vue-moveable
+* https://github.com/daybrush/moveable/tree/master/packages/vue3-moveable
 
 <p align="middle" ><img src="https://raw.githubusercontent.com/daybrush/moveable/master/demo/images/logo.png"/></p>
 <h2 align="middle">Vue Moveable</h2>

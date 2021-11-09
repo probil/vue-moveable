@@ -33,30 +33,94 @@ export default {
   name: 'Moveable',
   inheritAttrs: false,
   props: {
-    target: [HTMLElement, SVGElement],
-    roundable: Boolean,
-    roundRelative: Boolean,
-    originDraggable: Boolean,
-    originRelative: Boolean,
-    clippable: Boolean,
+    target: [HTMLElement, SVGElement, Array],
+    roundable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    roundRelative: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    originDraggable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    originRelative: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    clippable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     customClipPath: String,
     defaultClipPath: String,
-    clipRelative: Boolean,
-    dragWithClip: Boolean,
-    clipArea: Boolean,
+    clipRelative: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    dragWithClip: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    clipArea: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     defaultGroupOrigin: String,
     cspNonce: String,
-    checkInput: Boolean,
-    groupable: Boolean,
+    checkInput: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    groupable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     snappable: [Boolean, Array],
-    snapCenter: Boolean,
-    snapHorizontal: Boolean,
-    snapVertical: Boolean,
-    snapElement: Boolean,
-    snapGap: Boolean,
+    snapCenter: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    snapHorizontal: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    snapVertical: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    snapElement: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    snapGap: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     snapThreshold: Number,
     snapDigit: Number,
-    isDisplaySnapDigit: Boolean,
+    isDisplaySnapDigit: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     horizontalGuidelines: Array,
     verticalGuidelines: Array,
     elementGuidelines: Array,
@@ -64,23 +128,51 @@ export default {
     innerBounds: Object,
     snapDistFormat: Function,
     defaultGroupRotate: Number,
-    scrollable: Boolean,
+    scrollable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     scrollContainer: [HTMLElement, SVGElement],
     scrollThreshold: Number,
     getScrollPosition: Function,
-    warpable: Boolean,
+    warpable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     renderDirections: Array,
-    rotatable: Boolean,
+    rotatable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     rotationPosition: String,
     throttleRotate: Number,
     pinchable: [Boolean, Array],
-    scalable: Boolean,
+    scalable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     throttleScale: Number,
-    keepRatio: Boolean,
-    resizable: Boolean,
+    keepRatio: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    resizable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     throttleResize: Number,
     baseDirection: Array,
-    draggable: Boolean,
+    draggable: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     throttleDrag: Number,
     throttleDragRotate: Number,
     startDragRotate: Number,
@@ -90,16 +182,36 @@ export default {
       default: () => document.body,
     },
     rootContainer: HTMLElement,
-    dragArea: Boolean,
-    origin: Boolean,
+    dragArea: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    origin: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     zoom: Number,
     transformOrigin: [Array, String],
-    edge: Boolean,
+    edge: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     ables: Array,
     className: String,
     pinchThreshold: Number,
-    pinchOutside: Boolean,
-    triggerAblesSimultaneously: Boolean,
+    pinchOutside: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
+    triggerAblesSimultaneously: {
+      type: Boolean,
+      required: false,
+      default: undefined
+    },
     padding: Object, // { left: number, top: number, right: number, bottom: number }
   },
   methods: methodMap,
